@@ -1,0 +1,10 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+footer.footer {
+    font-size: 0.95rem;
+}
