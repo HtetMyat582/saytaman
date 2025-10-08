@@ -1,0 +1,9 @@
+Django==5.0.6
+django-cities-light==3.10.1
+django-countries==7.6.1
+django-filter==24.2
+django-import-export==4.1.1
+ipykernel==6.29.5
+mysqlclient==2.2.4
+pytest-django==4.11.1
+tinycss2==1.4.0
