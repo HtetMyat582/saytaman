@@ -6,7 +6,7 @@ from django.utils.translation import activate, check_for_language
 from django.conf import settings
 
 def home(request):
-    title = _("SayTaMan Social Welfare Association")
+    title = _("Saytaman Social Welfare Association")
     now = datetime.now().year
     return render(request, 'index.html', {'title': title, 'now': now})
 

@@ -11,10 +11,10 @@ class Address(models.Model):
 
 class Member(models.Model):
     BLOOD_TYPE_CHOICES = [
-        ('A+', 'A+'), ('A-', 'A-'),
-        ('B+', 'B+'), ('B-', 'B-'),
-        ('AB+', 'AB+'), ('AB-', 'AB-'),
-        ('O+', 'O+'), ('O-', 'O-'),
+        ('A', 'A'), ('A+', 'A+'), ('A-', 'A-'),
+        ('B', 'B'), ('B+', 'B+'), ('B-', 'B-'),
+        ('AB', 'AB'), ('AB+', 'AB+'), ('AB-', 'AB-'),
+        ('O', 'O'), ('O+', 'O+'), ('O-', 'O-'),
     ]
 
     ROLE_CHOICES = [

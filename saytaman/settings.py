@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'web_portal',
     'mission_records',
     'natural_disasters',
+    'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
