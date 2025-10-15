@@ -4,21 +4,6 @@ from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import DateWidget, ForeignKeyWidget, CharWidget
 from .models import Member
 
-"""
-class AddressResource(resources.ModelResource):
-    class Meta:
-        model = Address
-        import_id_fields = ('id',)
-        fields = ('id', 'house_number', 'street', 'township', 'city')
-
-@admin.register(Address)
-class AddressAdmin(ImportExportModelAdmin):
-    resource_class = AddressResource
-    list_display = ('house_number', 'street', 'township', 'city')
-    search_fields = ('house_number', 'street', 'township', 'city')
-    list_filter = ('city', 'township')
-"""
-
 class MemberResource(resources.ModelResource):
     dob = fields.Field(
         column_name='dob',
@@ -30,12 +15,7 @@ class MemberResource(resources.ModelResource):
         attribute='registration_date',
         widget=DateWidget(format='%d-%m-%Y')  # Custom date format
     )
-    """
-    address = fields.Field(
-        column_name='address',
-        attribute='address',
-        widget=ForeignKeyWidget(Address, 'id')  # Use Address ID for import/export
-    )"""
+    
     profile_photo = fields.Field(
         column_name='profile_photo',
         attribute='profile_photo',

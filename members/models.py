@@ -1,16 +1,5 @@
 from django.db import models
 
-"""
-class Address(models.Model):
-    house_number = models.CharField(max_length=20, null=True, blank=True)
-    street = models.CharField(max_length=100, null=True, blank=True)
-    township = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.house_number}, {self.street}, {self.township}, {self.city}"
-"""
-
 class Member(models.Model):
     BLOOD_TYPE_CHOICES = [
         ('A', 'A'), ('A+', 'A+'), ('A-', 'A-'),
