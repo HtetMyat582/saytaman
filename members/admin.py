@@ -2,8 +2,9 @@ from django.contrib import admin
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.widgets import DateWidget, ForeignKeyWidget, CharWidget
-from .models import Member, Address
+from .models import Member
 
+"""
 class AddressResource(resources.ModelResource):
     class Meta:
         model = Address
@@ -16,6 +17,7 @@ class AddressAdmin(ImportExportModelAdmin):
     list_display = ('house_number', 'street', 'township', 'city')
     search_fields = ('house_number', 'street', 'township', 'city')
     list_filter = ('city', 'township')
+"""
 
 class MemberResource(resources.ModelResource):
     dob = fields.Field(
@@ -23,11 +25,17 @@ class MemberResource(resources.ModelResource):
         attribute='dob',
         widget=DateWidget(format='%d-%m-%Y')  # Custom date format
     )
+    regirstration_date = fields.Field(
+        column_name='registration_date',
+        attribute='registration_date',
+        widget=DateWidget(format='%d-%m-%Y')  # Custom date format
+    )
+    """
     address = fields.Field(
         column_name='address',
         attribute='address',
         widget=ForeignKeyWidget(Address, 'id')  # Use Address ID for import/export
-    )
+    )"""
     profile_photo = fields.Field(
         column_name='profile_photo',
         attribute='profile_photo',
@@ -64,8 +72,6 @@ class MemberAdmin(ImportExportModelAdmin):
     )
     list_filter = ('role', 'blood_type', 'is_active', 'registration_date')
     search_fields = ('member_id', 'name', 'nrc', 'phone_number', 'father_name', 'mother_name')
-    readonly_fields = ('registration_date',)
-    autocomplete_fields = ['address']
     fieldsets = (
         ('Primary Info', {
             'fields': (

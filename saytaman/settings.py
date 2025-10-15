@@ -164,3 +164,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
+
+DATE_INPUT_FORMATS = [
+    '%d-%m-%Y',
+    '%Y-%m-%d',
+    '%m/%d/%Y',
+]
+
+DATE_FORMAT = 'd-m-Y'
