@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import fields, resources
 from import_export.admin import ImportExportModelAdmin
-from import_export.widgets import DateWidget, ForeignKeyWidget, CharWidget
+from import_export.widgets import DateWidget, CharWidget
 from .models import Member
 
 class MemberResource(resources.ModelResource):
@@ -14,12 +14,6 @@ class MemberResource(resources.ModelResource):
         column_name='registration_date',
         attribute='registration_date',
         widget=DateWidget(format='%d-%m-%Y')  # Custom date format
-    )
-    
-    profile_photo = fields.Field(
-        column_name='profile_photo',
-        attribute='profile_photo',
-        widget=CharWidget()
     )
 
     class Meta:

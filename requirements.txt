@@ -1,6 +1,8 @@
-Django==5.0.6
-django-cities-light==3.10.1
-django-countries==7.6.1
-django-filter==24.2
+Django
+django-cities-light>=3.10.1
+django-countries>=7.6.1
+django-filter>=24.2
 django-import-export>=3.3.4
 openpyxl
+mysqlclient
+Pillow

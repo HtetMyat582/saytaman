@@ -1,10 +1,108 @@
+/* Soft UI (Neumorphism) + Lime Green Accent */
 body {
-    background-color: #f8f9fa;
+    background: #f6f8fa;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    color: #222;
 }
+
+.lime-accent {
+    color: #499636 !important;
+}
+
+.navbar {
+    background: #fff !important;
+    box-shadow: 0 2px 16px 0 rgba(73,150,54,0.08);
+    border-radius: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem 2rem;
+    border-bottom: 3px solid #49963622;
+}
+
 .navbar-brand {
-    font-weight: bold;
+    color: #499636 !important;
+    font-weight: 700;
+    font-size: 1.5rem;
     letter-spacing: 1px;
 }
-footer.footer {
-    font-size: 0.95rem;
+
+.nav-link {
+    color: #222 !important;
+    border-radius: 1rem;
+    transition: background 0.2s, color 0.2s;
+    padding: 0.5rem 1.2rem !important;
 }
+
+.nav-link.active, .nav-link:hover {
+    background: #eafbe6;
+    color: #499636 !important;
+}
+
+.btn-lime, .btn-primary {
+    background: #499636 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 16px 0 rgba(73,150,54,0.10);
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-lime:hover, .btn-primary:hover {
+    background: #357324 !important;
+    color: #fff !important;
+    box-shadow: 0 6px 24px 0 rgba(73,150,54,0.18);
+}
+
+.soft-ui-card {
+    background: #fff;
+    border-radius: 2rem;
+    box-shadow: 8px 8px 24px #e3e6e8, -8px -8px 24px #fff;
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+    max-width: 420px;
+}
+
+.login-card {
+    min-width: 340px;
+}
+
+footer.footer {
+    background: #fff !important;
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -2px 16px 0 rgba(73,150,54,0.08);
+    font-size: 0.95rem;
+    color: #499636;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.form-select, .form-control {
+    border-radius: 1rem;
+    box-shadow: 2px 2px 8px #e3e6e8, -2px -2px 8px #fff;
+    border: 1px solid #e3e6e8;
+    transition: border 0.2s;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #499636;
+    box-shadow: 0 0 0 0.2rem rgba(73,150,54,0.10);
+}
+
+.display-4 {
+    color: #499636;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 #eafbe6;
+}
+
+.lead {
+    color: #555;
+}
+
+::-webkit-input-placeholder { color: #bbb; }
+::-moz-placeholder { color: #bbb; }
+:-ms-input-placeholder { color: #bbb; }
+::placeholder { color: #bbb; }

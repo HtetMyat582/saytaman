@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'web_portal',
     'mission_records',
     'natural_disasters',
+    'donations_and_expenses',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -101,7 +102,7 @@ WSGI_APPLICATION = 'saytaman.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stm_db',
+        'NAME': 'stm',
         'USER': 'HtetMyat582',
         'PASSWORD': '*HMM582zb#',
         'HOST': 'localhost',
@@ -164,6 +165,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 
 DATE_INPUT_FORMATS = [
     '%d-%m-%Y',
