@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start">
+    <div class="soft-ui-card w-100" style="max-width:720px;">
+        <h3 class="mb-3 text-center lime-accent">{% trans "User Profile" %}</h3>
+        <form>
+            <div class="form-row">
+                <label class="form-label">{% trans "Username" %}</label>
+                <input type="text" class="form-input" value="{{ user.username }}" readonly>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">{% trans "Email" %}</label>
+                <input type="text" class="form-input" value="{{ user.email|default:_('Not provided') }}" readonly>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">{% trans "First name" %}</label>
+                <input type="text" class="form-input" value="{{ user.first_name|default:_('Not provided') }}" readonly>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">{% trans "Last name" %}</label>
+                <input type="text" class="form-input" value="{{ user.last_name|default:_('Not provided') }}" readonly>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end mt-3">
+                </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@
     {% load i18n %}
     <nav class="navbar navbar-expand-lg shadow-sm lime-accent-border">
         <div class="container-fluid">
-            <a class="navbar-brand lime-accent" href="/">Saytaman</a>
+            <a class="navbar-brand lime-accent" href="/"><img src="{% static 'site_media/STM_text_only_full.png' %}" height="48" alt="STM logo" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="btn nav-link">
+                            <button type="submit" class="btn nav-link text-danger">
                                 {% trans "Logout" %} <i class="bi bi-box-arrow-right"></i>
                             </button>
                         </form>
@@ -36,35 +36,69 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="bi bi-person-circle"></i> {% trans "Login" %}</a></li>
                     {% endif %}
                 </ul>
-
-                <!-- Language switch toggle -->
-                <!--form action="{% url 'set_language' %}" method="post" class="d-inline ms-3">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <select name="language" onchange="this.form.submit()" class="form-select form-select-sm d-inline w-auto">
-                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
-                        <option value="my" {% if LANGUAGE_CODE == 'my' %}selected{% endif %}>Burmese</option>
-                    </select>
-                </form-->
-
             </div>
         </div>
     </nav>
-    <main class="container">
+    <div class="language-theme-toggles">
         {% if user.is_authenticated %}
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary ">{% trans "Add Mission" %}</button>
-        </div>
+            <a class="btn nav-link" href="{% url 'profile' %}"><i class="bi bi-person-check"></i> {{ user.username }}</a>
         {% endif %}
+        <!-- Language switch toggle -->
+        <form action="{% url 'set_language' %}" method="post" class="d-inline ms-3">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+
+            {% if LANGUAGE_CODE == 'en' %}
+            {% with target_language='my' target_label='MY' target_title='EN/မြန်မာ' %}
+            <button type="submit"
+                    name="language"
+                    value="{{ target_language }}"
+                    class="btn nav-link"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ target_title }}">
+                <i class="bi bi-globe2"></i>
+            </button>
+            {% endwith %}
+            {% else %}
+            {% with target_language='en' target_label='EN' target_title='EN/မြန်မာ' %}
+            <button type="submit"
+                    name="language"
+                    value="{{ target_language }}"
+                    class="btn nav-link"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ target_title }}">
+                <i class="bi bi-globe2"></i>
+            </button>
+            {% endwith %}
+            {% endif %}
+        </form>
+        <button class="btn nav-link" id="toggle-theme"><i class="bi bi-moon-stars-fill"></i></button>
+    </div>
+    <main class="container">
 
         {% block content %}{% endblock %}
 
     </main>
     <footer class="footer mt-auto py-3 text-center">
         <div class="container">
-            <span class="text-muted">&copy; {{ now }} Saytaman Social Welfare Association</span>
+            <span class="footer-text">&copy; {{ now }} Saytaman Social Welfare Association</span>
         </div>
     </footer>
+
+    <script>
+        const toggle = document.getElementById('toggle-theme');
+        const setTheme = theme => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        toggle.addEventListener('click', () => {
+            const current = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
+            setTheme(current);
+        });
+
+        // Initialize
+        const saved = localStorage.getItem('theme') || 'light';
+        setTheme(saved);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

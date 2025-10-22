@@ -4,6 +4,7 @@ from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.utils.translation import activate, check_for_language
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     title = _("Saytaman Social Welfare Association")
@@ -20,3 +21,12 @@ def toggle_language(request):
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, next_lang)
         activate(next_lang)
     return response
+
+
+@login_required
+def profile(request):
+    """Render a simple user profile page for the authenticated user."""
+    title = _("Profile")
+    now = datetime.now().year
+    user = request.user
+    return render(request, 'profile.html', {'title': title, 'user': user, 'now': now})

@@ -1,8 +1,29 @@
-/* Soft UI (Neumorphism) + Lime Green Accent */
+/* Light Theme */
+:root {
+    --bg: #f6f8fa;
+    --text: #222222;
+    --lime: #499636;
+    --nav-bg: #ffffff;
+    --box-shadow: rgba(73,150,54,0.08);
+    --footer-text: #888888;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg: #333333;
+    --text: #f2f2f2;
+    --lime: #499636;
+    --nav-bg: #0e0e0e;
+    --box-shadow: rgba(73,150,54,0.08);
+    --footer-text: #999999;
+}
+
+
+
 body {
-    background: #f6f8fa;
+    background: var(--bg);
     font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    color: #222;
+    color: var(--text);
 }
 
 .lime-accent {
@@ -10,7 +31,7 @@ body {
 }
 
 .navbar {
-    background: #fff !important;
+    background: var(--nav-bg) !important;
     box-shadow: 0 2px 16px 0 rgba(73,150,54,0.08);
     border-radius: 1.5rem;
     margin-top: 1rem;
@@ -29,7 +50,7 @@ body {
 }
 
 .nav-link {
-    color: #222 !important;
+    color: var(--text);
     border-radius: 1rem;
     transition: background 0.2s, color 0.2s;
     padding: 0.5rem 1.2rem !important;
@@ -38,6 +59,23 @@ body {
 .nav-link.active, .nav-link:hover {
     background: #eafbe6;
     color: #499636 !important;
+}
+
+.language-theme-toggles {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    padding-right: 1rem;
+    margin-top: -1.5rem;
+    margin-bottom: 1rem;
+}
+
+.language-theme-toggles .btn {
+    padding: 0.4rem 0.8rem !important;
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 16px 0 var(--box-shadow);
 }
 
 .btn-lime, .btn-primary {
@@ -57,7 +95,7 @@ body {
 }
 
 .soft-ui-card {
-    background: #fff;
+    background: var(--bg);
     border-radius: 2rem;
     box-shadow: 8px 8px 24px #e3e6e8, -8px -8px 24px #fff;
     padding: 2rem 2.5rem;
@@ -70,14 +108,17 @@ body {
 }
 
 footer.footer {
-    background: #fff !important;
+    background: var(--bg);
     border-radius: 1.5rem 1.5rem 0 0;
     box-shadow: 0 -2px 16px 0 rgba(73,150,54,0.08);
     font-size: 0.95rem;
-    color: #499636;
     margin-top: 2rem;
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+.footer-text {
+    color: var(--footer-text);
 }
 
 .form-select, .form-control {
@@ -99,10 +140,85 @@ footer.footer {
 }
 
 .lead {
-    color: #555;
+    color: var(--text);
 }
 
 ::-webkit-input-placeholder { color: #bbb; }
 ::-moz-placeholder { color: #bbb; }
 :-ms-input-placeholder { color: #bbb; }
 ::placeholder { color: #bbb; }
+
+/* Form layout helpers adapted from other site, tuned to current theme */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-label {
+    flex: 0 0 30%;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--text);
+    padding-right: 1rem;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.form-input {
+    flex: 1;
+    border: none;
+    border-bottom: 2px solid rgba(73,150,54,0.25);
+    background: transparent;
+    padding: 0.5rem 0.6rem;
+    font-size: 1rem;
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    border-radius: 0.6rem;
+    box-shadow: 2px 2px 8px #e3e6e8, -2px -2px 8px #fff;
+}
+
+.form-input:focus,
+.form-input:active {
+    border-bottom: 2px solid var(--lime);
+    box-shadow: 0 6px 18px rgba(73,150,54,0.08);
+    outline: none;
+}
+
+/* Ensure compatibility with existing form-control / form-select classes */
+.input.form-input, input.form-input, textarea.form-input, select.form-input {
+    appearance: none;
+}
+
+/* Dark theme tweaks */
+[data-theme="dark"] .soft-ui-card,
+[data-theme="dark"] footer.footer {
+    background: #0f0f0f;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .form-input {
+    box-shadow: none;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .form-input:focus {
+    border-bottom-color: var(--lime);
+    box-shadow: 0 6px 18px rgba(73,150,54,0.12);
+}
+
+/* Mobile: stack label above input */
+@media (max-width: 576px) {
+    .form-label {
+        flex: 0 0 100%;
+        text-align: left;
+        margin-bottom: 0.4rem;
+    }
+
+    .form-row {
+        gap: 0.5rem;
+    }
+}
