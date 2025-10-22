@@ -13,7 +13,7 @@
     {% load i18n %}
     <nav class="navbar navbar-expand-lg shadow-sm lime-accent-border">
         <div class="container-fluid">
-            <a class="navbar-brand lime-accent" href="/">Saytaman</a>
+            <a class="navbar-brand lime-accent" href="/"><img src="{% static 'site_media/STM_text_only_full.png' %}" height="48" alt="STM logo"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,14 +38,14 @@
                 </ul>
 
                 <!-- Language switch toggle -->
-                <!--form action="{% url 'set_language' %}" method="post" class="d-inline ms-3">
+                <form action="{% url 'set_language' %}" method="post" class="d-inline ms-3">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
                     <select name="language" onchange="this.form.submit()" class="form-select form-select-sm d-inline w-auto">
                         <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
                         <option value="my" {% if LANGUAGE_CODE == 'my' %}selected{% endif %}>Burmese</option>
                     </select>
-                </form-->
+                </form>
 
             </div>
         </div>

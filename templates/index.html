@@ -1,12 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Home | Saytaman{% endblock %}
+{% load static %}{% load i18n %}
 {% block content %}
 <div class="text-center py-5">
-    <h1 class="display-4 mb-3">Welcome to Saytaman Social Welfare Association</h1>
+    <h1 class="display-4 mb-3">{% trans 'Welcome to Saytaman Social Welfare Association' %}</h1>
     <p class="lead mb-4">
         Supporting emergency ambulance missions and disaster response<br>
         in Mandalay Region, Myanmar.<br>
     </p>
-    <a href="#" class="btn btn-primary btn-lg">Get Started</a>
 </div>
+<div class="card-group">
+    <div class="card">
+        <img src="{% static 'site_media/card_img_1.jpg' %}" height="320" class="card-img-top w-auto p-3" alt="">
+        <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed...</p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="{% static 'site_media/card_img_2.jpg' %}" height="320" class="card-img-top w-auto p-3" alt="">
+        <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed...</p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="{% static 'site_media/card_img_3.jpg' %}" height="320" class="card-img-top w-auto p-3" alt="">
+        <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed...</p>
+        </div>
+    </div>
+</div>
+<div class="mb-3"></div>
 {% endblock %}
