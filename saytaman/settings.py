@@ -48,7 +48,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'members',
+    'members.apps.MembersConfig',
     'vehicles',
     'web_portal',
     'mission_records',
@@ -70,6 +70,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # middleware that forces password change after first login
+    'members.middleware.ForcePasswordChangeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -174,3 +176,13 @@ DATE_INPUT_FORMATS = [
 ]
 
 DATE_FORMAT = 'd-m-Y'
+
+# Email settings (development)
+# For development use the console backend so reset emails are printed to the console.
+# In production configure a real SMTP backend and set a proper DEFAULT_FROM_EMAIL.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'no-reply@localhost'
+
+# Security: limit the lifetime of password reset tokens (seconds). Default is 3 days (259200).
+# Setting to 1 hour (3600) here for better security. Adjust as appropriate for your users.
+PASSWORD_RESET_TIMEOUT = 3600

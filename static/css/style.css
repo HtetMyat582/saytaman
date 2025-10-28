@@ -4,7 +4,8 @@
     --text: #222222;
     --lime: #499636;
     --nav-bg: #ffffff;
-    --box-shadow: rgba(73,150,54,0.08);
+    --card-bg: #ffffff;
+    --box-shadow: rgba(73,150,54,0.15);
     --footer-text: #888888;
 }
 
@@ -14,7 +15,8 @@
     --text: #f2f2f2;
     --lime: #499636;
     --nav-bg: #0e0e0e;
-    --box-shadow: rgba(73,150,54,0.08);
+    --card-bg: #1f1f1f;
+    --box-shadow: rgba(98, 255, 56, 0.15);
     --footer-text: #999999;
 }
 
@@ -32,7 +34,7 @@ body {
 
 .navbar {
     background: var(--nav-bg) !important;
-    box-shadow: 0 2px 16px 0 rgba(73,150,54,0.08);
+    box-shadow: 0 2px 2px var(--box-shadow) !important;
     border-radius: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -75,7 +77,7 @@ body {
 .language-theme-toggles .btn {
     padding: 0.4rem 0.8rem !important;
     background-color: var(--nav-bg);
-    box-shadow: 0 2px 16px 0 var(--box-shadow);
+    box-shadow: 0 2px 2px 0 var(--box-shadow) !important;
 }
 
 .btn-lime, .btn-primary {
@@ -221,4 +223,18 @@ footer.footer {
     .form-row {
         gap: 0.5rem;
     }
+}
+
+.card-group {
+    border-radius: 1.5rem;
+}
+
+.card-group .card {
+    background-color: var(--card-bg) !important;
+    box-shadow: 0 2px 16px var(--box-shadow);
+    border-radius: 1.5rem;
+}
+
+.card .card-text {
+    color: var(--text);
 }

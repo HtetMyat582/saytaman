@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import activate, check_for_language
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views as auth_views
+from django.urls import reverse_lazy
 
 def home(request):
     title = _("Saytaman Social Welfare Association")
@@ -30,3 +32,18 @@ def profile(request):
     now = datetime.now().year
     user = request.user
     return render(request, 'profile.html', {'title': title, 'user': user, 'now': now})
+
+
+class MemberPasswordChangeView(auth_views.PasswordChangeView):
+    """Subclass PasswordChangeView to clear the member.must_change_password flag after a successful change."""
+    template_name = 'registration/password_change_form.html'
+    success_url = reverse_lazy('password_change_done')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = self.request.user
+        member = getattr(user, 'member_profile', None)
+        if member:
+            member.must_change_password = False
+            member.save(update_fields=['must_change_password'])
+        return response
