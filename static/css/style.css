@@ -7,6 +7,14 @@
     --card-bg: #ffffff;
     --box-shadow: rgba(73,150,54,0.15);
     --footer-text: #888888;
+    --input-bg: #ffffff;
+
+    /* new variables for avatar and file widget */
+    --avatar-border: rgba(73,150,54,0.2);
+    --avatar-bg: #fff;
+    --avatar-shadow: rgba(0,0,0,0.06);
+    --file-bg: #f7fbf7;
+    --file-border: rgba(73,150,54,0.12);
 }
 
 /* Dark Theme */
@@ -18,6 +26,13 @@
     --card-bg: #1f1f1f;
     --box-shadow: rgba(98, 255, 56, 0.15);
     --footer-text: #999999;
+    --input-bg: #212529;
+
+    --avatar-border: rgba(255,255,255,0.06);
+    --avatar-bg: #121212;
+    --avatar-shadow: rgba(0,0,0,0.4);
+    --file-bg: #141414;
+    --file-border: rgba(255,255,255,0.06);
 }
 
 
@@ -102,7 +117,7 @@ body {
     box-shadow: 8px 8px 24px #e3e6e8, -8px -8px 24px #fff;
     padding: 2rem 2.5rem;
     margin: 2rem auto;
-    max-width: 420px;
+    max-width: 480px;
 }
 
 .login-card {
@@ -173,14 +188,13 @@ footer.footer {
     flex: 1;
     border: none;
     border-bottom: 2px solid rgba(73,150,54,0.25);
-    background: transparent;
+    background-color: var(--input-bg);
     padding: 0.5rem 0.6rem;
     font-size: 1rem;
     color: var(--text);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     border-radius: 0.6rem;
-    box-shadow: 2px 2px 8px #e3e6e8, -2px -2px 8px #fff;
 }
 
 .form-input:focus,
@@ -237,4 +251,36 @@ footer.footer {
 
 .card .card-text {
     color: var(--text);
+}
+
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--avatar-border);
+    box-shadow: 0 6px 18px var(--avatar-shadow);
+    background: var(--avatar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--lime);
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.profile-avatar:hover {
+    transform: translateY(-2px);
+}
+
+.profile-avatar-placeholder {
+    background: var(--card-bg);
+    color: var(--lime);
+}
+
+[data-theme="dark"] .profile-avatar {
+    border-color: var(--avatar-border);
+    background: var(--avatar-bg);
+    color: var(--lime);
 }

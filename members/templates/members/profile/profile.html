@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ member.name }} - {% trans "Profile" %}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start">
+    <div class="w-100">
+
+        <h3 class="mb-3 text-center lime-accent">{% trans "Member Profile" %}</h3>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="d-flex gap-2 flex-wrap">
+
+                <!-- Left column: photo + primary info card -->
+                <div class="soft-ui-card p-3">
+                    {% if member.profile_photo %}
+                    <img src="{{ member.profile_photo.url }}" alt="Profile Picture" class="profile-avatar mb-2">
+                    {% else %}
+                    <div class="profile-avatar profile-avatar-placeholder mb-2">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        {% for error in mform.profile_photo.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-2">
+                        <label class="form-label">{% trans "Member ID" %}</label>
+                        <input type="text" class="form-input" value="{{ readonly.member_id }}" readonly>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">{% trans "Name" %}</label>
+                        <input type="text" class="form-input" value="{{ readonly.name }}" readonly>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">{% trans "Role" %}</label>
+                        <input type="text" class="form-input" value="{{ readonly.role }}" readonly>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">{% trans "Missions" %}</label>
+                        <input type="text" class="form-input"
+                               value="{% if member.missions_count %}{{ member.missions_count }}{% else %}{{ member.mission_set.all|length }}{% endif %}"
+                               readonly>
+                    </div>
+                    <div class="mt-5">
+                        <a href="{% url 'password_change' %}" class="nav-link btn">{% trans "Change password" %}</a>
+                    </div>
+                </div>
+
+                <!-- Right column: other fieldset cards -->
+                <div class="d-flex flex-column flex-grow-1 gap-2">
+
+                    <!-- Primary Info card (expanded) -->
+                    <div class="soft-ui-card p-3">
+                        <h5 class="mb-3">{% trans "Primary Info" %}</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "NRC" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.nrc }}" readonly>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "DOB" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.dob }}" readonly>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Blood Type" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.blood_type }}" readonly>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Registration Date" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.registration_date }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Address card -->
+                    <div class="soft-ui-card p-3">
+                        <h5 class="mb-3">{% trans "Contact & Address" %}</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Phone" %}</label>
+                                {{ mform.phone_number }}
+                                {% for error in mform.phone_number.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Email" %}</label>
+                                {{ uform.email }}
+                                {% for error in uform.email.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">{% trans "Address" %}</label>
+                                {{ mform.address }}
+                                {% for error in mform.address.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family & Job card -->
+                    <div class="soft-ui-card p-3">
+                        <h5 class="mb-3">{% trans "Family & Job" %}</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Father" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.father_name }}" readonly>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Mother" %}</label>
+                                <input type="text" class="form-input" value="{{ readonly.mother_name }}" readonly>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Spouse" %}</label>
+                                {{ mform.husband_or_wife }}
+                                {% for error in mform.husband_or_wife.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">{% trans "Job" %}</label>
+                                {{ mform.job }}
+                                {% for error in mform.job.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="soft-ui-card col-md-6 p-0">
+                        <button type="submit" class="btn btn-primary w-100">{% trans "Save changes" %}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
