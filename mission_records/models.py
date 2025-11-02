@@ -1,5 +1,6 @@
 from django.db import models
 from members.models import Member
+from vehicles.models import Vehicle
 
 class MissionRecord(models.Model):
     mission_number = models.CharField(max_length=20, null=False, blank=False)
@@ -7,6 +8,7 @@ class MissionRecord(models.Model):
     time = models.TimeField(null=False, blank=False)
     departure = models.CharField(max_length=100, null=False, blank=False)
     destination = models.CharField(max_length=100, null=False, blank=False)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='vehicle', null=False, blank=False)
     driver_name = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='driver', null=False, blank=False)
     assistant_1 = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='assistant_1', null=True, blank=True)
     assistant_2 = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='assistant_2', null=True, blank=True)

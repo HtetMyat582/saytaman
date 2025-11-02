@@ -12,22 +12,22 @@ class MissionRecordAdmin(ImportExportModelAdmin):
     resource_class = MissionRecordResource
     list_display = [
         'mission_number', 'date', 'time', 'departure', 'destination',
-        'driver_name', 'assistant_1', 'assistant_2',
+        'vehicle', 'driver_name', 'assistant_1', 'assistant_2',
         'patient_name', 'patient_age',
         'donation_received', 'mission_expenses', 'fuel_cost', 'timestamp'
     ]
     list_filter = [
-        'date', 'departure', 'destination', 'driver_name', 'assistant_1', 'assistant_2'
+        'date', 'departure', 'destination', 'vehicle', 'driver_name', 'assistant_1', 'assistant_2'
     ]
     search_fields = [
-        'mission_number', 'departure', 'destination', 'patient_name',
+        'mission_number', 'departure', 'destination', 'patient_name', 'vehicle__vehicle_id',
         'driver_name__name', 'assistant_1__name', 'assistant_2__name'
     ]
     fieldsets = (
         ('Mission Info', {
             'fields': (
                 'mission_number', 'date', 'time', 'departure', 'destination',
-                'driver_name', 'assistant_1', 'assistant_2'
+                'vehicle' ,'driver_name', 'assistant_1', 'assistant_2'
             )
         }),
         ('Patient Info', {

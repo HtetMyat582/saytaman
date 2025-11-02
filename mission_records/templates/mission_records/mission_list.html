@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Ambulance Responses" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="soft-ui-banner row col-md-8">
+        <h3>{% trans "Ambulance Responses" %}</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Mission#" %}</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "From" %}</th>
+                    <th>{% trans "To" %}</th>
+                    <th>{% trans "Driver" %}</th>
+                    <th>{% trans "Vehicle" %}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in missions %}
+                <tr>
+                    <td>{{ m.mission_number }}</td>
+                    <td>{{ m.date }}</td>
+                    <td>{{ m.departure }}</td>
+                    <td>{{ m.destination }}</td>
+                    <td>{{ m.driver_name.name }}</td>
+                    <td>{{ m.vehicle.vehicle_id }}</td>
+                    <td>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'edit_mission' m.pk %}" class="btn btn-sm btn-outline-secondary">{% trans "Edit" %}</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">{% trans "No missions yet." %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="soft-ui-banner row col-md-3 col-order-1">
+        <h5>{% trans "Recent Missions" %}</h5>
+        <ul class="list-unstyled">
+            {% for m in missions|slice:":5" %}
+            <li class="mb-2">
+                <strong>{{ m.mission_number }}</strong> {{ m.date }}<br>
+                {{ m.departure }} ? {{ m.destination }}<br>
+                <small class="text-muted">{% trans "Driver" %}: {{ m.driver_name.name }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

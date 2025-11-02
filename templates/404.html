@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}404 Not Found{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card text-center shadow" style="max-width: 480px; width: 100%;">
+        <div class="card-body">
+            <h1 class="display-1" style="font-size: 6rem; color: var(--primary);">404</h1>
+            <h2 class="mb-3" style="color: var(--title);">Page Not Found</h2>
+            <p class="mb-4">Sorry, the page you are looking for does not exist or has been moved.</p>
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                <i class="bi bi-house-door-fill"></i> Go to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

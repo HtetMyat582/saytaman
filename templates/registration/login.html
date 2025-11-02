@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Login | Saytaman{% endblock %}
 {% block content %}
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center mb-5">
     <div class="soft-ui-card login-card mb-5">
         <h2 class="mb-4 text-center lime-accent">Login</h2>
         <form method="post">
@@ -22,7 +22,7 @@
         <div class="mt-3 text-center">
             <a href="{% url 'password_reset' %}" class="">Forgot password?</a>
         </div>
-        
     </div>
 </div>
+<div class="mb-5"></div>
 {% endblock %}

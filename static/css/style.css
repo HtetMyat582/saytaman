@@ -8,8 +8,6 @@
     --box-shadow: rgba(73,150,54,0.15);
     --footer-text: #888888;
     --input-bg: #ffffff;
-
-    /* new variables for avatar and file widget */
     --avatar-border: rgba(73,150,54,0.2);
     --avatar-bg: #fff;
     --avatar-shadow: rgba(0,0,0,0.06);
@@ -27,15 +25,12 @@
     --box-shadow: rgba(98, 255, 56, 0.15);
     --footer-text: #999999;
     --input-bg: #212529;
-
     --avatar-border: rgba(255,255,255,0.06);
     --avatar-bg: #121212;
     --avatar-shadow: rgba(0,0,0,0.4);
     --file-bg: #141414;
     --file-border: rgba(255,255,255,0.06);
 }
-
-
 
 body {
     background: var(--bg);
@@ -112,16 +107,27 @@ body {
 }
 
 .soft-ui-card {
-    background: var(--bg);
+    background: var(--card-bg);
     border-radius: 2rem;
-    box-shadow: 8px 8px 24px #e3e6e8, -8px -8px 24px #fff;
+    box-shadow: 0 8px 8px var(--box-shadow) !important;
     padding: 2rem 2.5rem;
     margin: 2rem auto;
-    max-width: 480px;
+    max-width: 640px;
 }
+
+
+.soft-ui-banner {
+    background: var(--card-bg);
+    border-radius: 2rem;
+    box-shadow: 0 8px 8px var(--box-shadow) !important;
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+}
+
 
 .login-card {
     min-width: 340px;
+    max-width: 640px;
 }
 
 footer.footer {
@@ -210,6 +216,7 @@ footer.footer {
 }
 
 /* Dark theme tweaks */
+/*
 [data-theme="dark"] .soft-ui-card,
 [data-theme="dark"] footer.footer {
     background: #0f0f0f;
@@ -225,7 +232,7 @@ footer.footer {
     border-bottom-color: var(--lime);
     box-shadow: 0 6px 18px rgba(73,150,54,0.12);
 }
-
+*/
 /* Mobile: stack label above input */
 @media (max-width: 576px) {
     .form-label {
@@ -244,12 +251,10 @@ footer.footer {
 }
 
 .card-group .card {
-    background-color: var(--card-bg) !important;
-    box-shadow: 0 2px 16px var(--box-shadow);
-    border-radius: 1.5rem;
+    border: none;
 }
 
-.card .card-text {
+.card .card-text, .card h5 {
     color: var(--text);
 }
 
@@ -283,4 +288,31 @@ footer.footer {
     border-color: var(--avatar-border);
     background: var(--avatar-bg);
     color: var(--lime);
+}
+
+/* Minimal index panel styles - rely on Bootstrap for layout and cards */
+
+/* Panel card used in index sidebars */
+.panel-card {
+     background: var(--card-bg);
+     border-radius:1rem;
+     padding:1rem;
+     box-shadow:0 6px 20px rgba(0,0,0,0.06);
+     margin-bottom:1rem;
+}
+
+/* Mission list items spacing */
+.mission-list .mission-item {
+     padding:0.6rem 0;
+     border-bottom:1px dashed rgba(0,0,0,0.06);
+}
+
+/* Card image thumbnail sizing to prevent full-screen images */
+.card .img-fluid {
+     width:96px;
+     height:96px;
+     max-width:96px;
+     max-height:96px;
+     object-fit: cover;
+     display: block;
 }
