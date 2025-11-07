@@ -14,9 +14,11 @@
     <nav class="navbar navbar-expand-lg shadow-sm lime-accent-border">
         <div class="container-fluid">
             <a class="navbar-brand lime-accent" href="/"><img src="{% static 'site_media/STM_text_only_full.png' %}" height="48" alt="STM logo" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="justify-content-end">
+                <button class="nav-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="bi bi-arrow-bar-down lime-accent"></i>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#">{% trans "Missions" %}</a></li>
@@ -24,14 +26,6 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="#">{% trans "Members" %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">{% trans "Vehicles" %}</a></li>
-                    <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn nav-link text-danger">
-                                {% trans "Logout" %} <i class="bi bi-box-arrow-right"></i>
-                            </button>
-                        </form>
-                    </li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="bi bi-person-circle"></i> {% trans "Login" %}</a></li>
                     {% endif %}

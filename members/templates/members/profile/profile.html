@@ -6,7 +6,6 @@
 {% block content %}
 <div class="d-flex justify-content-center align-items-start">
     <div class="w-100">
-
         <h3 class="mb-3 text-center lime-accent">{% trans "Member Profile" %}</h3>
 
         <form method="post" enctype="multipart/form-data">
@@ -48,9 +47,9 @@
                     </div>
 
                     <div class="mb-2">
-                        <label class="form-label">{% trans "Missions" %}</label>
+                        <label class="form-label">{% trans "Number of Missions" %}</label>
                         <input type="text" class="form-input"
-                               value="{% if member.missions_count %}{{ member.missions_count }}{% else %}{{ member.mission_set.all|length }}{% endif %}"
+                               value="{% if missions_count %}{{ missions_count }}{% else %} None {% endif %}"
                                readonly>
                     </div>
                     <div class="mt-5">
@@ -81,10 +80,6 @@
                                 <input type="text" class="form-input" value="{{ readonly.blood_type }}" readonly>
                             </div>
 
-                            <div class="col-md-6 mb-2">
-                                <label class="form-label">{% trans "Registration Date" %}</label>
-                                <input type="text" class="form-input" value="{{ readonly.registration_date }}" readonly>
-                            </div>
                         </div>
                     </div>
 
@@ -95,26 +90,17 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">{% trans "Phone" %}</label>
-                                {{ mform.phone_number }}
-                                {% for error in mform.phone_number.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
+                                <input type="text" class="form-input" value="{{ readonly.phone_number }}" readonly>
                             </div>
 
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">{% trans "Email" %}</label>
-                                {{ uform.email }}
-                                {% for error in uform.email.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
+                                <input type="text" class="form-input" value="{{ readonly.email }}" readonly>
                             </div>
 
                             <div class="col-12 mb-2">
                                 <label class="form-label">{% trans "Address" %}</label>
-                                {{ mform.address }}
-                                {% for error in mform.address.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
+                                <input type="text" class="form-input" value="{{ readonly.address }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -136,27 +122,28 @@
 
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">{% trans "Spouse" %}</label>
-                                {{ mform.husband_or_wife }}
-                                {% for error in mform.husband_or_wife.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
+                                <input type="text" class="form-input" value="{{  readonly.husband_or_wife }}" readonly>
                             </div>
 
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">{% trans "Job" %}</label>
-                                {{ mform.job }}
-                                {% for error in mform.job.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                                {% endfor %}
+                                <input type="text" class="form-input" value="{{  readonly.job }}" readonly>
                             </div>
                         </div>
-                    </div>
-                    <div class="soft-ui-card col-md-6 p-0">
-                        <button type="submit" class="btn btn-primary w-100">{% trans "Save changes" %}</button>
                     </div>
                 </div>
             </div>
         </form>
+        <div class="soft-ui-card col-md-6 p-0">
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn text-danger w-100">
+                    {% trans "Logout" %} <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+        </div>
     </div>
+    
 </div>
+
 {% endblock %}

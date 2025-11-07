@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MemberProfileForm, UserEmailForm
-
+from mission_records.models import MissionRecord
+from django.db.models import Count, Q
+from .models import Member
 
 @login_required
 def profile(request):
@@ -11,6 +13,11 @@ def profile(request):
     if not member:
         messages.error(request, "No member profile linked to your account.")
         return redirect('home')
+
+    missions_count = MissionRecord.objects.filter(
+        Q(driver_name=member) | Q(assistant_1=member) | Q(assistant_2=member)
+    ).count()
+
 
     if request.method == 'POST':
         mform = MemberProfileForm(request.POST, request.FILES, instance=member)
@@ -35,7 +42,12 @@ def profile(request):
         'blood_type': member.blood_type,
         'father_name': member.father_name,
         'mother_name': member.mother_name,
-        'registration_date': member.registration_date,
+    #    'registration_date': member.registration_date,
+        'phone_number': member.phone_number,
+        'email': member.email,
+        'address': member.address,
+        'husband_or_wife': member.husband_or_wife,
+        'job': member.job,
     }
 
     return render(request, 'members/profile/profile.html', {
@@ -43,4 +55,5 @@ def profile(request):
         'uform': uform,
         'readonly': readonly,
         'member': member,
+        'missions_count': missions_count,
     })

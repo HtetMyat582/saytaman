@@ -13,11 +13,12 @@ class Member(models.Model):
         ('Admin', 'Admin'),
         ('Patron', 'Patron'),
         ('Chairman', 'Chairman'),
+        ('Vice Chairman', 'Vice Chairman'),
         ('Secretary', 'Secretary'),
         ('Joint Secretary', 'Joint Secretary'),
         ('Treasurer', 'Treasurer'),
         ('Auditor', 'Auditor'),
-        ('Committee Member', 'Committee Member'),
+        ('Executive Member', 'Executive Member'),
         ('Member', 'Member'),
         ('Volunteer', 'Volunteer'),
     ]
@@ -34,13 +35,13 @@ class Member(models.Model):
     member_id = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=100, null=False, blank=False)
     role = models.CharField(max_length=100, choices=ROLE_CHOICES, blank=True)
-    nrc = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    nrc = models.CharField(max_length=50, null=True, blank=True)
     dob = models.DateField(null=False, blank=False)
     blood_type = models.CharField(max_length=3, choices=BLOOD_TYPE_CHOICES, blank=False)
     address = models.CharField(max_length=50, choices=ADDRESS_CHOICES, null=True, blank=True)
     phone_number = models.CharField(max_length=20, blank=False)
     email = models.EmailField(null=True, blank=True)
-    registration_date = models.DateField(auto_now_add=False, null=False, blank=False)
+#    registration_date = models.DateField(auto_now_add=False, null=False, blank=False)
     father_name = models.CharField(max_length=100, null=True, blank=True)
     mother_name = models.CharField(max_length=100, null=True, blank=True)
     job = models.CharField(max_length=100, null=True, blank=True)

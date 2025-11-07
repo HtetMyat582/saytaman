@@ -7,7 +7,7 @@
     --card-bg: #ffffff;
     --box-shadow: rgba(73,150,54,0.15);
     --footer-text: #888888;
-    --input-bg: #ffffff;
+    --input-bg: rgba(240,255,238,0.25);
     --avatar-border: rgba(73,150,54,0.2);
     --avatar-bg: #fff;
     --avatar-shadow: rgba(0,0,0,0.06);
@@ -73,6 +73,12 @@ body {
     color: #499636 !important;
 }
 
+.nav-toggler {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
 .language-theme-toggles {
     display: flex;
     justify-content: flex-end;
@@ -123,7 +129,6 @@ body {
     padding: 2rem 2.5rem;
     margin: 2rem auto;
 }
-
 
 .login-card {
     min-width: 340px;
@@ -315,4 +320,9 @@ footer.footer {
      max-height:96px;
      object-fit: cover;
      display: block;
+}
+
+.table th, .table td{
+    background: transparent;
+    color: var(--text);
 }

@@ -12,29 +12,48 @@
 </div>
 
 {% if user.is_authenticated %}
-    <div class="d-flex justify-content-md-end mt-2 mb-5">
-        <a href="{% url 'add_mission' %}" class="btn btn-primary btn-large">{% trans "Add Mission" %}</a>
-    </div>
+<div class="d-flex justify-content-md-end mt-2 mb-5">
+    <a href="{% url 'add_mission' %}" class="btn btn-primary btn-large">{% trans "Add Mission" %}</a>
+</div>
 {% endif %}
-
-<div class="soft-ui-banner">
+{% load mission_records_tags %}
+{% latest_missions as latest_missions %}
+<div class="soft-ui-banner table-responsive">
     <h5 class="mb-2">{% trans "Latest Ambulance Response" %}</h5>
-    <ul class="mission-list list-unstyled mb-0">
-        {% load mission_records_tags %}
-        {% latest_missions as latest_missions %}
-        {% for m in latest_missions %}
-        <li class="mission-item py-2">
-            <div class="mission-head">
-                <strong class="lime-accent">{{ m.mission_number }}</strong>
-                <span class="text-muted small">{{ m.date }}</span>
-            </div>
-            <div class="small">{{ m.departure }} → {{ m.destination }}</div>
-            <div class="text-muted small">{% trans "Driver" %}: {{ m.driver_name.name }}</div>
-        </li>
-        {% empty %}
-        <li class="">{% trans "No records yet." %}</li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{% trans 'Response#' %}</th>
+                <th>{% trans 'Date &amp; Time' %}</th>
+                <th>{% trans 'Patient Name &amp; Age' %}</th>
+                <th>{% trans 'Departure &amp; Destination' %}</th>
+                <th>{% trans 'Vehicle' %}</th>
+                <th>{% trans 'Driver' %}</th>
+                <th>{% trans 'Assistant 1' %}</th>
+                <th>{% trans 'Assistant 2' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in latest_missions %}
+            <tr>
+                <td>{{ m.mission_number }}</td>
+                <td>{{ m.date }} {{ m.time }}</td>
+                <td>
+                    {% if m.patient_name %}{{ m.patient_name }}{% else %}{% endif %}{% if m.patient_age %}, {{ m.patient_age }} years old {% else %}{% endif %}
+                </td>
+                <td>{{ m.departure }} &rarr; {{ m.destination }}</td>
+                <td>{{ m.vehicle.vehicle_id }}</td>
+                <td>{{ m.driver_name.name }}</td>
+                <td>{{ m.assistant_1.name }}</td>
+                <td>{{ m.assistant_2.name }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">{% trans 'No records yet.' %}</td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
     <div class="mt-3">
         <a href="{% url 'mission_list' %}" class="btn btn-lime btn-sm">{% trans "View all missions" %}</a>
     </div>

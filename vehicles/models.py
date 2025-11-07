@@ -14,11 +14,12 @@ class Vehicle(models.Model):
     ]
 
     vehicle_id = models.CharField(max_length=50, unique=True)
-    license_plate = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    license_plate = models.CharField(max_length=20, null=True, blank=True)
+    license_expiry_date = models.DateField(null=True, blank=True)
     color = models.CharField(max_length=30, null=True, blank=True)
     model = models.CharField(max_length=50, null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Active')
     mission_status = models.CharField(max_length=20, choices=MISSION_STATUS_CHOICES, default='Stand-by')
     photo = models.ImageField(upload_to='vehicle_photos/', null=True, blank=True)
     def __str__(self):
-        return f"{self.vehicle_id}, {self.license_plate}"
+        return f"{self.vehicle_id}"

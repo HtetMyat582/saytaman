@@ -15,18 +15,19 @@ class MemberResource(resources.ModelResource):
         attribute='dob',
         widget=DateWidget(format='%d-%m-%Y')  # Custom date format
     )
+    """
     regirstration_date = fields.Field(
         column_name='registration_date',
         attribute='registration_date',
         widget=DateWidget(format='%d-%m-%Y')  # Custom date format
     )
-
+    """
     class Meta:
         model = Member
         import_id_fields = ('member_id',)
         fields = (
             'member_id', 'name', 'role', 'nrc', 'dob', 'blood_type',
-            'address', 'phone_number', 'registration_date', 'is_active',
+            'address', 'phone_number', 'is_active', #'registration_date',
             'father_name', 'mother_name', 'husband_or_wife', 'job', 'profile_photo'
         )
 
@@ -79,9 +80,9 @@ class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
     list_display = (
         'member_id', 'name', 'role', 'nrc', 'dob', 'blood_type',
-        'phone_number', 'email', 'registration_date', 'is_active', 'user'
+        'phone_number', 'email', 'is_active', 'user', #'registration_date',
     )
-    list_filter = ('role', 'blood_type', 'is_active', 'registration_date')
+    list_filter = ('role', 'blood_type', 'is_active', )#'registration_date')
     search_fields = ('member_id', 'name', 'nrc', 'phone_number', 'email','father_name', 'mother_name')
     fieldsets = (
         ('Primary Info', {
@@ -97,11 +98,6 @@ class MemberAdmin(ImportExportModelAdmin):
         ('Family & Job', {
             'fields': (
                 'father_name', 'mother_name', 'husband_or_wife', 'job'
-            )
-        }),
-        ('Registration', {
-            'fields': (
-                'registration_date',
             )
         }),
     )
