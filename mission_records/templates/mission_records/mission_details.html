@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Mission Details" %}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h3>{% trans "Mission Details" %} - {{ mission.mission_number }}</h3>
+
+    <div class="soft-ui-card">
+        <table class="table">
+            <tr>
+                <td>{% trans 'Date' %}</td>
+                <th>{{ mission.date }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Time' %}</td>
+                <th>{{ mission.time }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Departure' %}</td>
+                <th>{{ mission.departure }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Destination' %}</td>
+                <th>{{ mission.destination }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Vehicle' %}</td>
+                <th>{{ mission.vehicle }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Driver' %}</td>
+                <th>{{ mission.driver_name.name }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Assistant 1' %}</td>
+                <th>{{ mission.assistant_1.name }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Assistant 2' %}</td>
+                <th>{{ mission.assistant_2.name }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Patient Name' %}</td>
+                <th>{{ mission.patient_name }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Patient Age' %}</td>
+                <th>{{ mission.patient_age }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Notes' %}</td>
+                <th>{{ mission.notes }}</th>
+            </tr>
+            {% if mission.photo %}
+            <tr>
+                <td>{% trans 'Photo' %}</td>
+                <td><img src="{{ mission.photo.url }}" alt="Record Photo" class="card-img"></td>
+            </tr>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <tr>
+                <td>{% trans 'Donation Received' %}</td>
+                <th>{{ mission.donation_received }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Mission Expenses' %}</td>
+                <th>{{ mission.mission_expenses }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Fuel Cost' %}</td>
+                <th>{{ mission.fuel_cost }}</th>
+            </tr>
+            <tr>
+                <td>{% trans 'Timestamp' %}</td>
+                <th>{{ mission.timestamp }}</th>
+            </tr>
+            {% endif %}
+        </table>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edit_mission' mission.pk %}" class="btn btn-primary lime-accent">
+            <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
+        </a>
+        {% endif %}
+    </div>
+    <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
+</div>
+{% endblock %}

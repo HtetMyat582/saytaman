@@ -28,3 +28,28 @@ class UserEmailForm(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-input'}),
         }
+
+
+class MemberDetailsForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ['member_id', 'name', 'role', 'nrc', 'dob', 'blood_type', 'is_active',
+                  'address', 'phone_number', 'email',
+                  'father_name', 'mother_name', 'husband_or_wife', 'job']
+
+        widgets = {
+            'member_id': forms.TextInput(attrs={'class': 'form-input'}),
+            'name': forms.TextInput(attrs={'class': 'form-input'}),
+            'role': forms.Select(attrs={'class': 'form-input'}),
+            'nrc': forms.TextInput(attrs={'class': 'form-input'}),
+            'dob': forms.DateInput(attrs={'type':'date',' class': 'form-input'}),
+            'blood_type': forms.Select(attrs={'class': 'form-input'}),
+            #'is_active': forms.RadioSelect(attrs={'choices': (True, False), 'class': 'form-input'}),
+            'address': forms.Select(attrs={'class': 'form-input'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-input'}),
+            'email': forms.EmailInput(attrs={'class': 'form-input'}),
+            'father_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'mother_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'husband_or_wife': forms.TextInput(attrs={'class': 'form-input'}),
+            'job': forms.TextInput(attrs={'class': 'form-input'}),
+            }

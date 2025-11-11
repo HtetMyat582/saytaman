@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ member.name }} - {% trans "Profile" %}{% endblock %}
+
+{% block content %}
+<div class="soft-ui-banner col-md-8">
+    <h3>{% trans "Edit Member Info" %}</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="">
+            {% for field in form %}
+            <div class="">
+                <label class="form-label">{{ field.label_tag }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary mt-5 w-100">{% trans "Save" %}</button>
+    </form>
+</div>
+{% endblock %}

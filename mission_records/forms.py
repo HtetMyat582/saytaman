@@ -1,7 +1,7 @@
-from token import AT
 from django import forms
 from .models import MissionRecord
 from members.models import Member
+from vehicles.models import Vehicle
 
 
 class MissionRecordForm(forms.ModelForm):
@@ -35,7 +35,7 @@ class MissionRecordForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Limit member choices if needed (optional)
-        self.fields['driver_name'].queryset = Member.objects.order_by('member_id')
-        self.fields['assistant_1'].queryset = Member.objects.order_by('member_id')
-        self.fields['assistant_2'].queryset = Member.objects.order_by('member_id')
+        self.fields['driver_name'].queryset = Member.objects.filter(is_active=True).order_by('member_id')
+        self.fields['assistant_1'].queryset = Member.objects.filter(is_active=True).order_by('member_id')
+        self.fields['assistant_2'].queryset = Member.objects.filter(is_active=True).order_by('member_id')
+        self.fields['vehicle'].queryset = Vehicle.objects.filter(mission_status='Stand-by')

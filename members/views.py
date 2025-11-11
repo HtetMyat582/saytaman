@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MemberProfileForm, UserEmailForm
 from mission_records.models import MissionRecord
-from django.db.models import Count, Q
+from django.db.models import Q
 from .models import Member
+from .forms import MemberProfileForm, MemberDetailsForm
 
 @login_required
 def profile(request):
@@ -55,5 +56,21 @@ def profile(request):
         'uform': uform,
         'readonly': readonly,
         'member': member,
+        'member_role': member.role,
         'missions_count': missions_count,
     })
+
+def edit_member_details(request, pk):
+    member = get_object_or_404(Member, pk=pk)
+
+    if request.method == 'POST':
+        form = MemberDetailsForm(request.POST, request.FILES, instance=member)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Member details updated.')
+            return redirect('member_list')
+        messages.error(request, 'Please correct the errors below.')
+    else:
+        form = MemberDetailsForm(instance=member)
+
+    return render(request, 'members/edit_member_details.html', {'form': form, 'member': member})

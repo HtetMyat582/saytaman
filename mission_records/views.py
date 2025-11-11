@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
 from .models import MissionRecord
 from .forms import MissionRecordForm
-
+from datetime import datetime
 
 @login_required
 def add_mission(request):
@@ -12,6 +11,7 @@ def add_mission(request):
 
     Members (driver or assistants) may create mission records while on mission.
     """
+    now = datetime.now().year
     member = getattr(request.user, 'member_profile', None)
     if not member:
         messages.error(request, 'Only members can add mission records.')
@@ -27,7 +27,14 @@ def add_mission(request):
     else:
         form = MissionRecordForm()
 
-    return render(request, 'mission_records/add_mission.html', {'form': form})
+    return render(request, 'mission_records/add_mission.html', {'form': form, 'now': now})
+
+def mission_details(request, pk):
+    mission = get_object_or_404(MissionRecord, pk=pk)
+    form = MissionRecordForm(instance=mission)
+    now = datetime.now().year
+
+    return render(request, 'mission_records/mission_details.html', {'mission': mission, 'form': form, 'now': now})
 
 
 @login_required
@@ -35,7 +42,7 @@ def edit_mission(request, pk):
     """Allow editing by the driver or any assistant assigned to the mission."""
     mission = get_object_or_404(MissionRecord, pk=pk)
     member = getattr(request.user, 'member_profile', None)
-
+    now = datetime.now().year
     # Permission: driver or assistant_1 or assistant_2 can edit
     allowed = False
     if member:
@@ -44,6 +51,8 @@ def edit_mission(request, pk):
         if mission.assistant_1 and mission.assistant_1 == member:
             allowed = True
         if mission.assistant_2 and mission.assistant_2 == member:
+            allowed = True
+        if member.role == 'Admin':
             allowed = True
 
     if not allowed:
@@ -60,9 +69,10 @@ def edit_mission(request, pk):
     else:
         form = MissionRecordForm(instance=mission)
 
-    return render(request, 'mission_records/edit_mission.html', {'form': form, 'mission': mission})
+    return render(request, 'mission_records/edit_mission.html', {'form': form, 'mission': mission, 'now': now})
 
 
 def mission_list(request):
+    now = datetime.now().year
     missions = MissionRecord.objects.order_by('-date', '-time')[:50]
-    return render(request, 'mission_records/mission_list.html', {'missions': missions})
+    return render(request, 'mission_records/mission_list.html', {'missions': missions, 'now': now})

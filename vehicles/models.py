@@ -21,5 +21,9 @@ class Vehicle(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Active')
     mission_status = models.CharField(max_length=20, choices=MISSION_STATUS_CHOICES, default='Stand-by')
     photo = models.ImageField(upload_to='vehicle_photos/', null=True, blank=True)
+    
     def __str__(self):
+        if self.status == 'Inactive' or self.status == 'Service':
+            self.mission_status = 'Unavailable'
+
         return f"{self.vehicle_id}"

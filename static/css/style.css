@@ -215,6 +215,10 @@ footer.footer {
     outline: none;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Ensure compatibility with existing form-control / form-select classes */
 .input.form-input, input.form-input, textarea.form-input, select.form-input {
     appearance: none;
