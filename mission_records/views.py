@@ -33,8 +33,17 @@ def mission_details(request, pk):
     mission = get_object_or_404(MissionRecord, pk=pk)
     form = MissionRecordForm(instance=mission)
     now = datetime.now().year
+    driver_trimmed = str(mission.driver_name.member_id[-3:])
+    assist_1_trimmed = str(mission.assistant_1.member_id[-3:])
+    assist_2_trimmed = str(mission.assistant_2.member_id[-3:])
 
-    return render(request, 'mission_records/mission_details.html', {'mission': mission, 'form': form, 'now': now})
+    return render(request, 'mission_records/mission_details.html', {
+        'mission': mission,
+        'form': form,
+        'driver_name_trimmed': driver_trimmed,
+        'assist_1_name_trimmed': assist_1_trimmed,
+        'assist_2_name_trimmed': assist_2_trimmed,
+        'now': now})
 
 
 @login_required

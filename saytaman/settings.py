@@ -42,7 +42,7 @@ ALLOWED_HOSTS = [
     '192.168.1.13',
     '192.168.1.14',
     '192.168.1.15',
-    '192.168.110.60',
+    '192.168.110.30',
     ]
 
 
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'natural_disasters',
     'donations_and_expenses',
     'import_export',
+    'django_social_share',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

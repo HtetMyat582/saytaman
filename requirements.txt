@@ -6,3 +6,4 @@ django-import-export>=3.3.4
 openpyxl
 mysqlclient
 Pillow
+django-social-share

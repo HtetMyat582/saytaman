@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% load i18n %}
 
 {% block title %}{% trans "Mission Details" %}{% endblock %}
@@ -79,11 +79,41 @@
             {% endif %}
         </table>
         {% if user.is_authenticated %}
-        <a href="{% url 'edit_mission' mission.pk %}" class="btn btn-primary lime-accent">
-            <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
-        </a>
-        {% endif %}
+        <div class="d-flex">
+            <a href="{% url 'edit_mission' mission.pk %}" class="btn btn-primary lime-accent flex-fill  mx-3">
+                <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
+            </a>
+            {% load static %}
+            <a id="viber_share" class="btn btn-share flex-fill mx-3">
+                <img src="{% static 'site_media/share_on_viber/logo_icon_purple_small.png' %}" height="28" alt="Share to Viber" />
+            </a>
+            {% load social_share %}
+
+            {% post_to_facebook "{{ mission.mission_number }}" object_or_url "Share to Facebook" 'btn btn-share flex-fill mx-3' %}
+            {% copy_to_clipboard object_or_url "Copy" 'btn btn-share flex-fill mx-3' %}
+            {% add_copy_script %}
+            {% endif %}
+        </div>
     </div>
     <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
 </div>
+<script>
+    var buttonID = "viber_share";
+    var text = `
+        {{ mission.mission_number }}\n
+{% if mission.patient_name %}{{ mission.patient_name }}{% endif %}{% if mission.patient_age %}, {{ mission.patient_age }} yo{% else %}{% endif %}
+{% if mission.notes %}{{ mission.notes }}{% endif %}\n
+{{ mission.departure }}  ->  {{ mission.destination }}\n
+{{ mission.vehicle }}\n
+{% if mission.donation_received %}အလှူငွေ - {{ mission.donation_received }}{% else %}{% endif %}
+{% if mission.mission_expenses %}အသုံးစရိတ် - {{ mission.mission_expenses }}{% else %}{% endif %}
+{% if mission.fuel_cost %}ဆီဖိုး - {{ mission.fuel_cost }}{% else %}{% endif %}\n
+{{ driver_name_trimmed }}
+{{ assist_1_name_trimmed }}
+{{ assist_2_name_trimmed }}
+    `;
+
+    document.getElementById(buttonID)
+        .setAttribute('href',"viber://forward?text=" + encodeURIComponent(text + "\n" + window.location.href));
+</script>
 {% endblock %}

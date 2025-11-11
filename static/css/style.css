@@ -112,6 +112,18 @@ body {
     box-shadow: 0 6px 24px 0 rgba(73,150,54,0.18);
 }
 
+.btn-share {
+    background: none;
+    border: 1px solid var(--file-border) !important;
+    border-radius: 1.2rem;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-share:hover {
+    background: var(--input-bg) !important;
+    border: 1px solid var(--file-border) !important;
+}
+
 .soft-ui-card {
     background: var(--card-bg);
     border-radius: 2rem;
