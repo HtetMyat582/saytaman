@@ -2,6 +2,7 @@
 :root {
     --bg: #f6f8fa;
     --text: #222222;
+    --text-hover: #000000;
     --lime: #499636;
     --nav-bg: #ffffff;
     --card-bg: #ffffff;
@@ -19,6 +20,7 @@
 [data-theme="dark"] {
     --bg: #333333;
     --text: #f2f2f2;
+    --text-hover: #ffffff;
     --lime: #499636;
     --nav-bg: #0e0e0e;
     --card-bg: #1f1f1f;
@@ -113,15 +115,17 @@ body {
 }
 
 .btn-share {
-    background: none;
+    background: var(--input-bg);
     border: 1px solid var(--file-border) !important;
     border-radius: 1.2rem;
     transition: background 0.2s, box-shadow 0.2s;
+    color: var(--text);
 }
 
 .btn-share:hover {
-    background: var(--input-bg) !important;
+    background: var(--card-bg) !important;
     border: 1px solid var(--file-border) !important;
+    color: var(--text-hover);
 }
 
 .soft-ui-card {
@@ -133,6 +137,15 @@ body {
     max-width: 640px;
 }
 
+.index-mission-card{
+    max-height: 240px;
+    min-height: 240px;
+}
+
+.soft-ui-card:hover {
+    background: var(--input-bg);
+    transform: translateY(-2px) translateX(2px);
+}
 
 .soft-ui-banner {
     background: var(--card-bg);
@@ -341,4 +354,15 @@ footer.footer {
 .table th, .table td{
     background: transparent;
     color: var(--text);
+}
+
+.list-group-item {
+    background: inherit !important;
+    color: inherit;
+}
+
+.list-group-item:hover {
+    background: var(--input-bg) !important;
+    color: var(--text-hover) !important;
+    transform: translateY(-2px) translateX(2px);
 }

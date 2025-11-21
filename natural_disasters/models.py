@@ -23,6 +23,6 @@ class DisasterEvent(models.Model):
         return f"{self.event_name} - {self.disaster_type} on {self.date} at {self.location}"
 
 class DisasterEventPhoto(models.Model):
-    event = models.ForeignKey(DisasterEvent, related_name='photos', on_delete=models.CASCADE)
+    event = models.ForeignKey(DisasterEvent, related_name='disaster_photos', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='disaster_photos/')
     caption = models.CharField(max_length=255, blank=True, null=True)

@@ -6,8 +6,18 @@
 {% block content %}
 <div class="container py-4">
     <h3>{% trans "Mission Details" %} - {{ mission.mission_number }}</h3>
-
-    <div class="soft-ui-card">
+    {% if user.is_authenticated and not m.back_to_hq %}
+    <div class="mt-3">
+        <form method="POST" action="{% url 'set_back_to_hq' mission.pk %}" class="d-flex justify-content-end">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success rounded-pill"
+                    onclick="return confirm('Are you sure you want to mark the vehicle as returned to HQ and set status to STAND-BY?');">
+                <i class="bi bi-check2-circle"></i> {% trans "Report to HQ" %}
+            </button>
+        </form>
+    </div>
+    {% endif %}
+    <div class="soft-ui-banner col-md-6 table-responsive">
         <table class="table">
             <tr>
                 <td>{% trans 'Date' %}</td>
@@ -41,66 +51,115 @@
                 <td>{% trans 'Assistant 2' %}</td>
                 <th>{{ mission.assistant_2.name }}</th>
             </tr>
+            {% if mission.patient_type %}
+            <tr>
+                <td>{% trans 'Patient Type' %}</td>
+                <th>{{ mission.patient_type }}</th>
+            </tr>
+            {% endif %}
+            {% if mission.patient_name %}
             <tr>
                 <td>{% trans 'Patient Name' %}</td>
                 <th>{{ mission.patient_name }}</th>
             </tr>
+            {% endif %}
+            {% if mission.patient_age %}
             <tr>
                 <td>{% trans 'Patient Age' %}</td>
                 <th>{{ mission.patient_age }}</th>
             </tr>
+            {% endif %}
+            {% if mission.notes %}
             <tr>
                 <td>{% trans 'Notes' %}</td>
                 <th>{{ mission.notes }}</th>
             </tr>
-            {% if mission.photo %}
-            <tr>
-                <td>{% trans 'Photo' %}</td>
-                <td><img src="{{ mission.photo.url }}" alt="Record Photo" class="card-img"></td>
-            </tr>
             {% endif %}
             {% if user.is_authenticated %}
+            {% if mission.donation_received %}
             <tr>
                 <td>{% trans 'Donation Received' %}</td>
                 <th>{{ mission.donation_received }}</th>
             </tr>
+            {% endif %}
+            {% if mission.mission_expenses %}
             <tr>
                 <td>{% trans 'Mission Expenses' %}</td>
                 <th>{{ mission.mission_expenses }}</th>
             </tr>
+            {% endif %}
+            {% if mission.fuel_cost %}
             <tr>
                 <td>{% trans 'Fuel Cost' %}</td>
                 <th>{{ mission.fuel_cost }}</th>
             </tr>
+            {% endif %}
+            {% if mission.back_to_hq %}
             <tr>
-                <td>{% trans 'Timestamp' %}</td>
-                <th>{{ mission.timestamp }}</th>
+                <td>{% trans 'Back to HQ' %}</td>
+                <th>{{ mission.back_to_hq }}</th>
             </tr>
             {% endif %}
+            {% endif %}
         </table>
+
+        {% if photos %}
+        <div class="mt-4">
+            <h4>{% trans 'Mission Photos' %}</h4>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for photo in photos %}
+                <div class="col">
+                    <div class="h-100">
+                        <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Mission Photo' }}" class="img-fluid">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
         {% if user.is_authenticated %}
-        <div class="d-flex">
-            <a href="{% url 'edit_mission' mission.pk %}" class="btn btn-primary lime-accent flex-fill  mx-3">
+        <div class="d-flex justify-content-between mt-5">
+            <a href="{% url 'edit_mission' mission.pk %}" class="btn btn-primary lime-accent flex-fill">
                 <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
             </a>
             {% load static %}
             <a id="viber_share" class="btn btn-share flex-fill mx-3">
-                <img src="{% static 'site_media/share_on_viber/logo_icon_purple_small.png' %}" height="28" alt="Share to Viber" />
+                <img src="{% static 'site_media/share_on_viber/logo_icon_purple_small.png' %}" height="24" alt="Share to Viber" />
             </a>
-            {% load social_share %}
-
-            {% post_to_facebook "{{ mission.mission_number }}" object_or_url "Share to Facebook" 'btn btn-share flex-fill mx-3' %}
-            {% copy_to_clipboard object_or_url "Copy" 'btn btn-share flex-fill mx-3' %}
-            {% add_copy_script %}
+            {% if is_fb_admin %}
+            <a href="{% url 'post_to_facebook' pk=mission.pk %}"
+               class="btn btn-share flex-fill"
+               onclick="return confirm('Are you sure you want to post this data to Facebook?');">
+                <i class="bi bi-facebook"></i>
+            </a>
             {% endif %}
         </div>
+        <div class="mt-5 d-flex justify-content-end text-end">
+            <i>
+                {% trans 'Record created by '%}{{ mission.created_by.member_id }}
+                <br />
+                {{ mission.timestamp }}
+            </i>
+        </div>
+        {% endif %}
     </div>
-    <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
+    
+    
+    <div class="d-flex justify-content-end mt-2 mb-5">
+        <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
+        <a href="{% url 'mission_list' %}" class="btn btn-lime mx-3">{% trans "View all missions" %}</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_mission' %}" class="btn btn-primary btn-large">{% trans "Add New Mission" %}</a>
+        {% endif %}
+    </div>
+    
 </div>
 <script>
     var buttonID = "viber_share";
     var text = `
-        {{ mission.mission_number }}\n
+    {{ mission.mission_number }}\n
+{% if mission.patient_type %}{{ mission.patient_type }}{% endif %}
 {% if mission.patient_name %}{{ mission.patient_name }}{% endif %}{% if mission.patient_age %}, {{ mission.patient_age }} yo{% else %}{% endif %}
 {% if mission.notes %}{{ mission.notes }}{% endif %}\n
 {{ mission.departure }}  ->  {{ mission.destination }}\n

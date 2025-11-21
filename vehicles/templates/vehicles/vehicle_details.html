@@ -1,0 +1,23 @@
+﻿{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Vehicles List" %}{% endblock %}
+
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class='soft-ui-banner col-md-6'>
+    <h3>{{ vehicle.vehicle_id }}</h3>
+    <div class="d-flex justify-content-between">
+        {{ vehicle.license_plate }}
+        {{ vehicle.license_expiry_date }}
+        {{ vehicle.color }}
+        {{ vehicle.model }}
+        {{ vehicle.status }}
+        {{ vehicle.mission_status }}
+        <div><img src="{{ vehicle.photo.url }}" class="img-fluid" /></div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

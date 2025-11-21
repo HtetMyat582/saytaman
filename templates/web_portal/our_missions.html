@@ -1,0 +1,98 @@
+﻿{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Our Missions - Saytaman Social Welfare Association" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <header class="text-center mb-5">
+        <h1 class="display-5 fw-bold" style="color: var(--lime);">{% trans "Our Missions" %}</h1>
+        <p class="lead text-muted">
+            
+            {% trans "စေတမန်လူမှုကူညီရေးအသင်းကို ၂၀၁၁ ခုနှစ်တွင် စတင်ဖွဲ့စည်းခဲ့ပါသည်။ စတင်တည်ထောင်ချိန်တွင် လူနာတင်ယာဉ်သီးသန့် ကူညီဆောင်ရွက်ခဲ့သည်။ ကူညီကယ်ဆယ်ရေးလုပ်ငန်းများကို ပိုမိုကျယ်ပြန့်စွာ လုပ်ဆောင်နိုင်ရန်နှင့် တရားဝင်မှုရှိစေရန် အတွက် ၂၀၂၀ ခုနှစ်တွင် အမှုဆောင်အဖွဲ့အသစ် ဖွဲ့စည်း၍ နိုင်ငံတော်အဆင့် မှတ်ပုံတင်ခဲ့သည်။" %}
+        </p>
+    </header>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+        <!-- Emergency Response Card (Daily Ambulance Missions) -->
+        <div class="col">
+            <div class="card h-100 p-4 shadow-lg panel-card border-0">
+                <div class="text-center mb-4">
+                    <i class="bi bi-heart-pulse display-4" style="color: var(--lime);"></i>
+                </div>
+                <h5 class="card-title fw-bold text-center">{% trans "Emergency & Patient Transport" %}</h5>
+                <p class="card-text text-muted text-center">
+                    <!-- PDF Activities (လူနာတင်ယာဉ်): Combined and translated -->
+                    {% trans "လူနာများကို ဆေးရုံ/ဆေးခန်းများ၊ နေရပ်ပြန်ပို့ခြင်းများကို လူမျိုးဘာသာမရွေး (အခမဲ့) ပို့ဆောင်ပေးခြင်း၊ ..." %}
+                </p>
+                <div class="mt-auto text-center pt-3">
+                    <span class="badge rounded-pill bg-success" style="background-color: var(--lime) !important;">{% trans "Daily Mission" %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food & Aid Card (Weekly Food Distribution / Humanitarian Aid) -->
+        <div class="col">
+            <div class="card h-100 p-4 shadow-lg panel-card border-0">
+                <div class="text-center mb-4">
+                    <i class="bi bi-basket display-4" style="color: var(--lime);"></i>
+                </div>
+                <h5 class="card-title fw-bold text-center">{% trans "Humanitarian Aid & Distribution" %}</h5>
+                <p class="card-text text-muted text-center">
+                    <!-- PDF Activities (အစားအစာ/အကူအညီ): Translated -->
+                    {% trans "အလှူရှင်များကိုယ်စား နေ့စဉ် ထမင်းနှင့်ဟင်းထုပ်များ ဝေငှခြင်း၊ ထိခိုက်ဒဏ်ရာရသူများအတွက် ချိုင်းထောက်၊ wheelchair များကို (အခမဲ့) ငှားရမ်းပေးခြင်း" %}
+                </p>
+                <div class="mt-auto text-center pt-3">
+                    <span class="badge rounded-pill bg-success" style="background-color: var(--lime) !important;">{% trans "Regular Program" %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disaster Response Card -->
+        <div class="col">
+            <div class="card h-100 p-4 shadow-lg panel-card border-0">
+                <div class="text-center mb-4">
+                    <i class="bi bi-fire display-4" style="color: var(--lime);"></i>
+                </div>
+                <h5 class="card-title fw-bold text-center">{% trans "Disaster Relief & Recovery" %}</h5>
+                <p class="card-text text-muted text-center">
+                    <!-- PDF Activities (ငလျင်အလွန် ပြန်လည်ထူထောင်ရေး): Summarized and translated -->
+                    {% trans "ငလျင်အလွန်ပြန်လည်ထူထောင်ရေးအနေဖြင့် ငလျင်ဒဏ်သင့်ပြည်သူများအား နေထိုင်နိုင်ရန် အိမ်/တိုက်ခန်း ငှားရမ်းစရိတ် လှူဒါန်းပေးခြင်း၊ လုံးဝပြိုပျက်သွားသော အဆောက်အဦ(၈ဝ) ခန့်ကို ပြန်လည်တည်ဆောက်ပေးခြင်း..." %}
+                </p>
+                <div class="mt-auto text-center pt-3">
+                    <span class="badge rounded-pill bg-success" style="background-color: var(--lime) !important;">{% trans "Major Projects" %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Water Mission Card (Inferred from common humanitarian work) -->
+        <div class="col">
+            <div class="card h-100 p-4 shadow-lg panel-card border-0">
+                <div class="text-center mb-4">
+                    <i class="bi bi-droplet-half display-4" style="color: var(--lime);"></i>
+                </div>
+                <h5 class="card-title fw-bold text-center">{% trans "Water & Sanitation Projects" %}</h5>
+                <p class="card-text text-muted text-center">
+                    <!-- Keeping this inferred mission, but adding trans markers -->
+                    {% trans "We support Water Mission and sanitation initiatives, ensuring access to clean drinking water and adequate hygiene facilities in vulnerable communities and during relief operations." %}
+                </p>
+                <div class="mt-auto text-center pt-3">
+                    <span class="badge rounded-pill bg-success" style="background-color: var(--lime) !important;">{% trans "Community Support" %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="mt-5 text-center p-4 panel-card shadow-sm border-0">
+        <h3 class="fw-bold mb-3" style="color: var(--text);">{% trans "Our Promise to the Community" %}</h3>
+        <p class="lead text-muted mb-0">
+
+            {% trans "လက်ရှိတွင် အသင်း၏ လုပ်ငန်းစဉ်များကို အကောင်အထည်ဖော် ဆောင်ရွက်နိုင်ရေးအတွက် အမှုဆောင် (၁၃) ဦး၊ Volunteer လူငယ် (၁၀၀)ဝန်းကျင်ဖြင့် ပရဟိတလုပ်ငန်းများ ေဆောင်ရွက်လျက်ရှိပါသည်။" %}
+            
+        </p>
+    </section>
+
+</div>
+{% endblock %}

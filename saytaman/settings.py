@@ -42,7 +42,9 @@ ALLOWED_HOSTS = [
     '192.168.1.13',
     '192.168.1.14',
     '192.168.1.15',
-    '192.168.110.30',
+    '192.168.110.26',
+    '10.177.143.82',
+    '192.168.100.137',
     ]
 
 
@@ -188,3 +190,9 @@ DEFAULT_FROM_EMAIL = 'no-reply@localhost'
 # Security: limit the lifetime of password reset tokens (seconds). Default is 3 days (259200).
 # Setting to 1 hour (3600) here for better security. Adjust as appropriate for your users.
 PASSWORD_RESET_TIMEOUT = 3600
+
+
+# Define your Page ID and Access Token (For security, load from environment variables 
+# or Django settings, NOT hardcoded like this in production!)
+PAGE_ID = '100363125746904'
+PAGE_ACCESS_TOKEN = 'EAALnhQ8l3hABP396W24upUlDDZBPuJldfkOZAKkg91QZA0ZAvlK01aXK51o5cxn3pTGO1qAkDD8soUabVK26guEr6mF4jivhIUamtSYZAqI5b9mwLYq9kXMKiCGjQmZBZC7VI7iqgzfSs9iJSmbZBnDUhqdNUmQGrqC3WY8bDiX9hmoNgrbHsZAlRbzfqRqWhdSfzjPAUv7T4dX392kKSKBZAjzidYVDF3XjytgVDbrWvcFGZB9SZC3oLwoqJwZDZD'
