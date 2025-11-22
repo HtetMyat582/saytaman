@@ -9,15 +9,56 @@
 {% if user.is_authenticated %}
 <div class='soft-ui-banner col-md-6'>
     <h3>{{ vehicle.vehicle_id }}</h3>
-    <div class="d-flex justify-content-between">
-        {{ vehicle.license_plate }}
-        {{ vehicle.license_expiry_date }}
-        {{ vehicle.color }}
-        {{ vehicle.model }}
-        {{ vehicle.status }}
-        {{ vehicle.mission_status }}
-        <div><img src="{{ vehicle.photo.url }}" class="img-fluid" /></div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'License Plate' %}</div>
+        <div class="form-input">{{ vehicle.license_plate }}</div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'License Expiry Date' %}</div>
+        <div class="form-input">{{ vehicle.license_expiry_date }}</div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Color' %}</div>
+        <div class="form-input">{{ vehicle.color }}</div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Model' %}</div>
+        <div class="form-input">{{ vehicle.model }}</div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Status' %}</div>
+        <div class="form-input">{{ vehicle.status }}</div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Mission Status' %}</div>
+        {% if vehicle.mission_status == 'On Mission'%}
+        <div class="form-input text-warning d-flex justify-content-between align-items-center">
+            <strong>{{ vehicle.mission_status }} &lowast; </strong>
+            {% if current_mission %}
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'mission_details' current_mission.pk %}" class="btn btn-success rounded-pill">{{ current_mission.mission_number }}</a>
+            </div>
+            {% endif %}
+        </div>
+        {% elif vehicle.mission_status == 'Stand-by' %}
+        <div class="form-input text-success">
+            <strong>{{ vehicle.mission_status }} &bull; </strong>
+        </div>
+        {% else %}
+        <div class="form-input text-secondary">
+            <span>{{ vehicle.mission_status }} &otimes; </span>
+        </div>
+        {% endif %}
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Photo' %}</div>
+        <div class="form-input"><img src="{{ vehicle.photo.url }}" class="img-fluid" /></div>
+    </div>
+    <div class="form-row">
+        <div class="form-label">{% trans 'Missions Count' %}</div>
+        <div class="form-input">{{ missions_count }}</div>
     </div>
 </div>
+<a href="javascript:history.back()" class="btn btn-lime mt-2 mb-5">&larr; {% trans "Back" %}</a>
 {% endif %}
 {% endblock %}

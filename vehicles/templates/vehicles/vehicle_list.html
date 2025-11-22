@@ -13,7 +13,7 @@
         <ul class="list-group list-group-flush">
             {% for v in vehicles_o_mission %}
             <li class="list-group-item list-group-item-action">
-                <a href="" class="text-decoration-none text-reset">
+                <a href="{% url 'vehicle_details' v.pk %}" class="text-decoration-none text-reset">
                     <div class="d-flex justify-content-between">
                         <div class="">{{ v.vehicle_id }}</div>
                         {%if v.mission_status == "On Mission" %}
@@ -21,7 +21,7 @@
                         {% elif v.mission_status == 'Stand-by' %}
                         <div class="text-success"><strong>{{ v.mission_status }} &bull; </strong></div>
                         {% else %}
-                        <div class=""><span>{{ v.mission_status }}</span></div>
+                        <div class="text-secondary"><span>{{ v.mission_status }} &otimes; </span></div>
                         {% endif %}
                     </div>
                 </a>

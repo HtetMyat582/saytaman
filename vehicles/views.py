@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
+from django.db.models import Q
 from vehicles.models import Vehicle
+from mission_records.models import MissionRecord
 
 @login_required
 def vehicle_list(request):
@@ -26,5 +28,23 @@ def vehicle_list(request):
 def vehicle_details(request, pk):
     now = timezone.now().year
     vehicle = get_object_or_404(Vehicle, pk=pk)
-    context = {'vehicle': vehicle, 'now': now}
-    return render(request, 'vehicles/vehicle_details.html', context)
+    missions_count = MissionRecord.objects.filter(Q(vehicle=vehicle)).count()
+
+    try:
+        current_mission = MissionRecord.objects.filter(Q(vehicle=vehicle) & Q(back_to_hq=None)).get()
+
+        context = {
+            'vehicle': vehicle,
+            'current_mission': current_mission,
+            'missions_count': missions_count,
+            'now': now
+            }
+        return render(request, 'vehicles/vehicle_details.html', context)
+
+    except MissionRecord.DoesNotExist:
+        context = {
+            'vehicle': vehicle,
+            'missions_count': missions_count,
+            'now': now
+            }
+        return render(request, 'vehicles/vehicle_details.html', context)
