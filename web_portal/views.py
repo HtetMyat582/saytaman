@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext as _
 from django.utils import timezone
 from django.http import HttpResponseRedirect
@@ -9,6 +9,21 @@ from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from members.models import Member
 from mission_records.models import MissionRecord
+from natural_disasters.models import DisasterEvent, DisasterEventPhoto
+from datetime import datetime
+
+def weekly_food_counter():
+    # Sunday, Dec 14, 2025, 3:00 PM)
+    start_date = datetime(2025, 12, 14, 18, 0, 0)
+    now = datetime.now()
+    
+    if now < start_date:
+        return 0
+    
+    diff = now - start_date
+    weeks_passed = diff.days // 7
+    
+    return 172 + weeks_passed
 
 def home(request):
     user = request.user
@@ -16,18 +31,24 @@ def home(request):
     title = _("Saytaman Social Welfare Association")
     now = timezone.now().year
     missions = MissionRecord.objects.all().order_by('-date', '-time')
+    missions_count = missions.count()
+    weekly_food_count = weekly_food_counter()
 
     if not member:
         return render(request, 'index.html',
                       {
                           'title': title,
                           'now': now,
+                          'missions_count': missions_count,
+                          'weekly_food_count': weekly_food_count,
                        })
     else:
         return render(request, 'index.html',
                       {
                           'member_role': member.role,
                           'missions': missions,
+                          'missions_count': missions_count,
+                          'weekly_food_count': weekly_food_count,
                           'title': title,
                           'now': now,
                        })
@@ -67,8 +88,29 @@ def member_list(request):
 def our_missions(request):
     now = timezone.now().year
     title = _("Our Mission")
+    missions = MissionRecord.objects.all().order_by('-date', '-time')
+    missions_count = missions.count()
+    weekly_food_count = weekly_food_counter()
+
     context = {
         'now': now,
-        'title': title
+        'title': title,
+        'missions_count': missions_count,
+        'weekly_food_count': weekly_food_count,
         }
     return render(request, 'web_portal/our_missions.html', context)
+
+def disaster_response(request):
+    now = timezone.now().year
+    title = _("Disaster Response")
+    disaster_events = DisasterEvent.objects.all().order_by('-date')
+    #event = get_object_or_404(DisasterEvent, pk=pk)
+    #event_photos = event.disaster_photos.all()
+    context = {
+        'now': now,
+        'title': title,
+        'disaster_events': disaster_events,
+        #'event': event,
+        #'event_photos': event_photos
+        }
+    return render(request, 'web_portal/disaster_response.html', context)
