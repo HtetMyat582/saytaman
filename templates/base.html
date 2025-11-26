@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="{% url 'our_missions' %}">{% trans "Our Missions" %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">{% trans "Disaster Response" %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'disaster_response' %}">{% trans "Disaster Response" %}</a></li>
                     {% if user.is_authenticated %}
                     {% if member_role != 'Member' %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'member_list' %}">{% trans "Members" %}</a></li>
@@ -157,9 +157,12 @@
                 };
 
                 const countersData = [
-                    { id: 'missions_count', value: 600 },
-                    { id: 'aid_delivered_count', value: 575 },
-                    { id: 'water_projects', value: 15 },
+                    { id: 'missions_count', value: '{{ missions_count }}' },
+                    { id: 'meals_delivered_count', value: 275 },
+                    { id: 'houses_rebuilt', value: 80 },
+                    { id: 'households_financial_aid', value: 400 },
+                    { id: 'people_financial_aid', value: 2000 },
+                    { id: 'amount_financial_aid', value: 630000000 }
                 ];
 
                 function setupCountUp(targetId, endValue) {

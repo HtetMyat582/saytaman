@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from members.models import Member
 from mission_records.models import MissionRecord
+from natural_disasters.models import DisasterEvent, DisasterEventPhoto
 
 def home(request):
     user = request.user
@@ -16,6 +17,7 @@ def home(request):
     title = _("Saytaman Social Welfare Association")
     now = timezone.now().year
     missions = MissionRecord.objects.all().order_by('-date', '-time')
+    missions_count = missions.count()
 
     if not member:
         return render(request, 'index.html',
@@ -28,6 +30,7 @@ def home(request):
                       {
                           'member_role': member.role,
                           'missions': missions,
+                          'missions_count': missions_count,
                           'title': title,
                           'now': now,
                        })
@@ -72,3 +75,14 @@ def our_missions(request):
         'title': title
         }
     return render(request, 'web_portal/our_missions.html', context)
+
+def disaster_response(request):
+    now = timezone.now().year
+    title = _("Disaster Response")
+    disaster_events = DisasterEvent.objects.order_by('-date')
+    context = {
+        'now': now,
+        'title': title,
+        'disaster_events': disaster_events,
+        }
+    return render(request, 'web_portal/disaster_response.html', context)

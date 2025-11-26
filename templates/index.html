@@ -63,42 +63,75 @@
     <div class="card soft-ui-card">
         <img src="{% static 'site_media/card_img_1.jpg' %}" class="card-img-top w-auto h-100" alt="">
         <div class="card-body">
-            <h5 class="card-title">{% trans "Emergency Response" %}</h5>
-            <p class="card-text">{% trans "Rapid ambulance dispatch and first response services." %}</p>
+            <h5 class="card-title">{% trans "2025 March 28<sup>th</sup> Earthquake" %}</h5>
+            <p class="card-text">{% trans "Lorem ipsum..." %}</p>
         </div>
     </div>
 
     <div class="card soft-ui-card">
         <img src="{% static 'site_media/card_img_2.jpg' %}" class="card-img-top w-auto h-100" alt="">
         <div class="card-body">
-            <h5 class="card-title">{% trans "Emergency Response" %}</h5>
-            <p class="card-text">{% trans "Rapid ambulance dispatch and first response services." %}</p>
+            <h5 class="card-title">{% trans "Covid-19 Pandemic" %}</h5>
+            <p class="card-text">{% trans "Lorem ipsum..." %}</p>
         </div>
     </div>
 
     <div class="card soft-ui-card">
         <img src="{% static 'site_media/card_img_3.jpg' %}" class="card-img-top w-auto h-100" alt="">
         <div class="card-body">
-            <h5 class="card-title">{% trans "Emergency Response" %}</h5>
-            <p class="card-text">{% trans "Rapid ambulance dispatch and first response services." %}</p>
+            <h5 class="card-title">{% trans "Meet Our Team" %}</h5>
+            <p class="card-text">{% trans "Lorem ipsum..." %}</p>
         </div>
     </div>
 </div>
 
-<div class="row text-center mt-5">
+<div class="row text-center mt-5 mb-5 justify-content-center">
+    <span class="lead">Routine Activities</span>
     <div class="col-md-4">
         <h1 class="display-3 fw-bold lime-accent" id="missions_count">0</h1>
-        <p class="lead">Emergency & Routine Transports</p>
+        <p class="lead">{% trans 'Ambulance Responses in 2025' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-heart-pulse display-4 lime-accent"></i>
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <h1 class="display-3 fw-bold lime-accent" id="aid_delivered_count">0</h1>
-        <p class="lead">Meals and Aid Items Distributed</p>
+    <div class="col-md-4  ">
+        <h1 class="display-3 fw-bold lime-accent" id="meals_delivered_count">0</h1>
+        <p class="lead">{% trans 'Meals Distributed in 2025' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-basket display-4 lime-accent"></i>
+        </div>
     </div>
-
-    <div class="col-md-4">
-        <h1 class="display-3 fw-bold lime-accent" id="water_projects">0</h1>
-        <p class="lead">Clean Water Projects Completed</p>
+</div>
+<div class="row text-center mt-5 justify-content-center">
+    <p class="lead">{% trans 'In the aftermath of the March 28<sup>th</sup>, 2025 Earthquake, on behalf of the donors' %}</p>
+    <div class="col-md-4 mb-5">
+        <h1 class="display-3 fw-bold lime-accent" id="houses_rebuilt">0</h1>
+        <p class="lead">{% trans 'Houses Rebuilt' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-house-gear display-4 lime-accent"></i>
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <h1 class="display-3 fw-bold lime-accent" id="households_financial_aid">0</h1>
+        <p class="lead">{% trans 'Households Financial Aid' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-house-heart display-4 lime-accent"></i>
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <h1 class="display-3 fw-bold lime-accent" id="people_financial_aid">0</h1>
+        <p class="lead">{% trans 'People Helped' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-person-heart display-4 lime-accent"></i>
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <h1 class="display-3 fw-bold lime-accent" id="amount_financial_aid">0</h1>
+        <p class="lead">{% trans 'MMK in Financial Aid' %}</p>
+        <div class="text-center mb-4">
+            <i class="bi bi-cash-coin display-4 lime-accent"></i>
+        </div>
     </div>
 </div>
 
