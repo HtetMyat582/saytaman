@@ -1,0 +1,368 @@
+/* Light Theme */
+:root {
+    --bg: #f6f8fa;
+    --text: #222222;
+    --text-hover: #000000;
+    --lime: #499636;
+    --nav-bg: #ffffff;
+    --card-bg: #ffffff;
+    --box-shadow: rgba(73,150,54,0.15);
+    --footer-text: #888888;
+    --input-bg: rgba(240,255,238,0.25);
+    --avatar-border: rgba(73,150,54,0.2);
+    --avatar-bg: #fff;
+    --avatar-shadow: rgba(0,0,0,0.06);
+    --file-bg: #f7fbf7;
+    --file-border: rgba(73,150,54,0.12);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg: #333333;
+    --text: #f2f2f2;
+    --text-hover: #ffffff;
+    --lime: #499636;
+    --nav-bg: #0e0e0e;
+    --card-bg: #1f1f1f;
+    --box-shadow: rgba(98, 255, 56, 0.15);
+    --footer-text: #999999;
+    --input-bg: #212529;
+    --avatar-border: rgba(255,255,255,0.06);
+    --avatar-bg: #121212;
+    --avatar-shadow: rgba(0,0,0,0.4);
+    --file-bg: #141414;
+    --file-border: rgba(255,255,255,0.06);
+}
+
+body {
+    background: var(--bg);
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    color: var(--text);
+}
+
+.lime-accent {
+    color: #499636 !important;
+}
+
+.navbar {
+    background: var(--nav-bg) !important;
+    box-shadow: 0 2px 2px var(--box-shadow) !important;
+    border-radius: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem 2rem;
+    border-bottom: 3px solid #49963622;
+}
+
+.navbar-brand {
+    color: #499636 !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: var(--text);
+    border-radius: 1rem;
+    transition: background 0.2s, color 0.2s;
+    padding: 0.5rem 1.2rem !important;
+}
+
+.nav-link.active, .nav-link:hover {
+    background: #eafbe6;
+    color: #499636 !important;
+}
+
+.nav-toggler {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.language-theme-toggles {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    padding-right: 1rem;
+    margin-top: -1.5rem;
+    margin-bottom: 1rem;
+}
+
+.language-theme-toggles .btn {
+    padding: 0.4rem 0.8rem !important;
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 2px 0 var(--box-shadow) !important;
+}
+
+.btn-lime, .btn-primary {
+    background: #499636 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 16px 0 rgba(73,150,54,0.10);
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-lime:hover, .btn-primary:hover {
+    background: #357324 !important;
+    color: #fff !important;
+    box-shadow: 0 6px 24px 0 rgba(73,150,54,0.18);
+}
+
+.btn-share {
+    background: var(--input-bg);
+    border: 1px solid var(--file-border) !important;
+    border-radius: 1.2rem;
+    transition: background 0.2s, box-shadow 0.2s;
+    color: var(--text);
+}
+
+.btn-share:hover {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--file-border) !important;
+    color: var(--text-hover);
+}
+
+.soft-ui-card {
+    background: var(--card-bg);
+    border-radius: 2rem;
+    box-shadow: 0 8px 8px var(--box-shadow) !important;
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+    max-width: 640px;
+}
+
+.index-mission-card{
+    max-height: 240px;
+    min-height: 240px;
+}
+
+.soft-ui-card:hover {
+    background: var(--input-bg);
+    transform: translateY(-2px) translateX(2px);
+}
+
+.soft-ui-banner {
+    background: var(--card-bg);
+    border-radius: 2rem;
+    box-shadow: 0 8px 8px var(--box-shadow) !important;
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+}
+
+.login-card {
+    min-width: 340px;
+    max-width: 640px;
+}
+
+footer.footer {
+    background: var(--bg);
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -2px 16px 0 rgba(73,150,54,0.08);
+    font-size: 0.95rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.footer-text {
+    color: var(--footer-text);
+}
+
+.form-select, .form-control {
+    border-radius: 1rem;
+    box-shadow: 2px 2px 8px #e3e6e8, -2px -2px 8px #fff;
+    border: 1px solid #e3e6e8;
+    transition: border 0.2s;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #499636;
+    box-shadow: 0 0 0 0.2rem rgba(73,150,54,0.10);
+}
+
+.display-4 {
+    color: #499636;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 #eafbe6;
+}
+
+.lead {
+    color: var(--text);
+}
+
+::-webkit-input-placeholder { color: #bbb; }
+::-moz-placeholder { color: #bbb; }
+:-ms-input-placeholder { color: #bbb; }
+::placeholder { color: #bbb; }
+
+/* Form layout helpers adapted from other site, tuned to current theme */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-label {
+    flex: 0 0 30%;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--text);
+    padding-right: 1rem;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.form-input {
+    flex: 1;
+    border: none;
+    border-bottom: 2px solid rgba(73,150,54,0.25);
+    background-color: var(--input-bg);
+    padding: 0.5rem 0.6rem;
+    font-size: 1rem;
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    border-radius: 0.6rem;
+}
+
+.form-input:focus,
+.form-input:active {
+    border-bottom: 2px solid var(--lime);
+    box-shadow: 0 6px 18px rgba(73,150,54,0.08);
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Ensure compatibility with existing form-control / form-select classes */
+.input.form-input, input.form-input, textarea.form-input, select.form-input {
+    appearance: none;
+}
+
+/* Dark theme tweaks */
+/*
+[data-theme="dark"] .soft-ui-card,
+[data-theme="dark"] footer.footer {
+    background: #0f0f0f;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .form-input {
+    box-shadow: none;
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .form-input:focus {
+    border-bottom-color: var(--lime);
+    box-shadow: 0 6px 18px rgba(73,150,54,0.12);
+}
+*/
+/* Mobile: stack label above input */
+@media (max-width: 576px) {
+    .form-label {
+        flex: 0 0 100%;
+        text-align: left;
+        margin-bottom: 0.4rem;
+    }
+
+    .form-row {
+        gap: 0.5rem;
+    }
+}
+
+.card-group {
+    border-radius: 1.5rem;
+}
+
+.card-group .card {
+    border: none;
+}
+
+.card .card-text, .card h5 {
+    color: var(--text);
+}
+
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--avatar-border);
+    box-shadow: 0 6px 18px var(--avatar-shadow);
+    background: var(--avatar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--lime);
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.profile-avatar:hover {
+    transform: translateY(-2px);
+}
+
+.profile-avatar-placeholder {
+    background: var(--card-bg);
+    color: var(--lime);
+}
+
+[data-theme="dark"] .profile-avatar {
+    border-color: var(--avatar-border);
+    background: var(--avatar-bg);
+    color: var(--lime);
+}
+
+/* Minimal index panel styles - rely on Bootstrap for layout and cards */
+
+/* Panel card used in index sidebars */
+.panel-card {
+     background: var(--card-bg);
+     border-radius:1rem;
+     padding:1rem;
+     box-shadow:0 6px 20px rgba(0,0,0,0.06);
+     margin-bottom:1rem;
+}
+
+/* Mission list items spacing */
+.mission-list .mission-item {
+     padding:0.6rem 0;
+     border-bottom:1px dashed rgba(0,0,0,0.06);
+}
+
+/* Card image thumbnail sizing to prevent full-screen images */
+.card .img-fluid {
+     width:96px;
+     height:96px;
+     max-width:96px;
+     max-height:96px;
+     object-fit: cover;
+     display: block;
+}
+
+.table th, .table td{
+    background: transparent;
+    color: var(--text);
+}
+
+.list-group-item {
+    background: inherit !important;
+    color: inherit;
+}
+
+.list-group-item:hover {
+    background: var(--input-bg) !important;
+    color: var(--text-hover) !important;
+    transform: translateY(-2px) translateX(2px);
+}

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,29 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7k6e!r52b)5jmxa$egf1(!nzuxe^2ou***8z-w)j^8=y$b4+$*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
+    'stmgroup-002-site1.etempurl.com',
     'localhost',
-    '127.0.0.1',
-    '192.168.1.2',
-    '192.168.1.3',
-    '192.168.1.4',
-    '192.168.1.5',
-    '192.168.1.6',
-    '192.168.1.7',
-    '192.168.1.8',
-    '192.168.1.9',
-    '192.168.1.10',
-    '192.168.1.11',
-    '192.168.1.12',
-    '192.168.1.13',
-    '192.168.1.14',
-    '192.168.1.15',
-    '192.168.110.26',
-    '10.177.143.82',
-    '192.168.100.137',
-    ]
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -69,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,6 +90,7 @@ WSGI_APPLICATION = 'saytaman.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -115,8 +101,18 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
-
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_ad0ca3_stmtest2',
+        'USER': 'ad0ca3_stmtest2',
+        'PASSWORD': '@STM1327#',
+        'HOST': 'mysql5045.site4now.net',
+        'PORT': '3306',
+    }
+}
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -164,6 +160,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

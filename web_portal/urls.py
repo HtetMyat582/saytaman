@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('toggle-locale/', views.toggle_language, name='set_language'),
     path('our-missions/', views.our_missions, name='our_missions'),
+    path('disaster-response/', views.disaster_response, name='disaster_response'),
     path('members/', include('members.urls')),
     path('missions/', include('mission_records.urls')),
     path('vehicles/', include('vehicles.urls')),

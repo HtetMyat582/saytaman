@@ -1297,8 +1297,8 @@ msgid "Connect, get help, or contribute"
 msgstr ""
 
 #: .\templates\base.html:22
-msgid "Missions"
-msgstr "လမ်းကြောင်းများ"
+msgid "Our Missions"
+msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
 
 #: .\templates\base.html:23
 msgid "Disaster Response"
