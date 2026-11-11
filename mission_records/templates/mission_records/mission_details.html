@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container py-4">
     <h3>{% trans "Mission Details" %} - {{ mission.mission_number }}</h3>
-    {% if user.is_authenticated and not m.back_to_hq %}
+    {% if user.is_authenticated and not mission.back_to_hq %}
     <div class="mt-3">
         <form method="POST" action="{% url 'set_back_to_hq' mission.pk %}" class="d-flex justify-content-end">
             {% csrf_token %}
@@ -43,11 +43,13 @@
                 <td>{% trans 'Driver' %}</td>
                 <th>{{ mission.driver_name.name }}</th>
             </tr>
+            {% if mission.assistant_1 %}
             <tr>
                 <td>{% trans 'Assistant 1' %}</td>
                 <th>{{ mission.assistant_1.name }}</th>
             </tr>
-            {% if mission.assistant_2.name %}
+            {% endif %}
+            {% if mission.assistant_2 %}
             <tr>
                 <td>{% trans 'Assistant 2' %}</td>
                 <th>{{ mission.assistant_2.name }}</th>
