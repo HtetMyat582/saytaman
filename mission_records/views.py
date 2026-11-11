@@ -55,7 +55,10 @@ def mission_details(request, pk):
     
     driver_trimmed = mission.driver_name.member_id[-3:]
     assist_1_trimmed = mission.assistant_1.member_id[-3:]
-    assist_2_trimmed = mission.assistant_2.member_id[-3:]
+    if mission.assistant_2:
+        assist_2_trimmed = mission.assistant_2.member_id[-3:]
+    else:
+        assist_2_trimmed = None
     
     is_fb_admin = False
     if request.user.is_authenticated:
