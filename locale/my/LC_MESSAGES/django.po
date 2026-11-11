@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-11 17:56+0630\n"
+"POT-Creation-Date: 2026-11-11 21:17+0630\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1433,6 +1433,10 @@ msgstr "အကောင့်ထွက်ရန်"
 msgid "Add Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 
+#: .\mission_records\templates\mission_records\add_mission.html:21
+msgid "{{field}}"
+msgstr ""
+
 #: .\mission_records\templates\mission_records\add_mission.html:28
 #: .\mission_records\templates\mission_records\edit_mission.html:30
 msgid "Photos"
@@ -1446,7 +1450,6 @@ msgstr "ဓာတ်ပုံ"
 
 #: .\mission_records\templates\mission_records\edit_mission.html:4
 #: .\mission_records\templates\mission_records\edit_mission.html:8
-
 msgid "Edit Mission"
 msgstr "လမ်းကြောင်းအချက်အလက်များ ပြင်ဆင်ရန်"
 
@@ -1744,7 +1747,9 @@ msgstr "လူသားချင်းစာနာထောက်ထားမှ
 msgid ""
 "Food distribution and renting health equipments to communities on behalf of "
 "donors."
-msgstr "အကူအညီလိုအပ်သူများအတွက် အလှူရှင်များကိုယ်စား ဝှီးချဲ၊ ချိုင်းထောက် စသောကျန်းမာရေးအထောက်အကူပြုပစ္စည်းများ ငှားရမ်းပေးခြင်း၊ သောက်သုံးရေနှင့် အစားအစာဝေငှခြင်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
+msgstr ""
+"အကူအညီလိုအပ်သူများအတွက် အလှူရှင်များကိုယ်စား ဝှီးချဲ၊ ချိုင်းထောက် စသောကျန်းမာရေးအထောက်အကူပြုပစ္စည်းများ "
+"ငှားရမ်းပေးခြင်း၊ သောက်သုံးရေနှင့် အစားအစာဝေငှခြင်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
 
 #: .\templates\web_portal\our_missions.html:44
 msgid "Regular Programs"
@@ -1756,7 +1761,9 @@ msgstr "သဘာဝဘေးကယ်ဆယ်ရေးနှင့် အရ�
 
 #: .\templates\web_portal\our_missions.html:58
 msgid "Immediate response and relief operations after major disasters."
-msgstr "ရေဘေး၊ မီးဘေး၊ ငလျင် အစရှိသော သဘာဝဘေးများကို အချိန်နှင့်တပြေးညီ ကူညီကယ်ဆယ်ရေးနှင့် အရေးပေါ်အထောက်အပံ့များ ဘေးသင့်ပြည်သူများထံအချိန်မီရောက်ရှိနိုင်ရန် ကြိုးစားဆောင်ရွက်လျက်ရှိပါသည်။"
+msgstr ""
+"ရေဘေး၊ မီးဘေး၊ ငလျင် အစရှိသော သဘာဝဘေးများကို အချိန်နှင့်တပြေးညီ ကူညီကယ်ဆယ်ရေးနှင့် "
+"အရေးပေါ်အထောက်အပံ့များ ဘေးသင့်ပြည်သူများထံအချိန်မီရောက်ရှိနိုင်ရန် ကြိုးစားဆောင်ရွက်လျက်ရှိပါသည်။"
 
 #: .\templates\web_portal\our_missions.html:61
 msgid "Major Projects"
@@ -1770,7 +1777,9 @@ msgstr "ရေသန့်ရရှိရေးပရောဂျက်"
 msgid ""
 "Distributing clean drinking water and adequate hygiene facilities in "
 "vulnerable communities "
-msgstr "ရေရှားပါးဒေသများသို့ သောက်သုံးရေသန့်ရရှိရန် ရေတွင်းတူးခြင်းလုပ်ငန်းများ၊ ရွေ့လျားစနစ်ဖြင့် ရေပေးဝေခြင်းလုပ်ငန်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
+msgstr ""
+"ရေရှားပါးဒေသများသို့ သောက်သုံးရေသန့်ရရှိရန် ရေတွင်းတူးခြင်းလုပ်ငန်းများ၊ ရွေ့လျားစနစ်ဖြင့် "
+"ရေပေးဝေခြင်းလုပ်ငန်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
 
 #: .\templates\web_portal\our_missions.html:78
 msgid "Community Support"
