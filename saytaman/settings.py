@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7k6e!r52b)5jmxa$egf1(!nzuxe^2ou***8z-w)j^8=y$b4+$*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = ္ေူျFalse
 
 ALLOWED_HOSTS = [
     'saytaman.wasmer.app',

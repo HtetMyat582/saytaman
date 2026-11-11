@@ -1561,7 +1561,7 @@ msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 #: .\mission_records\templates\mission_records\mission_list.html:25
 #: .\templates\index.html:92 .\templates\web_portal\our_missions.html:90
 msgid "Ambulance Responses"
-msgstr "လူနာတင်လမ်းကြောင်းများ"
+msgstr "လူနာပို့လမ်းကြောင်းများ"
 
 #: .\mission_records\templates\mission_records\mission_list.html:9
 msgid "Recent Responses"
@@ -1621,10 +1621,8 @@ msgid "Reaching People In Need. Mandalay, Myanmar"
 msgstr ""
 
 #: .\templates\index.html:24
-#, fuzzy
-#| msgid "Disaster Response"
 msgid "Latest Ambulance Responses"
-msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
+msgstr "နောက်ဆုံးလူနာပို့လမ်းကြောင်းများ"
 
 #: .\templates\index.html:66
 msgid "2025 March 28<sup>th</sup> Earthquake"
