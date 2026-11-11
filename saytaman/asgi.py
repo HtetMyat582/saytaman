@@ -12,6 +12,14 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'saytaman.settings')
 
+# Monkey-patch Django file locks for WASI/WebAssembly environment (Fixes [Errno 52] Function not implemented)
+try:
+    from django.core.files import locks
+    locks.lock = lambda f, flags: True
+    locks.unlock = lambda f: True
+except Exception:
+    pass
+
 # Initialize the ASGI application first
 application = get_asgi_application()
 
