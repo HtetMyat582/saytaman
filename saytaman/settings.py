@@ -166,7 +166,7 @@ TIME_ZONE = 'Asia/Yangon'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 LOCALE_PATHS = [
     BASE_DIR / "locale",
