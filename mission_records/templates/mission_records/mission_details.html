@@ -47,10 +47,12 @@
                 <td>{% trans 'Assistant 1' %}</td>
                 <th>{{ mission.assistant_1.name }}</th>
             </tr>
+            {% if mission.assistant_2.name %}
             <tr>
                 <td>{% trans 'Assistant 2' %}</td>
                 <th>{{ mission.assistant_2.name }}</th>
             </tr>
+            {% endif %}
             {% if mission.patient_type %}
             <tr>
                 <td>{% trans 'Patient Type' %}</td>

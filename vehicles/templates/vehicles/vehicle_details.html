@@ -52,7 +52,9 @@
     </div>
     <div class="form-row">
         <div class="form-label">{% trans 'Photo' %}</div>
+        {% if vehicle.photo %}
         <div class="form-input"><img src="{{ vehicle.photo.url }}" class="img-fluid" /></div>
+        {% endif %}
     </div>
     <div class="form-row">
         <div class="form-label">{% trans 'Missions Count' %}</div>
