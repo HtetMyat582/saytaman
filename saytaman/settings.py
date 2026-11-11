@@ -26,12 +26,18 @@ SECRET_KEY = 'django-insecure-7k6e!r52b)5jmxa$egf1(!nzuxe^2ou***8z-w)j^8=y$b4+$*
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '.wasmer.app',
+    'saytaman.wasmer.app',
     'stmgroup-002-site1.etempurl.com',
     'localhost',
     '127.0.0.1'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://saytaman.wasmer.app',
+]
+
+# Tells Django to trust the HTTPS scheme passed by Wasmer's proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
