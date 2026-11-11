@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-22 21:34+0630\n"
+"POT-Creation-Date: 2026-11-11 17:56+0630\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -469,6 +469,7 @@ msgid ""
 msgstr ""
 
 #: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2534
+#: .\mission_records\templates\mission_records\mission_details.html:27
 msgid "Time"
 msgstr ""
 
@@ -1296,43 +1297,557 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\templates\base.html:22
-msgid "Our Missions"
-msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
+#: .\members\templates\members\edit_member_details.html:4
+#: .\members\templates\members\profile\profile.html:4
+msgid "Profile"
+msgstr "ပရိုဖိုင်"
 
-#: .\templates\base.html:23
-msgid "Disaster Response"
-msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
+#: .\members\templates\members\edit_member_details.html:8
+msgid "Edit Member Info"
+msgstr "အသင်းသားအချက်အလက်များကိုပြင်ဆင်ရန်"
 
-#: .\templates\base.html:25
+#: .\members\templates\members\edit_member_details.html:29
+#: .\mission_records\templates\mission_records\add_mission.html:51
+msgid "Save"
+msgstr "သိမ်းဆည်းရန်"
+
+#: .\members\templates\members\member_list.html:4
+#: .\members\templates\members\member_list.html:9 .\templates\base.html:40
 msgid "Members"
 msgstr "အဖွဲ့ဝင်များ"
 
-#: .\templates\base.html:26
-msgid "Vehicles"
-msgstr "ယာဥ်များ"
+#: .\members\templates\members\member_list.html:13
+#: .\members\templates\members\profile\profile.html:35
+#, fuzzy
+#| msgid "Members"
+msgid "Member ID"
+msgstr "အဖွဲ့ဝင်များ"
 
-#: .\templates\base.html:31
+#: .\members\templates\members\member_list.html:14
+#: .\members\templates\members\profile\profile.html:40
+msgid "Name"
+msgstr "အမည်"
+
+#: .\members\templates\members\member_list.html:15
+#: .\members\templates\members\profile\profile.html:45
+msgid "Role"
+msgstr "တာဝန်"
+
+#: .\members\templates\members\member_list.html:16
+#: .\members\templates\members\profile\profile.html:79
+msgid "Blood Type"
+msgstr "သွေးအမျိုးအစား"
+
+#: .\members\templates\members\member_list.html:17
+#: .\members\templates\members\profile\profile.html:92
+#: .\templates\index.html:147
+msgid "Phone"
+msgstr "ဖုန်းနံပါတ်"
+
+#: .\members\templates\members\member_list.html:18
+#: .\vehicles\templates\vehicles\vehicle_details.html:29
+#: .\vehicles\templates\vehicles\vehicle_list.html:42
+msgid "Status"
+msgstr "အခြေအနေ"
+
+#: .\members\templates\members\member_list.html:19
+msgid "Action"
+msgstr "လုပ်ဆောင်ချက်"
+
+#: .\members\templates\members\member_list.html:32
+#: .\mission_records\templates\mission_records\mission_details.html:124
+#: .\mission_records\templates\mission_records\mission_list.html:48
+#: .\vehicles\templates\vehicles\vehicle_list.html:57
+msgid "Edit"
+msgstr "ပြင်ဆင်မည်"
+
+#: .\members\templates\members\member_list.html:37
+msgid "No data yet."
+msgstr "အချက်အလက်မရှိပါ။"
+
+#: .\members\templates\members\profile\profile.html:9
+msgid "Member Profile"
+msgstr "အသင်းသားပရိုဖိုင်"
+
+#: .\members\templates\members\profile\profile.html:50
+msgid "Number of Missions"
+msgstr "လမ်းကြောင်းအရေအတွက်"
+
+#: .\members\templates\members\profile\profile.html:56
+msgid "Change password"
+msgstr "စကားဝှက်ပြင်ဆင်ရန်"
+
+#: .\members\templates\members\profile\profile.html:65
+msgid "Primary Info"
+msgstr "အဓိကအချက်အလက်များ"
+
+#: .\members\templates\members\profile\profile.html:69
+msgid "NRC"
+msgstr "မှတ်ပုံတင်နံပါတ်"
+
+#: .\members\templates\members\profile\profile.html:74
+msgid "DOB"
+msgstr "မွေးသက္ကရာဇ်"
+
+#: .\members\templates\members\profile\profile.html:88
+msgid "Contact & Address"
+msgstr "ဆက်သွယ်ရန်"
+
+#: .\members\templates\members\profile\profile.html:97
+#: .\templates\profile.html:17
+msgid "Email"
+msgstr "အီးမေးလ်"
+
+#: .\members\templates\members\profile\profile.html:102
+msgid "Address"
+msgstr "နေရပ်လိပ်စာ"
+
+#: .\members\templates\members\profile\profile.html:110
+msgid "Family & Job"
+msgstr "မိသားစုနှင့်အလုပ်အကိုင်"
+
+#: .\members\templates\members\profile\profile.html:114
+msgid "Father"
+msgstr "အဖအမည်"
+
+#: .\members\templates\members\profile\profile.html:119
+msgid "Mother"
+msgstr "အမိအမည်"
+
+#: .\members\templates\members\profile\profile.html:124
+msgid "Spouse"
+msgstr "ဇနီး"
+
+#: .\members\templates\members\profile\profile.html:129
+msgid "Job"
+msgstr "အလုပ်အကိုင်"
+
+#: .\members\templates\members\profile\profile.html:141
+#: .\templates\base.html:55
 msgid "Logout"
-msgstr ""
+msgstr "အကောင့်ထွက်ရန်"
 
-#: .\templates\base.html:36
-msgid "Login"
-msgstr ""
-
-#: .\templates\base.html:56
+#: .\mission_records\templates\mission_records\add_mission.html:4
+#: .\mission_records\templates\mission_records\add_mission.html:8
+#: .\templates\index.html:8
 msgid "Add Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 
-#: .\templates\index.html:6
-msgid "Welcome to Saytaman Social Welfare Association"
-msgstr "စေတမန်လူမှုကူညီရေးအသင်း"
+#: .\mission_records\templates\mission_records\add_mission.html:28
+#: .\mission_records\templates\mission_records\edit_mission.html:30
+msgid "Photos"
+msgstr "ဓာတ်ပုံများ"
 
-#: .\templates\index.html:8
-msgid ""
-"Supporting emergency ambulance missions and disaster response in Myanmar"
-msgstr "အရေးပေါ်လူနာတင်ယာဥ်နှင့် သဘာဝဘေးကယ်ဆယ်ရေးလုပ်ငန်းများကို နေ့ညမရွေး စွမ်းစွမ်းတမံ ဆောင်ရွက်လျက်ရှိပါသည်။"
+#: .\mission_records\templates\mission_records\add_mission.html:35
+#: .\mission_records\templates\mission_records\edit_mission.html:37
+#: .\vehicles\templates\vehicles\vehicle_details.html:54
+msgid "Photo"
+msgstr "ဓာတ်ပုံ"
 
-#: .\web_portal\views.py:9
+#: .\mission_records\templates\mission_records\edit_mission.html:4
+#: .\mission_records\templates\mission_records\edit_mission.html:8
+
+msgid "Edit Mission"
+msgstr "လမ်းကြောင်းအချက်အလက်များ ပြင်ဆင်ရန်"
+
+#: .\mission_records\templates\mission_records\edit_mission.html:55
+msgid "Check to Delete Photo"
+msgstr "ပုံဖျက်ရန် အမှန်ခြစ်တပ်ပါ။"
+
+#: .\mission_records\templates\mission_records\edit_mission.html:63
+msgid "Update"
+msgstr "ပြင်ဆင်မည်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:4
+#: .\mission_records\templates\mission_records\mission_details.html:8
+msgid "Mission Details"
+msgstr "လမ်းကြောင်းအချက်အလက်များ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:15
+#: .\templates\index.html:48
+msgid "Report to HQ"
+msgstr "ရုံးသို့ ခြေစုံ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:23
+#: .\mission_records\templates\mission_records\mission_list.html:30
+msgid "Date"
+msgstr "ရက်စွဲ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:31
+msgid "Departure"
+msgstr "ထွက်ခွာသည့်နေရာ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:35
+msgid "Destination"
+msgstr "ပို့ဆောင်သည့်နေရာ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:39
+#: .\mission_records\templates\mission_records\mission_list.html:33
+#, fuzzy
+#| msgid "Vehicles"
+msgid "Vehicle"
+msgstr "ယာဥ်အမှတ်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:43
+#: .\mission_records\templates\mission_records\mission_list.html:16
+msgid "Driver"
+msgstr "ယာဥ်မောင်း"
+
+#: .\mission_records\templates\mission_records\mission_details.html:47
+msgid "Assistant 1"
+msgstr "ယာဥ်အကူ(၁)"
+
+#: .\mission_records\templates\mission_records\mission_details.html:51
+msgid "Assistant 2"
+msgstr "ယာဥ်အကူ(၂)"
+
+#: .\mission_records\templates\mission_records\mission_details.html:56
+msgid "Patient Type"
+msgstr "လူနာအမျိုးအစား"
+
+#: .\mission_records\templates\mission_records\mission_details.html:62
+msgid "Patient Name"
+msgstr "လူနာအမည်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:68
+msgid "Patient Age"
+msgstr "လူနာအသက်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:74
+msgid "Notes"
+msgstr "မှတ်ချက်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:81
+msgid "Donation Received"
+msgstr "လက်ခံရရှိသောအလှူငွေ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:87
+msgid "Mission Expenses"
+msgstr "လမ်းကြောင်းအသုံးစရိတ်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:93
+msgid "Fuel Cost"
+msgstr "ဆီဖိုး"
+
+#: .\mission_records\templates\mission_records\mission_details.html:99
+msgid "Back to HQ"
+msgstr "ရုံးသို့ပြန်ရောက်ချိန်"
+
+#: .\mission_records\templates\mission_records\mission_details.html:108
+msgid "Mission Photos"
+msgstr "လမ်းကြောင်းဓာတ်ပုံများ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:140
+msgid "Record created by "
+msgstr ""
+
+#: .\mission_records\templates\mission_records\mission_details.html:150
+#: .\vehicles\templates\vehicles\vehicle_details.html:62
+msgid "Back"
+msgstr ""
+
+#: .\mission_records\templates\mission_records\mission_details.html:151
+#: .\templates\index.html:58
+msgid "View all missions"
+msgstr ""
+
+#: .\mission_records\templates\mission_records\mission_details.html:153
+#, fuzzy
+#| msgid "Add Mission"
+msgid "Add New Mission"
+msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
+
+#: .\mission_records\templates\mission_records\mission_list.html:4
+#: .\mission_records\templates\mission_records\mission_list.html:25
+#: .\templates\index.html:92 .\templates\web_portal\our_missions.html:90
+msgid "Ambulance Responses"
+msgstr "လူနာတင်လမ်းကြောင်းများ"
+
+#: .\mission_records\templates\mission_records\mission_list.html:9
+msgid "Recent Responses"
+msgstr "နောက်ဆုံးလမ်းကြောင်းများ"
+
+#: .\mission_records\templates\mission_records\mission_list.html:29
+msgid "Mission#"
+msgstr "လမ်းကြောင်းအမှတ်"
+
+#: .\mission_records\templates\mission_records\mission_list.html:31
+msgid "From"
+msgstr "မှ"
+
+#: .\mission_records\templates\mission_records\mission_list.html:32
+msgid "To"
+msgstr "သို့"
+
+#: .\mission_records\templates\mission_records\mission_list.html:34
+#: .\vehicles\templates\vehicles\vehicle_list.html:44
+msgid "Select Action"
+msgstr ""
+
+#: .\mission_records\templates\mission_records\mission_list.html:52
+#: .\vehicles\templates\vehicles\vehicle_list.html:60
+msgid "More"
+msgstr ""
+
+#: .\mission_records\templates\mission_records\mission_list.html:58
+msgid "No missions yet."
+msgstr "လမ်းကြောင်းမှတ်တမ်းမရှိပါ။"
+
+#: .\templates\base.html:36 .\templates\web_portal\disaster_response.html:5
+#: .\templates\web_portal\our_missions.html:5
+#: .\templates\web_portal\our_missions.html:10
+msgid "Our Missions"
+msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
+
+#: .\templates\base.html:37 .\templates\web_portal\disaster_response.html:10
+#: .\web_portal\views.py:105
+msgid "Disaster Response"
+msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
+
+#: .\templates\base.html:41
+msgid "Vehicles"
+msgstr "ယာဥ်များ"
+
+#: .\templates\base.html:60
+msgid "Login"
+msgstr ""
+
+#: .\templates\index.html:13 .\web_portal\views.py:31
 msgid "Saytaman Social Welfare Association"
 msgstr "စေတမန်လူမှုကူညီရေးအသင်း"
+
+#: .\templates\index.html:15
+msgid "Reaching People In Need. Mandalay, Myanmar"
+msgstr ""
+
+#: .\templates\index.html:24
+#, fuzzy
+#| msgid "Disaster Response"
+msgid "Latest Ambulance Responses"
+msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
+
+#: .\templates\index.html:66
+msgid "2025 March 28<sup>th</sup> Earthquake"
+msgstr "၂၀၂၅ ခုနှစ်၊ မတ်လ ၂၈ ရက်နေ့ ငလျင်ကြီး"
+
+#: .\templates\index.html:67 .\templates\index.html:75
+#: .\templates\index.html:83
+msgid "Lorem ipsum..."
+msgstr ""
+
+#: .\templates\index.html:74
+msgid "Covid-19 Pandemic"
+msgstr "ကိုဗစ်-၁၉ ကမ္ဘာ့ကပ်ဘေး"
+
+#: .\templates\index.html:82
+msgid "Meet Our Team"
+msgstr "ကျွန်ုပ်တို့၏အဖွဲ့ဝင်များ"
+
+#: .\templates\index.html:100 .\templates\web_portal\our_missions.html:98
+msgid "Meals Distributed"
+msgstr "အစားအစာ ဝေငှမှုပေါင်း"
+
+#: .\templates\index.html:107
+msgid ""
+"In the aftermath of the March 28<sup>th</sup>, 2025 Earthquake, on behalf of "
+"the donors"
+msgstr ""
+
+#: .\templates\index.html:110 .\templates\web_portal\our_missions.html:108
+msgid "Houses Rebuilt"
+msgstr ""
+
+#: .\templates\index.html:117 .\templates\web_portal\our_missions.html:115
+msgid "Households Financial Aid"
+msgstr ""
+
+#: .\templates\index.html:124 .\templates\web_portal\our_missions.html:122
+msgid "People Helped"
+msgstr ""
+
+#: .\templates\index.html:131 .\templates\web_portal\our_missions.html:129
+msgid "MMK in Financial Aid"
+msgstr ""
+
+#: .\templates\index.html:139
+msgid "Quick Links"
+msgstr ""
+
+#: .\templates\index.html:141
+msgid "Articles"
+msgstr "သတင်းနှင့်စာတိုများ"
+
+#: .\templates\index.html:142
+msgid "About Us"
+msgstr "ကျွန်ုပ်တို့အကြောင်း"
+
+#: .\templates\index.html:143
+msgid "Contact"
+msgstr "ဆက်သွယ်ရန်"
+
+#: .\templates\index.html:146
+msgid "Hotline"
+msgstr ""
+
+#: .\templates\profile.html:9
+msgid "User Profile"
+msgstr ""
+
+#: .\templates\profile.html:12
+msgid "Username"
+msgstr "အမည်"
+
+#: .\templates\profile.html:18 .\templates\profile.html:23
+#: .\templates\profile.html:28
+msgid "Not provided"
+msgstr "အချက်အလက်မထည့်ထားပါ"
+
+#: .\templates\profile.html:22
+msgid "First name"
+msgstr ""
+
+#: .\templates\profile.html:27
+msgid "Last name"
+msgstr ""
+
+#: .\templates\registration\password_reset_email.html:2
+msgid ""
+"You're receiving this email because a password reset was requested for your "
+"account."
+msgstr ""
+
+#: .\templates\registration\password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: .\templates\registration\password_reset_email.html:8
+msgid "If you didn't request a password reset, you can ignore this email."
+msgstr ""
+
+#: .\templates\web_portal\our_missions.html:21
+msgid "Daily Emergency & Patient Transport"
+msgstr "နေ့စဥ် အရေးပေါ်ကယ်ဆယ်ရေးနှင့် လူနာပို့ဆောင်ရေး"
+
+#: .\templates\web_portal\our_missions.html:23
+msgid ""
+"Free Ambulance responses for emergency and routine medical transports for "
+"all patients."
+msgstr "အရေးပေါ်အက်စီးဒင့်လူနာများ၊ သမားရိုးကျလူနာများကို နေ့စဥ် (အခမဲ့) ကူညီပို့ဆောင်ပေးလျက်ရှိပါသည်။"
+
+#: .\templates\web_portal\our_missions.html:27
+msgid "Daily Actions"
+msgstr "တစ်နေ့တာ လုပ်ငန်းစဥ်များ"
+
+#: .\templates\web_portal\our_missions.html:39
+msgid "Humanitarian Aid & Food Distribution"
+msgstr "လူသားချင်းစာနာထောက်ထားမှု အကူအညီများနှင့် အစားအစာဝေငှမှု"
+
+#: .\templates\web_portal\our_missions.html:41
+msgid ""
+"Food distribution and renting health equipments to communities on behalf of "
+"donors."
+msgstr "အကူအညီလိုအပ်သူများအတွက် အလှူရှင်များကိုယ်စား ဝှီးချဲ၊ ချိုင်းထောက် စသောကျန်းမာရေးအထောက်အကူပြုပစ္စည်းများ ငှားရမ်းပေးခြင်း၊ သောက်သုံးရေနှင့် အစားအစာဝေငှခြင်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
+
+#: .\templates\web_portal\our_missions.html:44
+msgid "Regular Programs"
+msgstr "ပုံမှန် အစီအစဥ်များ"
+
+#: .\templates\web_portal\our_missions.html:56
+msgid "Disaster Response and Releif Operations"
+msgstr "သဘာဝဘေးကယ်ဆယ်ရေးနှင့် အရေးပေါ်အကူအညီများ"
+
+#: .\templates\web_portal\our_missions.html:58
+msgid "Immediate response and relief operations after major disasters."
+msgstr "ရေဘေး၊ မီးဘေး၊ ငလျင် အစရှိသော သဘာဝဘေးများကို အချိန်နှင့်တပြေးညီ ကူညီကယ်ဆယ်ရေးနှင့် အရေးပေါ်အထောက်အပံ့များ ဘေးသင့်ပြည်သူများထံအချိန်မီရောက်ရှိနိုင်ရန် ကြိုးစားဆောင်ရွက်လျက်ရှိပါသည်။"
+
+#: .\templates\web_portal\our_missions.html:61
+msgid "Major Projects"
+msgstr "စီမံချက်ဖြင့် ဆောင်ရွက်ချက်များ"
+
+#: .\templates\web_portal\our_missions.html:73
+msgid "Clean Water Project"
+msgstr "ရေသန့်ရရှိရေးပရောဂျက်"
+
+#: .\templates\web_portal\our_missions.html:75
+msgid ""
+"Distributing clean drinking water and adequate hygiene facilities in "
+"vulnerable communities "
+msgstr "ရေရှားပါးဒေသများသို့ သောက်သုံးရေသန့်ရရှိရန် ရေတွင်းတူးခြင်းလုပ်ငန်းများ၊ ရွေ့လျားစနစ်ဖြင့် ရေပေးဝေခြင်းလုပ်ငန်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
+
+#: .\templates\web_portal\our_missions.html:78
+msgid "Community Support"
+msgstr ""
+
+#: .\templates\web_portal\our_missions.html:105
+msgid ""
+"In the aftermath of the March 28, 2025 Earthquake, on behalf of the donors"
+msgstr ""
+
+#: .\templates\web_portal\our_missions.html:138
+msgid "Our Promise to the Community"
+msgstr ""
+
+#: .\templates\web_portal\our_missions.html:140
+msgid ""
+"We pledge to continue our relief and rescue operations in accordance with "
+"our association's original aims, objectives, rules, and regulations, "
+"ensuring that our good deeds will continue for as long as the world exists."
+msgstr ""
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:4
+#: .\vehicles\templates\vehicles\vehicle_list.html:4
+#, fuzzy
+#| msgid "Vehicles"
+msgid "Vehicles List"
+msgstr "ယာဥ်များ"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:13
+#: .\vehicles\templates\vehicles\vehicle_list.html:40
+msgid "License Plate"
+msgstr "နံပါတ်ပြားအမှတ်"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:17
+msgid "License Expiry Date"
+msgstr "သက်တမ်းကုန်မည့်ရက်"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:21
+msgid "Color"
+msgstr "အရောင်"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:25
+msgid "Model"
+msgstr "အမျိုးအစား"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:33
+#: .\vehicles\templates\vehicles\vehicle_list.html:43
+msgid "Mission Status"
+msgstr "လမ်းကြောင်းသွားရန် အသင့်ဖြစ်မဖြစ်"
+
+#: .\vehicles\templates\vehicles\vehicle_details.html:58
+msgid "Missions Count"
+msgstr "လမ်းကြောင်းအရေအတွက်"
+
+#: .\vehicles\templates\vehicles\vehicle_list.html:39
+msgid "Vehicle ID"
+msgstr "ယာဥ်အမှတ်"
+
+#: .\vehicles\templates\vehicles\vehicle_list.html:41
+msgid "Expiry Date"
+msgstr "သက်တမ်းကုန်ရက်"
+
+#: .\vehicles\templates\vehicles\vehicle_list.html:66
+msgid "No vehicles yet."
+msgstr "စာရင်းမရှိပါ။"
+
+#: .\web_portal\views.py:90
+msgid "Our Mission"
+msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
+
+#~ msgid "Welcome to Saytaman Social Welfare Association"
+#~ msgstr "စေတမန်လူမှုကူညီရေးအသင်း"
+
+#~ msgid ""
+#~ "Supporting emergency ambulance missions and disaster response in Myanmar"
+#~ msgstr ""
+#~ "အရေးပေါ်လူနာတင်ယာဥ်နှင့် သဘာဝဘေးကယ်ဆယ်ရေးလုပ်ငန်းများကို နေ့ညမရွေး စွမ်းစွမ်းတမံ "
+#~ "ဆောင်ရွက်လျက်ရှိပါသည်။"
