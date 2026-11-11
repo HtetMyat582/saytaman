@@ -23,6 +23,7 @@ class MissionRecordAdmin(ImportExportModelAdmin):
         'mission_number', 'departure', 'destination', 'patient_name', 'vehicle__vehicle_id',
         'driver_name__name', 'assistant_1__name', 'assistant_2__name', 'created_by__name'
     ]
+    readonly_fields = ('timestamp',)
     fieldsets = (
         ('Mission Info', {
             'fields': (
@@ -42,7 +43,7 @@ class MissionRecordAdmin(ImportExportModelAdmin):
         }),
         ('Additional Info', {
             'fields': (
-                'timestamp', 'back_to_hq', 'created_by'
+                'back_to_hq', 'created_by'
             )
         }),
     )
