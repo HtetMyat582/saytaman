@@ -51,9 +51,11 @@
                     <td>{{ v.license_expiry_date }}</td>
                     <td>{{ v.mission_status }}</td>
                     <td>
+                    {% if user.member.role == 'Admin' %}
                         <a href="{% url 'edit_vehicle' v.pk %}" class="btn btn-sm lime-accent rounded-pill mt-1">
                             <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
                         </a>
+                    {% endif %}
                         <a href="{% url 'vehicle_details' v.pk %}" class="btn btn-sm btn-outline-secondary rounded-pill">
                             {% trans "More" %} &rarr;
                         </a>
