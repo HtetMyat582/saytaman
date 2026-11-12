@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-11 21:17+0630\n"
+"POT-Creation-Date: 2026-11-12 21:17+0630\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -469,9 +469,10 @@ msgid ""
 msgstr ""
 
 #: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2534
+#: .\mission_records\forms.py:40
 #: .\mission_records\templates\mission_records\mission_details.html:27
 msgid "Time"
-msgstr ""
+msgstr "အချိန်"
 
 #: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2642
 msgid "URL"
@@ -1312,7 +1313,7 @@ msgid "Save"
 msgstr "သိမ်းဆည်းရန်"
 
 #: .\members\templates\members\member_list.html:4
-#: .\members\templates\members\member_list.html:9 .\templates\base.html:40
+#: .\members\templates\members\member_list.html:9 .\templates\base.html:39
 msgid "Members"
 msgstr "အဖွဲ့ဝင်များ"
 
@@ -1346,7 +1347,6 @@ msgstr "ဖုန်းနံပါတ်"
 
 #: .\members\templates\members\member_list.html:18
 #: .\vehicles\templates\vehicles\vehicle_details.html:29
-#: .\vehicles\templates\vehicles\vehicle_list.html:42
 msgid "Status"
 msgstr "အခြေအနေ"
 
@@ -1355,9 +1355,10 @@ msgid "Action"
 msgstr "လုပ်ဆောင်ချက်"
 
 #: .\members\templates\members\member_list.html:32
-#: .\mission_records\templates\mission_records\mission_details.html:124
+#: .\mission_records\templates\mission_records\mission_details.html:128
 #: .\mission_records\templates\mission_records\mission_list.html:48
-#: .\vehicles\templates\vehicles\vehicle_list.html:57
+#: .\vehicles\templates\vehicles\vehicle_details.html:66
+#: .\vehicles\templates\vehicles\vehicle_list.html:56
 msgid "Edit"
 msgstr "ပြင်ဆင်မည်"
 
@@ -1423,19 +1424,92 @@ msgid "Job"
 msgstr "အလုပ်အကိုင်"
 
 #: .\members\templates\members\profile\profile.html:141
-#: .\templates\base.html:55
+#: .\templates\base.html:53
 msgid "Logout"
 msgstr "အကောင့်ထွက်ရန်"
+
+#: .\mission_records\forms.py:38
+msgid "Mission Number"
+msgstr "လမ်းကြောင်းအမှတ်"
+
+#: .\mission_records\forms.py:39
+#: .\mission_records\templates\mission_records\mission_details.html:23
+#: .\mission_records\templates\mission_records\mission_list.html:30
+msgid "Date"
+msgstr "ရက်စွဲ"
+
+#: .\mission_records\forms.py:41
+#: .\mission_records\templates\mission_records\mission_details.html:31
+msgid "Departure"
+msgstr "ထွက်ခွာသည့်နေရာ"
+
+#: .\mission_records\forms.py:42
+#: .\mission_records\templates\mission_records\mission_details.html:35
+msgid "Destination"
+msgstr "ပို့ဆောင်သည့်နေရာ"
+
+#: .\mission_records\forms.py:43
+#: .\mission_records\templates\mission_records\mission_details.html:39
+#: .\mission_records\templates\mission_records\mission_list.html:33
+#, fuzzy
+#| msgid "Vehicles"
+msgid "Vehicle"
+msgstr "ယာဥ်အမှတ်"
+
+#: .\mission_records\forms.py:44
+msgid "Driver Name"
+msgstr "ယာဥ်မောင်း"
+
+#: .\mission_records\forms.py:45
+#: .\mission_records\templates\mission_records\mission_details.html:48
+msgid "Assistant 1"
+msgstr "ယာဥ်အကူ(၁)"
+
+#: .\mission_records\forms.py:46
+#: .\mission_records\templates\mission_records\mission_details.html:54
+msgid "Assistant 2"
+msgstr "ယာဥ်အကူ(၂)"
+
+#: .\mission_records\forms.py:47
+#: .\mission_records\templates\mission_records\mission_details.html:60
+msgid "Patient Type"
+msgstr "လူနာအမျိုးအစား"
+
+#: .\mission_records\forms.py:48
+#: .\mission_records\templates\mission_records\mission_details.html:66
+msgid "Patient Name"
+msgstr "လူနာအမည်"
+
+#: .\mission_records\forms.py:49
+#: .\mission_records\templates\mission_records\mission_details.html:72
+msgid "Patient Age"
+msgstr "လူနာအသက်"
+
+#: .\mission_records\forms.py:50
+#: .\mission_records\templates\mission_records\mission_details.html:78
+msgid "Notes"
+msgstr "မှတ်ချက်"
+
+#: .\mission_records\forms.py:51
+#: .\mission_records\templates\mission_records\mission_details.html:85
+msgid "Donation Received"
+msgstr "လက်ခံရရှိသောအလှူငွေ"
+
+#: .\mission_records\forms.py:52
+#: .\mission_records\templates\mission_records\mission_details.html:91
+msgid "Mission Expenses"
+msgstr "လမ်းကြောင်းအသုံးစရိတ်"
+
+#: .\mission_records\forms.py:53
+#: .\mission_records\templates\mission_records\mission_details.html:97
+msgid "Fuel Cost"
+msgstr "ဆီဖိုး"
 
 #: .\mission_records\templates\mission_records\add_mission.html:4
 #: .\mission_records\templates\mission_records\add_mission.html:8
 #: .\templates\index.html:8
 msgid "Add Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
-
-#: .\mission_records\templates\mission_records\add_mission.html:21
-msgid "{{field}}"
-msgstr ""
 
 #: .\mission_records\templates\mission_records\add_mission.html:28
 #: .\mission_records\templates\mission_records\edit_mission.html:30
@@ -1458,6 +1532,7 @@ msgid "Check to Delete Photo"
 msgstr "ပုံဖျက်ရန် အမှန်ခြစ်တပ်ပါ။"
 
 #: .\mission_records\templates\mission_records\edit_mission.html:63
+#: .\vehicles\templates\vehicles\edit_vehicle.html:30
 msgid "Update"
 msgstr "ပြင်ဆင်မည်"
 
@@ -1471,92 +1546,34 @@ msgstr "လမ်းကြောင်းအချက်အလက်များ
 msgid "Report to HQ"
 msgstr "ရုံးသို့ ခြေစုံ"
 
-#: .\mission_records\templates\mission_records\mission_details.html:23
-#: .\mission_records\templates\mission_records\mission_list.html:30
-msgid "Date"
-msgstr "ရက်စွဲ"
-
-#: .\mission_records\templates\mission_records\mission_details.html:31
-msgid "Departure"
-msgstr "ထွက်ခွာသည့်နေရာ"
-
-#: .\mission_records\templates\mission_records\mission_details.html:35
-msgid "Destination"
-msgstr "ပို့ဆောင်သည့်နေရာ"
-
-#: .\mission_records\templates\mission_records\mission_details.html:39
-#: .\mission_records\templates\mission_records\mission_list.html:33
-#, fuzzy
-#| msgid "Vehicles"
-msgid "Vehicle"
-msgstr "ယာဥ်အမှတ်"
-
 #: .\mission_records\templates\mission_records\mission_details.html:43
 #: .\mission_records\templates\mission_records\mission_list.html:16
 msgid "Driver"
 msgstr "ယာဥ်မောင်း"
 
-#: .\mission_records\templates\mission_records\mission_details.html:47
-msgid "Assistant 1"
-msgstr "ယာဥ်အကူ(၁)"
-
-#: .\mission_records\templates\mission_records\mission_details.html:51
-msgid "Assistant 2"
-msgstr "ယာဥ်အကူ(၂)"
-
-#: .\mission_records\templates\mission_records\mission_details.html:56
-msgid "Patient Type"
-msgstr "လူနာအမျိုးအစား"
-
-#: .\mission_records\templates\mission_records\mission_details.html:62
-msgid "Patient Name"
-msgstr "လူနာအမည်"
-
-#: .\mission_records\templates\mission_records\mission_details.html:68
-msgid "Patient Age"
-msgstr "လူနာအသက်"
-
-#: .\mission_records\templates\mission_records\mission_details.html:74
-msgid "Notes"
-msgstr "မှတ်ချက်"
-
-#: .\mission_records\templates\mission_records\mission_details.html:81
-msgid "Donation Received"
-msgstr "လက်ခံရရှိသောအလှူငွေ"
-
-#: .\mission_records\templates\mission_records\mission_details.html:87
-msgid "Mission Expenses"
-msgstr "လမ်းကြောင်းအသုံးစရိတ်"
-
-#: .\mission_records\templates\mission_records\mission_details.html:93
-msgid "Fuel Cost"
-msgstr "ဆီဖိုး"
-
-#: .\mission_records\templates\mission_records\mission_details.html:99
+#: .\mission_records\templates\mission_records\mission_details.html:103
 msgid "Back to HQ"
 msgstr "ရုံးသို့ပြန်ရောက်ချိန်"
 
-#: .\mission_records\templates\mission_records\mission_details.html:108
+#: .\mission_records\templates\mission_records\mission_details.html:112
 msgid "Mission Photos"
 msgstr "လမ်းကြောင်းဓာတ်ပုံများ"
 
-#: .\mission_records\templates\mission_records\mission_details.html:140
+#: .\mission_records\templates\mission_records\mission_details.html:144
 msgid "Record created by "
-msgstr ""
+msgstr "လမ်းကြောင်းတင်သူ "
 
-#: .\mission_records\templates\mission_records\mission_details.html:150
-#: .\vehicles\templates\vehicles\vehicle_details.html:62
+#: .\mission_records\templates\mission_records\mission_details.html:154
+#: .\vehicles\templates\vehicles\vehicle_details.html:71
 msgid "Back"
-msgstr ""
+msgstr "နောက်သို့"
 
-#: .\mission_records\templates\mission_records\mission_details.html:151
+#: .\mission_records\templates\mission_records\mission_details.html:155
 #: .\templates\index.html:58
 msgid "View all missions"
-msgstr ""
+msgstr "လမ်းကြောင်းအားလုံးကြည့်မည်"
 
-#: .\mission_records\templates\mission_records\mission_details.html:153
-#, fuzzy
-#| msgid "Add Mission"
+#: .\mission_records\templates\mission_records\mission_details.html:157
 msgid "Add New Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 
@@ -1583,7 +1600,7 @@ msgid "To"
 msgstr "သို့"
 
 #: .\mission_records\templates\mission_records\mission_list.html:34
-#: .\vehicles\templates\vehicles\vehicle_list.html:44
+#: .\vehicles\templates\vehicles\vehicle_list.html:43
 msgid "Select Action"
 msgstr ""
 
@@ -1607,13 +1624,25 @@ msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်
 msgid "Disaster Response"
 msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
 
-#: .\templates\base.html:41
+#: .\templates\base.html:40
 msgid "Vehicles"
 msgstr "ယာဥ်များ"
 
-#: .\templates\base.html:60
+#: .\templates\base.html:58
 msgid "Login"
-msgstr ""
+msgstr "အကောင့်ဝင်မည်"
+
+#: .\templates\base.html:116
+msgid "Emergency Call"
+msgstr "အရေးပေါ်ဆက်သွယ်ရန်"
+
+#: .\templates\base.html:126
+msgid "Emergency Contact Numbers"
+msgstr "အရေးပေါ်ဆက်သွယ်ရန်ဖုန်းနံပါတ်များ"
+
+#: .\templates\base.html:146
+msgid "Close"
+msgstr "ပိတ်မည်"
 
 #: .\templates\index.html:13 .\web_portal\views.py:31
 msgid "Saytaman Social Welfare Association"
@@ -1801,10 +1830,13 @@ msgid ""
 "ensuring that our good deeds will continue for as long as the world exists."
 msgstr ""
 
+#: .\vehicles\templates\vehicles\edit_vehicle.html:4
+#: .\vehicles\templates\vehicles\edit_vehicle.html:8
+msgid "Edit Vehicle"
+msgstr "ယာဥ်အချက်အလက်ပြင်ဆင်ခြင်း"
+
 #: .\vehicles\templates\vehicles\vehicle_details.html:4
 #: .\vehicles\templates\vehicles\vehicle_list.html:4
-#, fuzzy
-#| msgid "Vehicles"
 msgid "Vehicles List"
 msgstr "ယာဥ်များ"
 
@@ -1826,11 +1858,11 @@ msgid "Model"
 msgstr "အမျိုးအစား"
 
 #: .\vehicles\templates\vehicles\vehicle_details.html:33
-#: .\vehicles\templates\vehicles\vehicle_list.html:43
+#: .\vehicles\templates\vehicles\vehicle_list.html:42
 msgid "Mission Status"
 msgstr "လမ်းကြောင်းသွားရန် အသင့်ဖြစ်မဖြစ်"
 
-#: .\vehicles\templates\vehicles\vehicle_details.html:58
+#: .\vehicles\templates\vehicles\vehicle_details.html:60
 msgid "Missions Count"
 msgstr "လမ်းကြောင်းအရေအတွက်"
 

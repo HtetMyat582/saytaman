@@ -3,7 +3,7 @@ from django.forms import inlineformset_factory
 from .models import MissionRecord, MissionRecordPhoto
 from members.models import Member
 from vehicles.models import Vehicle
-
+from django.utils.translation import gettext_lazy as _
 
 class MissionRecordForm(forms.ModelForm):
     class Meta:
@@ -33,6 +33,25 @@ class MissionRecordForm(forms.ModelForm):
             'mission_expenses': forms.NumberInput(attrs={'class': 'form-input'}),
             'fuel_cost': forms.NumberInput(attrs={'class': 'form-input'}),
             }
+
+        labels = {
+            'mission_number': _('Mission Number'),
+            'date': _('Date'),
+            'time': _('Time'),
+            'departure': _('Departure'),
+            'destination': _('Destination'),
+            'vehicle': _('Vehicle'),
+            'driver_name': _('Driver Name'),
+            'assistant_1': _('Assistant 1'),
+            'assistant_2': _('Assistant 2'),
+            'patient_type': _('Patient Type'),
+            'patient_name': _('Patient Name'),
+            'patient_age': _('Patient Age'),
+            'notes': _('Notes'),
+            'donation_received': _('Donation Received'),
+            'mission_expenses': _('Mission Expenses'),
+            'fuel_cost': _('Fuel Cost')
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
