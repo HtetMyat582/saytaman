@@ -60,6 +60,11 @@
         <div class="form-label">{% trans 'Missions Count' %}</div>
         <div class="form-input">{{ missions_count }}</div>
     </div>
+    <div class="form-row">
+        <a href="{% url 'edit_vehicle' vehicle.pk %}" class="btn btn-sm lime-accent rounded-pill mt-1">
+            <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
+        </a>
+    </div>
 </div>
 <a href="javascript:history.back()" class="btn btn-lime mt-2 mb-5">&larr; {% trans "Back" %}</a>
 {% endif %}
