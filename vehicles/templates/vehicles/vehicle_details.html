@@ -60,7 +60,7 @@
         <div class="form-label">{% trans 'Missions Count' %}</div>
         <div class="form-input">{{ missions_count }}</div>
     </div>
-    {% if user.member.role == 'Admin' %}
+    {% if user.member_profile.role == 'Admin' %}
     <div class="d-flex justify-content-between mt-5">
         <a href="{% url 'edit_vehicle' vehicle.pk %}" class="btn btn-primary lime-accent flex-fill">
             <i class="bi bi-pencil-square"></i> {% trans "Edit" %}
