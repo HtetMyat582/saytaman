@@ -48,3 +48,20 @@ def vehicle_details(request, pk):
             'now': now
             }
         return render(request, 'vehicles/vehicle_details.html', context)
+
+@login_required
+def edit_vehicle(request, pk):
+    vehicle = get_object_or_404(Vehicle, pk=pk)
+    if request.method == 'POST':
+        form = VehicleForm(request.POST, request.FILES, instance=vehicle)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Vehicle updated successfully.')
+            return redirect('vehicle_details', pk=vehicle.pk)
+    else:
+        form = VehicleForm(instance=vehicle)
+    context = {
+        'form': form,
+        'vehicle': vehicle
+    }
+    return render(request, 'vehicles/edit_vehicle.html', context)
