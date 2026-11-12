@@ -36,10 +36,8 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'our_missions' %}">{% trans "Our Missions" %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'disaster_response' %}">{% trans "Disaster Response" %}</a></li>
                     {% if user.is_authenticated %}
-                    {% if member_role != 'Member' %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'member_list' %}">{% trans "Members" %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'vehicle_list' %}">{% trans "Vehicles" %}</a></li>
-                    {% endif %}
                     {% endif %}
                 </ul>
             </div>
