@@ -16,7 +16,7 @@
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:type" content="article">
     <meta property="og:title" content="လမ်းကြောင်းအမှတ် {{ mission.mission_number }} - ကူညီပို့ဆောင်မှု မှတ်တမ်း">
-    <meta property="og:description" content="စေတမန်အသင်းမှ {{ mission.departure }} မှ {{ mission.destination }} သို့ အခမဲ့ သယ်ယူပို့ဆောင်ပေးခဲ့ပါသည်။">
+    <meta property="og:description" content="စေတမန်လူမှုကူညီရေးအသင်းမှ {{ mission.destination }} သို့ အခမဲ့ သယ်ယူပို့ဆောင်ပေးခဲ့ပါသည်။">
 
     <meta property="og:image" content="{{ 'mission.photo.url' }}">
     <meta property="og:site_name" content="စေတမန် လူမှုကူညီရေးအသင်း">
@@ -110,7 +110,44 @@
                             {% endfor %}
                             {% endif %}
                         </div>
+						{% if not user.is_authenticated %}
+						<div>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#emergencyModal">
+								<i class="bi bi-exclamation-diamond-fill"></i> {% trans "Emergency Call" %}
+							</button>
+						</div>
+						{% endif %}
 
+						<!-- Emergency Modal -->
+						<div class="modal fade" id="emergencyModal" tabindex="-1" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content bg-danger text-white">
+									<div class="modal-header">
+										<h5 class="modal-title">{% trans "Emergency Contact Numbers" %}</h5>
+										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<div class="list-group">
+											<div class="list-group-item bg-danger border-light">
+												<strong>09 43 100 786</strong>
+											</div>
+											<div class="list-group-item bg-danger border-light">
+												<strong>09 4444 57 786 </strong>
+											</div>
+											<div class="list-group-item bg-danger border-light">
+												<strong>09 973 74 75 76</strong>
+											</div>
+											<div class="list-group-item bg-danger border-light">
+												<strong>09 7777 88 786</strong>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-light" data-bs-dismiss="modal">{% trans "Close" %}</button>
+									</div>
+								</div>
+							</div>
+						</div>
                         {% block content %}{% endblock %}
 
     </main>
