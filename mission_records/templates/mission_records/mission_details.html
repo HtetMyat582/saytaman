@@ -11,7 +11,7 @@
         <form method="POST" action="{% url 'set_back_to_hq' mission.pk %}" class="d-flex justify-content-end">
             {% csrf_token %}
             <button type="submit" class="btn btn-success rounded-pill"
-                    onclick="return confirm('Are you sure you want to mark the vehicle as returned to HQ and set status to STAND-BY?');">
+                    onclick="return confirm('Mark {{ mission.vehicle.vehicle_id }} as returned to HQ?');">
                 <i class="bi bi-check2-circle"></i> {% trans "Report to HQ" %}
             </button>
         </form>
