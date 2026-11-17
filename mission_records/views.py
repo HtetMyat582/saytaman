@@ -5,8 +5,8 @@ from .models import MissionRecord, MissionRecordPhoto
 from .forms import MissionRecordForm, MissionRecordPhotoFormSet
 from django.utils import timezone
 import requests
+from members.access import has_dashboard_access
 
-fb_admin_id_list = ['STM-007', 'STM-014', 'STM-028', 'STM-144', 'STM-148', 'STM-172']
 
 
 @login_required
@@ -60,12 +60,8 @@ def mission_details(request, pk):
     else:
         assist_2_trimmed = None
     
-    is_fb_admin = False
-    if request.user.is_authenticated:
-        member = getattr(request.user, 'member_profile', None)
-        
-        if member.member_id in fb_admin_id_list:
-            is_fb_admin = True
+    member = getattr(request.user, 'member_profile', None)
+    is_fb_admin = has_dashboard_access(member) if request.user.is_authenticated else False
     
     return render(request, 'mission_records/mission_details.html', {
         'mission': mission,

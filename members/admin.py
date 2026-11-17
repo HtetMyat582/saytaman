@@ -5,7 +5,7 @@ from import_export.widgets import DateWidget, CharWidget
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordResetForm
 from django.conf import settings
-from .models import Member
+from .models import DashboardAccess, Member
 
 User = get_user_model()
 
@@ -102,3 +102,21 @@ class MemberAdmin(ImportExportModelAdmin):
         }),
     )
     actions = [create_users_for_members]
+
+
+@admin.register(DashboardAccess)
+class DashboardAccessAdmin(admin.ModelAdmin):
+    list_display = ('member', 'is_active', 'granted_by', 'created_at')
+    list_filter = ('is_active',)
+    search_fields = ('member__member_id', 'member__name')
+    autocomplete_fields = ('member',)
+    readonly_fields = ('granted_by', 'created_at')
+
+    def save_model(self, request, obj, form, change):
+        if not change and obj.granted_by_id is None:
+            obj.granted_by = request.user
+        super().save_model(request, obj, form, change)
+
+    def has_delete_permission(self, request, obj=None):
+        # Revoke access by turning off is_active; retain the record for reference.
+        return False

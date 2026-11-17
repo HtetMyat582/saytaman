@@ -58,3 +58,24 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.member_id}, {self.name}"
+
+
+class DashboardAccess(models.Model):
+    member = models.OneToOneField(
+        Member,
+        on_delete=models.CASCADE,
+        related_name='dashboard_access',
+    )
+    is_active = models.BooleanField(default=True)
+    notes = models.CharField(max_length=250, blank=True)
+    granted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='dashboard_access_grants',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.member.member_id} — {'active' if self.is_active else 'inactive'}"
