@@ -1,5 +1,9 @@
 from django.db import models
 from members.models import Member
+from decimal import Decimal
+
+from django.core.validators import MinValueValidator
+from django.utils import timezone
 
 class Donation(models.Model):
     DONATION_TYPE_CHOICES = [
@@ -48,3 +52,39 @@ class Expense(models.Model):
     date = models.DateField(auto_now_add=True)
     def __str__(self):
         return f"{self.payee_name} - {self.amount} on {self.date}"
+
+    
+
+class FuelRefill(models.Model):
+    vehicle = models.ForeignKey(
+        'vehicles.Vehicle',
+        on_delete=models.PROTECT,
+        related_name='fuel_refills',
+    )
+    date = models.DateField(default=timezone.localdate)
+    time = models.TimeField()
+    pump_name = models.CharField(max_length=150)
+    liters = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))],
+    )
+    cost = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        validators=[MinValueValidator(Decimal('0'))],
+    )
+    notes = models.CharField(max_length=250, blank=True)
+    created_by = models.ForeignKey(
+        Member,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='fuel_refills_recorded',
+    )
+
+    class Meta:
+        ordering = ['-date', '-time']
+
+    def __str__(self):
+        return f"{self.vehicle.vehicle_id} — {self.date} — {self.cost} MMK"
