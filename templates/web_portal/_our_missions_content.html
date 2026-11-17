@@ -1,0 +1,143 @@
+﻿{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5">
+	<header class="text-center mb-5">
+		<h1 class="display-5 fw-bold lime-accent">{% trans "Our Missions" %}</h1>
+	</header>
+
+	<div class="row d-flex align-items-stretch">
+
+		<div class="col-lg-3 col-md-6 mb-3">
+			<div class="soft-ui-card w-100 h-100">
+				<a href="{% url 'mission_list' %}" class="text-reset text-decoration-none d-flex flex-column h-100">
+					<div class="text-center mb-4">
+						<i class="bi bi-heart-pulse display-4 lime-accent"></i>
+					</div>
+					<h5 class="card-title fw-bold text-center  mb-3">{% trans "Daily Emergency & Patient Transport" %}</h5>
+					<p class="card-text text-center flex-grow-1">
+						{% trans "Free Ambulance responses for emergency and routine medical transports for all patients." %}
+					</p>
+
+					<div class="mt-auto text-center">
+						<span class="badge rounded-pill bg-success">{% trans "Daily Actions" %}</span>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 mb-3">
+			<div class="soft-ui-card w-100 h-100">
+				<a href="#" class="text-reset text-decoration-none d-flex flex-column h-100">
+					<div class="text-center mb-4">
+						<i class="bi bi-basket display-4 lime-accent"></i>
+					</div>
+					<h5 class="card-title fw-bold text-center mb-3">{% trans "Humanitarian Aid & Food Distribution" %}</h5>
+					<p class="card-text text-center flex-grow-1">
+						{% trans "Food distribution and renting health equipments to communities on behalf of donors." %}
+					</p>
+					<div class="mt-auto text-center">
+						<span class="badge rounded-pill bg-success">{% trans "Regular Programs" %}</span>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 mb-3">
+			<div class="soft-ui-card w-100 h-100">
+				<a href="{% url 'disaster_response' %}" class="text-reset text-decoration-none d-flex flex-column h-100">
+					<div class="text-center mb-4">
+						<i class="bi bi-fire display-4 lime-accent"></i>
+					</div>
+					<h5 class="card-title fw-bold text-center mb-3">{% trans "Disaster Response and Releif Operations" %}</h5>
+					<p class="card-text text-center flex-grow-1">
+						{% trans "Immediate response and relief operations after major disasters." %}
+					</p>
+					<div class="mt-auto text-center">
+						<span class="badge rounded-pill bg-success">{% trans "Major Projects" %}</span>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 mb-3">
+			<div class="soft-ui-card w-100 h-100">
+				<a href="#" class="text-reset text-decoration-none d-flex flex-column h-100">
+					<div class="text-center mb-4">
+						<i class="bi bi-droplet-half display-4 lime-accent"></i>
+					</div>
+					<h5 class="card-title fw-bold text-center mb-3">{% trans "Clean Water Project" %}</h5>
+					<p class="card-text text-center flex-grow-1">
+						{% trans "Distributing clean drinking water and adequate hygiene facilities in vulnerable communities " %}
+					</p>
+					<div class="mt-auto text-center">
+						<span class="badge rounded-pill bg-success">{% trans "Community Support" %}</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row text-center mt-5 mb-5">
+		<span class="lead">Routine Activities</span>
+		<div class="col-md-6">
+			<h1 class="display-3 fw-bold lime-accent" id="missions_count">0</h1>
+			<p class="lead">{% trans 'Ambulance Responses' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-heart-pulse display-4 lime-accent"></i>
+			</div>
+		</div>
+
+		<div class="col-md-6  ">
+			<h1 class="display-3 fw-bold lime-accent" id="meals_delivered_count">0</h1>
+			<p class="lead">{% trans 'Meals Distributed' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-basket display-4 lime-accent"></i>
+			</div>
+		</div>
+	</div>
+	<div class="row text-center mt-5 justify-content-center">
+		<p class="lead">{% trans 'In the aftermath of the March 28, 2025 Earthquake, on behalf of the donors' %}</p>
+		<div class="col-md-4 mb-5">
+			<h1 class="display-3 fw-bold lime-accent" id="houses_rebuilt">0</h1>
+			<p class="lead">{% trans 'Houses Rebuilt' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-house-gear display-4 lime-accent"></i>
+			</div>
+		</div>
+		<div class="col-md-4 mb-5">
+			<h1 class="display-3 fw-bold lime-accent" id="households_financial_aid">0</h1>
+			<p class="lead">{% trans 'Households Financial Aid' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-house-heart display-4 lime-accent"></i>
+			</div>
+		</div>
+		<div class="col-md-4 mb-5">
+			<h1 class="display-3 fw-bold lime-accent" id="people_financial_aid">0</h1>
+			<p class="lead">{% trans 'People Helped' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-person-heart display-4 lime-accent"></i>
+			</div>
+		</div>
+		<div class="col-md-4 mb-5">
+			<h1 class="display-3 fw-bold lime-accent" id="amount_financial_aid">0</h1>
+			<p class="lead">{% trans 'MMK in Financial Aid' %}</p>
+			<div class="text-center mb-4">
+				<i class="bi bi-cash-coin display-4 lime-accent"></i>
+			</div>
+		</div>
+	</div>
+
+
+	<section class="mt-5 text-center p-4 soft-ui-banner">
+		<h3 class="fw-bold mb-3" style="color: var(--text);">{% trans "Our Promise to the Community" %}</h3>
+		<p class="lead card-text mb-0">
+			{% trans "We pledge to continue our relief and rescue operations in accordance with our association's original aims, objectives, rules, and regulations, ensuring that our good deeds will continue for as long as the world exists." %}
+		</p>
+	</section>
+
+</div>
+
+{% endblock %}
