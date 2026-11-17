@@ -85,6 +85,83 @@
     </div>
 </div>
 
+<div class="container py-5">
+    <header class="text-center mb-5">
+        <h1 class="display-5 fw-bold lime-accent">{% trans "Our Missions" %}</h1>
+    </header>
+
+    <div class="row d-flex align-items-stretch">
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="soft-ui-card w-100 h-100">
+                <a href="{% url 'mission_list' %}" class="text-reset text-decoration-none d-flex flex-column h-100">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-heart-pulse display-4 lime-accent"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-center  mb-3">{% trans "Daily Emergency & Patient Transport" %}</h5>
+                    <p class="card-text text-center flex-grow-1">
+                        {% trans "Free Ambulance responses for emergency and routine medical transports for all patients." %}
+                    </p>
+
+                    <div class="mt-auto text-center">
+                        <span class="badge rounded-pill bg-success">{% trans "Daily Actions" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="soft-ui-card w-100 h-100">
+                <a href="#" class="text-reset text-decoration-none d-flex flex-column h-100">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-basket display-4 lime-accent"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-center mb-3">{% trans "Humanitarian Aid & Food Distribution" %}</h5>
+                    <p class="card-text text-center flex-grow-1">
+                        {% trans "Food distribution and renting health equipments to communities on behalf of donors." %}
+                    </p>
+                    <div class="mt-auto text-center">
+                        <span class="badge rounded-pill bg-success">{% trans "Regular Programs" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="soft-ui-card w-100 h-100">
+                <a href="{% url 'disaster_response' %}" class="text-reset text-decoration-none d-flex flex-column h-100">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-fire display-4 lime-accent"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-center mb-3">{% trans "Disaster Response and Releif Operations" %}</h5>
+                    <p class="card-text text-center flex-grow-1">
+                        {% trans "Immediate response and relief operations after major disasters." %}
+                    </p>
+                    <div class="mt-auto text-center">
+                        <span class="badge rounded-pill bg-success">{% trans "Major Projects" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="soft-ui-card w-100 h-100">
+                <a href="#" class="text-reset text-decoration-none d-flex flex-column h-100">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-droplet-half display-4 lime-accent"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-center mb-3">{% trans "Clean Water Project" %}</h5>
+                    <p class="card-text text-center flex-grow-1">
+                        {% trans "Distributing clean drinking water and adequate hygiene facilities in vulnerable communities " %}
+                    </p>
+                    <div class="mt-auto text-center">
+                        <span class="badge rounded-pill bg-success">{% trans "Community Support" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 <div class="row text-center mt-5 mb-5 justify-content-center">
     <span class="lead">Routine Activities</span>
     <div class="col-md-4">
