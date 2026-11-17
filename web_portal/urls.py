@@ -9,5 +9,6 @@ urlpatterns = [
     path('members/', include('members.urls')),
     path('missions/', include('mission_records.urls')),
     path('vehicles/', include('vehicles.urls')),
+    path('management/', views.management_dashboard, name='management_dashboard'),
     path('', include('web_portal.auth_urls')),
 ]

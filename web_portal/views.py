@@ -10,7 +10,14 @@ from django.urls import reverse_lazy
 from members.models import Member
 from mission_records.models import MissionRecord
 from natural_disasters.models import DisasterEvent, DisasterEventPhoto
-from datetime import datetime
+from datetime import date, datetime, timedelta
+from decimal import Decimal
+
+from django.db.models import Sum
+
+from donations_and_expenses.models import Donation, Expense
+from members.access import dashboard_access_required
+from vehicles.models import Vehicle
 
 def weekly_food_counter():
     # Sunday, Dec 14, 2025, 3:00 PM)
@@ -114,3 +121,71 @@ def disaster_response(request):
         #'event_photos': event_photos
         }
     return render(request, 'web_portal/disaster_response.html', context)
+
+@dashboard_access_required
+def management_dashboard(request):
+    today = timezone.localdate()
+    period = request.GET.get('period', 'month')
+
+    if period == 'week':
+        start_date = today - timedelta(days=today.weekday())
+    elif period == 'year':
+        start_date = date(today.year, 1, 1)
+    else:
+        period = 'month'
+        start_date = date(today.year, today.month, 1)
+
+    period_missions = MissionRecord.objects.filter(
+        date__range=(start_date, today)
+    )
+    mission_totals = period_missions.aggregate(
+        donations=Sum('donation_received'),
+        expenses=Sum('mission_expenses'),
+        fuel=Sum('fuel_cost'),
+    )
+
+    donation_total = (
+        Donation.objects.filter(date__range=(start_date, today))
+        .aggregate(total=Sum('amount'))['total']
+        or Decimal('0.00')
+    )
+    expense_total = (
+        Expense.objects.filter(date__range=(start_date, today))
+        .aggregate(total=Sum('amount'))['total']
+        or Decimal('0.00')
+    )
+
+    # The latest mission without a return-to-HQ time is shown as active.
+    active_missions = (
+        MissionRecord.objects
+        .filter(back_to_hq__isnull=True)
+        .select_related('vehicle', 'driver_name')
+        .order_by('-date', '-time')
+    )
+    active_by_vehicle = {}
+    for mission in active_missions:
+        active_by_vehicle.setdefault(mission.vehicle_id, mission)
+
+    vehicles = list(Vehicle.objects.order_by('vehicle_id'))
+    for vehicle in vehicles:
+        vehicle.active_mission = active_by_vehicle.get(vehicle.pk)
+        if vehicle.active_mission:
+            vehicle.dashboard_status = 'On Mission'
+        elif vehicle.status in ('Inactive', 'Service'):
+            vehicle.dashboard_status = 'Unavailable'
+        else:
+            vehicle.dashboard_status = 'Stand-by'
+
+    return render(request, 'management/dashboard.html', {
+        'now': today.year,
+        'period': period,
+        'start_date': start_date,
+        'end_date': today,
+        'vehicles': vehicles,
+        'mission_count': period_missions.count(),
+        'donation_total': donation_total,
+        'expense_total': expense_total,
+        'mission_donations': mission_totals['donations'] or 0,
+        'mission_expenses': mission_totals['expenses'] or 0,
+        'mission_fuel': mission_totals['fuel'] or 0,
+    })

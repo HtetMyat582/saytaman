@@ -38,6 +38,9 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'member_list' %}">{% trans "Members" %}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'vehicle_list' %}">{% trans "Vehicles" %}</a></li>
+					{% if user.member_profile.dashboard_access.is_active %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'management_dashboard' %}">Management Dashboard</a></li>
+                    {% endif %}
                     {% endif %}
                 </ul>
             </div>
