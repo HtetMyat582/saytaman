@@ -366,3 +366,23 @@ footer.footer {
     color: var(--text-hover) !important;
     transform: translateY(-2px) translateX(2px);
 }
+
+@media (max-width: 575.98px) {
+    #emergencyModal .emergency-modal-dialog {
+        width: 90vw;
+        max-width: 90vw;
+        height: 90vh;
+        height: 90dvh;
+        margin: 5vh auto;
+        margin: 5dvh auto;
+    }
+
+    #emergencyModal .modal-content {
+        height: 100%;
+    }
+
+    #emergencyModal .modal-body {
+        min-height: 0;
+        overflow-y: auto;
+    }
+}
