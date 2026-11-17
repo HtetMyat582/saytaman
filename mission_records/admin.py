@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import MissionRecord, MissionRecordPhoto
+from .models import MissionRecord, MissionRecordPhoto, MissionFuelRefill
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 class MissionRecordResource(resources.ModelResource):
     class Meta:
         model = MissionRecord
+
+
+class MissionFuelRefillInline(admin.TabularInline):
+    model = MissionFuelRefill
+    extra = 1
 
 @admin.register(MissionRecord)
 class MissionRecordAdmin(ImportExportModelAdmin):
@@ -47,6 +52,7 @@ class MissionRecordAdmin(ImportExportModelAdmin):
             )
         }),
     )
+    inlines = [MissionFuelRefillInline]
 
 @admin.register(MissionRecordPhoto)
 class MissionRecordPhotoAdmin(ImportExportModelAdmin):

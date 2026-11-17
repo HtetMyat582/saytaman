@@ -25,6 +25,7 @@
             </div>
             {% endfor %}
         </div>
+
         <h4 class="mt-4">{% trans "Photos" %}</h4>
         {{ formset.management_form }}
         {{ formset.non_form_errors }}
@@ -48,7 +49,11 @@
             {% endfor %}
         </div>
 
+        {% include "mission_records/_fuel_refill_formset.html" %}
+        
         <button class="btn btn-primary mt-5 w-100">{% trans "Save" %}</button>
     </form>   
+
+    
 </div>
 {% endblock %}

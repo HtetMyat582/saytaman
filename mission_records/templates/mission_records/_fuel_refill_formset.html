@@ -1,0 +1,49 @@
+<h4 class="mt-4">On-mission fuel refills</h4>
+<p>Enter one row for each refill. Add as many rows as the mission needs.</p>
+
+{{ fuel_formset.management_form }}
+{{ fuel_formset.non_form_errors }}
+
+<div id="fuel-refill-forms">
+	{% for refill_form in fuel_formset %}
+	<div class="border rounded p-3 mb-3">
+		{% for hidden in refill_form.hidden_fields %}{{ hidden }}{% endfor %}
+		{% for field in refill_form.visible_fields %}
+		<div class="form-row mb-2">
+			{{ field.label_tag }}
+			{{ field }}
+			{% for error in field.errors %}
+			<div class="text-danger small">{{ error }}</div>
+			{% endfor %}
+		</div>
+		{% endfor %}
+	</div>
+	{% endfor %}
+</div>
+
+<template id="fuel-refill-empty-form">
+	<div class="border rounded p-3 mb-3">
+		{% for hidden in fuel_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+		{% for field in fuel_formset.empty_form.visible_fields %}
+		<div class="form-row mb-2">
+			{{ field.label_tag }}
+			{{ field }}
+		</div>
+		{% endfor %}
+	</div>
+</template>
+
+<button type="button" class="btn btn-outline-secondary" id="add-fuel-refill">
+	Add another refill
+</button>
+
+<script>
+document.getElementById('add-fuel-refill').addEventListener('click', function () {
+	const totalForms = document.getElementById('id_fuel_refills-TOTAL_FORMS');
+	const template = document.getElementById('fuel-refill-empty-form');
+	const html = template.innerHTML.replaceAll('__prefix__', totalForms.value);
+
+	document.getElementById('fuel-refill-forms').insertAdjacentHTML('beforeend', html);
+	totalForms.value = Number(totalForms.value) + 1;
+});
+</script>

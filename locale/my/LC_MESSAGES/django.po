@@ -1441,12 +1441,12 @@ msgstr "ရက်စွဲ"
 #: .\mission_records\forms.py:41
 #: .\mission_records\templates\mission_records\mission_details.html:31
 msgid "Departure"
-msgstr "ထွက်ခွာသည့်နေရာ"
+msgstr "ခေါ်ဆောင်သည့်နေရာ"
 
 #: .\mission_records\forms.py:42
 #: .\mission_records\templates\mission_records\mission_details.html:35
 msgid "Destination"
-msgstr "ပို့ဆောင်သည့်နေရာ"
+msgstr "ပို့ဆောင်မည့်နေရာ"
 
 #: .\mission_records\forms.py:43
 #: .\mission_records\templates\mission_records\mission_details.html:39

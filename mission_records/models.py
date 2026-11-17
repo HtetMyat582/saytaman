@@ -3,6 +3,7 @@ from members.models import Member
 from vehicles.models import Vehicle
 import time
 from django.core.validators import MinValueValidator, MaxValueValidator
+from decimal import Decimal
 
 class MissionRecord(models.Model):
 
@@ -39,7 +40,57 @@ class MissionRecord(models.Model):
     def __str__(self):
         return f"Mission {self.mission_number} on {self.date} from {self.departure} to {self.destination}"
 
+    @property
+    def total_fuel_cost(self):
+        cached_refills = getattr(self, '_prefetched_objects_cache', {}).get('fuel_refills')
+        if cached_refills is None:
+            refill_total = self.fuel_refills.aggregate(
+                total=models.Sum('cost')
+            )['total'] or Decimal('0')
+        else:
+            refill_total = sum(
+                (refill.cost for refill in cached_refills),
+                Decimal('0'),
+            )
+
+        return Decimal(self.fuel_cost or 0) + refill_total
+
+    @property
+    def net_income(self):
+        return (
+            Decimal(self.donation_received or 0)
+            - Decimal(self.mission_expenses or 0)
+            - self.total_fuel_cost
+        )
+
 
 class MissionRecordPhoto(models.Model):
     mission = models.ForeignKey(MissionRecord, related_name='mission_photos', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='mission_photos/')
+
+
+class MissionFuelRefill(models.Model):
+    mission = models.ForeignKey(
+        MissionRecord,
+        on_delete=models.CASCADE,
+        related_name='fuel_refills',
+    )
+    time = models.TimeField(null=True, blank=True)
+    pump_name = models.CharField(max_length=150)
+    liters = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))],
+    )
+    cost = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        validators=[MinValueValidator(Decimal('0'))],
+    )
+    notes = models.CharField(max_length=250, blank=True)
+
+    class Meta:
+        ordering = ('time', 'pk')
+
+    def __str__(self):
+        return f"{self.mission.mission_number} — {self.pump_name} — {self.cost} MMK"

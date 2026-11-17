@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import inlineformset_factory
-from .models import MissionRecord, MissionRecordPhoto
+from .models import MissionRecord, MissionRecordPhoto, MissionFuelRefill
 from members.models import Member
 from vehicles.models import Vehicle
 from django.utils.translation import gettext_lazy as _
@@ -73,3 +73,28 @@ MissionRecordPhotoFormSet = inlineformset_factory (
     extra = 3,
     can_delete = True
     )
+
+class MissionFuelRefillForm(forms.ModelForm):
+    class Meta:
+        model = MissionFuelRefill
+        fields = ('time', 'pump_name', 'liters', 'cost', 'notes')
+        widgets = {
+            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-input'}),
+            'pump_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'liters': forms.NumberInput(attrs={
+                'class': 'form-input', 'min': '0.01', 'step': '0.01',
+            }),
+            'cost': forms.NumberInput(attrs={
+                'class': 'form-input', 'min': '0', 'step': '1',
+            }),
+            'notes': forms.TextInput(attrs={'class': 'form-input'}),
+        }
+
+
+MissionFuelRefillFormSet = inlineformset_factory(
+    MissionRecord,
+    MissionFuelRefill,
+    form=MissionFuelRefillForm,
+    extra=1,
+    can_delete=True,
+)

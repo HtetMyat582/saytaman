@@ -2,7 +2,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import MissionRecord, MissionRecordPhoto
-from .forms import MissionRecordForm, MissionRecordPhotoFormSet
+from .forms import MissionRecordForm, MissionRecordPhotoFormSet, MissionFuelRefillFormSet
+from vehicles.models import Vehicle
 from django.utils import timezone
 import requests
 from members.access import has_dashboard_access
@@ -89,7 +90,7 @@ def edit_mission(request, pk):
         if mission.driver_name == member or \
                (mission.assistant_1 and mission.assistant_1 == member) or \
                (mission.assistant_2 and mission.assistant_2 == member) or \
-               member.role == 'Admin':
+               member.role == 'Admin' or has_dashboard_access(member):
                 allowed = True
 
     if not allowed:
