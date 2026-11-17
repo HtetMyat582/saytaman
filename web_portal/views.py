@@ -15,7 +15,7 @@ from decimal import Decimal
 
 from django.db.models import Sum
 
-from donations_and_expenses.models import Donation, Expense
+from donations_and_expenses.models import Donation, Expense, FuelRefill
 from members.access import dashboard_access_required
 from vehicles.models import Vehicle
 
@@ -155,6 +155,17 @@ def management_dashboard(request):
         or Decimal('0.00')
     )
 
+    refill_period = FuelRefill.objects.filter(
+        date__range=(start_date, today)
+    )
+    off_mission_fuel_total = (
+        refill_period.aggregate(total=Sum('cost'))['total']
+        or Decimal('0')
+    )
+    recent_refills = refill_period.select_related(
+        'vehicle', 'created_by'
+    ).order_by('-date', '-time')[:10]
+
     # The latest mission without a return-to-HQ time is shown as active.
     active_missions = (
         MissionRecord.objects
@@ -188,4 +199,6 @@ def management_dashboard(request):
         'mission_donations': mission_totals['donations'] or 0,
         'mission_expenses': mission_totals['expenses'] or 0,
         'mission_fuel': mission_totals['fuel'] or 0,
+        'off_mission_fuel_total': off_mission_fuel_total,
+        'recent_refills': recent_refills,
     })
