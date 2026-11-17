@@ -32,7 +32,6 @@ class MissionRecord(models.Model):
     notes = models.TextField(null=True, blank=True)
     donation_received = models.PositiveIntegerField(null=True, blank=True)
     mission_expenses = models.PositiveIntegerField(null=True, blank=True)
-    fuel_cost = models.PositiveIntegerField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     back_to_hq = models.DateTimeField(null=True, blank=True)
     created_by = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='mission_created_by', null=False, blank=False)
@@ -53,7 +52,7 @@ class MissionRecord(models.Model):
                 Decimal('0'),
             )
 
-        return Decimal(self.fuel_cost or 0) + refill_total
+        return refill_total
 
     @property
     def net_income(self):

@@ -27,17 +27,24 @@ def add_mission(request):
     if request.method == 'POST':
         form = MissionRecordForm(request.POST)
         formset = MissionRecordPhotoFormSet(request.POST, request.FILES)
+        fuel_formset = MissionFuelRefillFormSet(
+            request.POST,
+            prefix='fuel_refills',
+        )
         
         is_form_valid = form.is_valid()
         is_formset_valid = formset.is_valid()
+        is_fuel_formset_valid = fuel_formset.is_valid()
 
-        if is_form_valid and is_formset_valid:
+        if is_form_valid and is_formset_valid and is_fuel_formset_valid:
             form.instance.created_by = member
             mission = form.save()
             vehicle = mission.vehicle
             vehicle.mission_status = 'On Mission'
             formset.instance = mission
             formset.save()
+            fuel_formset.instance = mission
+            fuel_formset.save()
             vehicle.save()
             messages.success(request, 'Mission record saved.')
             return redirect('mission_list')
@@ -45,11 +52,20 @@ def add_mission(request):
     else:
         form = MissionRecordForm()
         formset = MissionRecordPhotoFormSet(queryset=MissionRecordPhoto.objects.none())
+        fuel_formset = MissionFuelRefillFormSet(prefix='fuel_refills')
 
-    return render(request, 'mission_records/add_mission.html', {'form': form, 'formset': formset, 'now': now,})
+    return render(request, 'mission_records/add_mission.html', {
+        'form': form,
+        'formset': formset,
+        'fuel_formset': fuel_formset,
+        'now': now,
+    })
 
 def mission_details(request, pk):
-    mission = get_object_or_404(MissionRecord, pk=pk)
+    mission = get_object_or_404(
+        MissionRecord.objects.prefetch_related('fuel_refills'),
+        pk=pk,
+    )
     photos = mission.mission_photos.all()
     form = MissionRecordForm(instance=mission)
     now = timezone.now().year
@@ -102,25 +118,42 @@ def edit_mission(request, pk):
 
         form = MissionRecordForm(request.POST, instance=mission)
         formset = MissionRecordPhotoFormSet(request.POST, request.FILES, instance=mission)
+        fuel_formset = MissionFuelRefillFormSet(
+            request.POST,
+            instance=mission,
+            prefix='fuel_refills',
+        )
         
         is_form_valid = form.is_valid()
         is_formset_valid = formset.is_valid()
+        is_fuel_formset_valid = fuel_formset.is_valid()
 
-        if is_form_valid and is_formset_valid:
+        if is_form_valid and is_formset_valid and is_fuel_formset_valid:
             if mission.vehicle != current_vehicle and not mission.back_to_hq:
                 messages.error(request, "Cannot change the vehicle for an active mission. Mark it as returned first.")
                 form.fields['vehicle'].initial = current_vehicle.pk
             else:
                 form.save()
                 formset.save()
+                fuel_formset.save()
                 messages.success(request, 'Mission record updated.')
             return redirect('mission_details', pk)
         messages.error(request, 'Please correct the errors below.')
     else:
         form = MissionRecordForm(instance=mission)
         formset = MissionRecordPhotoFormSet(instance=mission)
+        fuel_formset = MissionFuelRefillFormSet(
+            instance=mission,
+            prefix='fuel_refills',
+        )
 
-    return render(request, 'mission_records/edit_mission.html', {'form': form, 'formset': formset,'mission': mission, 'now': now})
+    return render(request, 'mission_records/edit_mission.html', {
+        'form': form,
+        'formset': formset,
+        'fuel_formset': fuel_formset,
+        'mission': mission,
+        'now': now,
+    })
 
 
 def mission_list(request):

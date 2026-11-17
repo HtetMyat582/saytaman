@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from members.models import Member
-from mission_records.models import MissionRecord
+from mission_records.models import MissionFuelRefill, MissionRecord
 from natural_disasters.models import DisasterEvent, DisasterEventPhoto
 from datetime import date, datetime, timedelta
 from decimal import Decimal
@@ -135,13 +135,24 @@ def management_dashboard(request):
         period = 'month'
         start_date = date(today.year, today.month, 1)
 
-    period_missions = MissionRecord.objects.filter(
-        date__range=(start_date, today)
+    period_missions = (
+        MissionRecord.objects
+        .filter(date__range=(start_date, today))
+        .select_related('vehicle', 'driver_name')
+        .prefetch_related('fuel_refills')
+        .order_by('-date', '-time')
     )
     mission_totals = period_missions.aggregate(
         donations=Sum('donation_received'),
         expenses=Sum('mission_expenses'),
-        fuel=Sum('fuel_cost'),
+    )
+    mission_fuel_total = MissionFuelRefill.objects.filter(
+        mission__date__range=(start_date, today)
+    ).aggregate(total=Sum('cost'))['total'] or Decimal('0')
+    mission_net_total = (
+        Decimal(mission_totals['donations'] or 0)
+        - Decimal(mission_totals['expenses'] or 0)
+        - mission_fuel_total
     )
 
     donation_total = (
@@ -193,12 +204,14 @@ def management_dashboard(request):
         'start_date': start_date,
         'end_date': today,
         'vehicles': vehicles,
+        'period_missions': period_missions,
         'mission_count': period_missions.count(),
         'donation_total': donation_total,
         'expense_total': expense_total,
         'mission_donations': mission_totals['donations'] or 0,
         'mission_expenses': mission_totals['expenses'] or 0,
-        'mission_fuel': mission_totals['fuel'] or 0,
+        'mission_fuel': mission_fuel_total,
+        'mission_net_total': mission_net_total,
         'off_mission_fuel_total': off_mission_fuel_total,
         'recent_refills': recent_refills,
     })

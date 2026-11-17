@@ -83,21 +83,19 @@
             {% if mission.donation_received %}
             <tr>
                 <td>{% trans 'Donation Received' %}</td>
-                <th>{{ mission.donation_received }}</th>
+                <th>{{ mission.donation_received|floatformat:0 }} MMK</th>
             </tr>
             {% endif %}
             {% if mission.mission_expenses %}
             <tr>
                 <td>{% trans 'Mission Expenses' %}</td>
-                <th>{{ mission.mission_expenses }}</th>
+                <th>{{ mission.mission_expenses|floatformat:0 }} MMK</th>
             </tr>
             {% endif %}
-            {% if mission.fuel_cost %}
             <tr>
                 <td>{% trans 'Fuel Cost' %}</td>
-                <th>{{ mission.fuel_cost }}</th>
+                <th>{{ mission.total_fuel_cost|floatformat:0 }} MMK</th>
             </tr>
-            {% endif %}
             {% if mission.back_to_hq %}
             <tr>
                 <td>{% trans 'Back to HQ' %}</td>
@@ -106,6 +104,43 @@
             {% endif %}
             {% endif %}
         </table>
+
+        {% if user.is_authenticated %}
+        <div class="mt-4">
+            <h4>{% trans 'On-mission fuel refills' %}</h4>
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'Time' %}</th>
+                            <th>{% trans 'Pump' %}</th>
+                            <th>{% trans 'Liters' %}</th>
+                            <th>{% trans 'Cost' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for refill in mission.fuel_refills.all %}
+                        <tr>
+                            <td>{{ refill.time|time:'H:i'|default:'—' }}</td>
+                            <td>{{ refill.pump_name }}</td>
+                            <td>{{ refill.liters|floatformat:2 }}</td>
+                            <td>{{ refill.cost|floatformat:0 }} MMK</td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="4">{% trans 'No on-mission refills recorded.' %}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if is_fb_admin %}
+        <div class="alert alert-info mt-3">
+            <strong>{% trans 'Net mission income' %}:</strong>
+            {{ mission.net_income|floatformat:0 }} MMK
+        </div>
+        {% endif %}
 
         {% if photos %}
         <div class="mt-4">
@@ -170,7 +205,7 @@
 {{ mission.vehicle }}\n
 {% if mission.donation_received %}အလှူငွေ - {{ mission.donation_received }}{% else %}{% endif %}
 {% if mission.mission_expenses %}အသုံးစရိတ် - {{ mission.mission_expenses }}{% else %}{% endif %}
-{% if mission.fuel_cost %}ဆီဖိုး - {{ mission.fuel_cost }}{% else %}{% endif %}\n
+ဆီဖိုး - {{ mission.total_fuel_cost|floatformat:0 }} MMK\n
 {{ driver_name_trimmed }}
 {{ assist_1_name_trimmed }}
 {{ assist_2_name_trimmed }}

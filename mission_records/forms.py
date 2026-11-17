@@ -13,7 +13,7 @@ class MissionRecordForm(forms.ModelForm):
             'mission_number', 'date', 'time', 'departure', 'destination',
             'vehicle', 'driver_name', 'assistant_1', 'assistant_2',
             'patient_type', 'patient_name', 'patient_age', 'notes',
-            'donation_received', 'mission_expenses', 'fuel_cost',
+            'donation_received', 'mission_expenses',
             ]
         widgets = {
             'mission_number': forms.TextInput(attrs={'class': 'form-input'}),
@@ -31,7 +31,6 @@ class MissionRecordForm(forms.ModelForm):
             'notes': forms.Textarea(attrs={'rows':3, 'class': 'form-input'}),
             'donation_received': forms.NumberInput(attrs={'class': 'form-input'}),
             'mission_expenses': forms.NumberInput(attrs={'class': 'form-input'}),
-            'fuel_cost': forms.NumberInput(attrs={'class': 'form-input'}),
             }
 
         labels = {
@@ -50,7 +49,6 @@ class MissionRecordForm(forms.ModelForm):
             'notes': _('Notes'),
             'donation_received': _('Donation Received'),
             'mission_expenses': _('Mission Expenses'),
-            'fuel_cost': _('Fuel Cost')
         }
 
     def __init__(self, *args, **kwargs):

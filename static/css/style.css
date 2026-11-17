@@ -434,37 +434,8 @@ footer.footer {
 }
 
 @media (max-width: 575.98px) {
-    .emergency-call-fab .btn {
+ .emergency-call-fab .btn {
         padding: 0.65rem 0.9rem;
         font-size: 0.95rem;
     }
-}
-
-.management-dashboard .card {
-    background: var(--card-bg);
-    color: var(--text);
-    border: 0;
-    border-radius: 2rem;
-    box-shadow: 0 8px 8px var(--box-shadow);
-}
-
-.management-dashboard .card-body {
-    padding: 1.5rem;
-}
-
-.management-dashboard .text-muted {
-    color: var(--footer-text) !important;
-}
-
-.management-dashboard .table {
-    --bs-table-bg: transparent;
-    --bs-table-color: var(--text);
-    --bs-table-hover-color: var(--text);
-    --bs-table-hover-bg: var(--input-bg);
-    border-color: var(--file-border);
-}
-
-.management-dashboard .table > :not(caption) > * > * {
-    background-color: transparent;
-    color: var(--text);
 }

@@ -19,7 +19,7 @@ class MissionRecordAdmin(ImportExportModelAdmin):
         'mission_number', 'date', 'time', 'departure', 'destination',
         'vehicle', 'driver_name', 'assistant_1', 'assistant_2',
         'patient_type', 'patient_name', 'patient_age',
-        'donation_received', 'mission_expenses', 'fuel_cost', 'timestamp', 'created_by'
+        'donation_received', 'mission_expenses', 'timestamp', 'created_by'
     ]
     list_filter = [
         'date', 'departure', 'destination', 'vehicle', 'driver_name', 'assistant_1', 'assistant_2', 'created_by'
@@ -43,7 +43,7 @@ class MissionRecordAdmin(ImportExportModelAdmin):
         }),
         ('Financial Info', {
             'fields': (
-                'donation_received', 'mission_expenses', 'fuel_cost'
+                'donation_received', 'mission_expenses'
             )
         }),
         ('Additional Info', {

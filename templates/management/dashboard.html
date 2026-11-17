@@ -3,152 +3,108 @@
 {% block title %}Management Dashboard | Saytaman{% endblock %}
 
 {% block content %}
-<div class="management-dashboard py-2">
-    <section class="soft-ui-banner">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-            <div>
-                <h1 class="display-4 mb-2">Management Dashboard</h1>
-                <p class="text-muted mb-0">
-                    {{ start_date|date:"M j, Y" }} – {{ end_date|date:"M j, Y" }}
-                </p>
-            </div>
-            <div class="d-flex flex-wrap gap-2">
-                <div class="btn-group" role="group" aria-label="Report period">
-                    <a class="btn {% if period == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}"
-                       href="?period=week">Week</a>
-                    <a class="btn {% if period == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}"
-                       href="?period=month">Month</a>
-                    <a class="btn {% if period == 'year' %}btn-primary{% else %}btn-outline-primary{% endif %}"
-                       href="?period=year">Year</a>
-                </div>
-                <a class="btn btn-lime" href="{% url 'fuel_refill_add' %}">Record refill</a>
-            </div>
-        </div>
-    </section>
+<div class="py-4">
+	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+		<div>
+			<h1 class="h2 mb-1">Management Dashboard</h1>
+			<p class="text-muted mb-0">
+				Financial period: {{ start_date|date:"M j, Y" }} &ndash; {{ end_date|date:"M j, Y" }}
+			</p>
+		</div>
+		<div class="d-flex flex-wrap gap-2">
+			<div class="btn-group" role="group" aria-label="Report period">
+				<a class="btn {% if period == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}" href="?period=week">Week</a>
+				<a class="btn {% if period == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}" href="?period=month">Month</a>
+				<a class="btn {% if period == 'year' %}btn-primary{% else %}btn-outline-primary{% endif %}" href="?period=year">Year</a>
+			</div>
+			<a class="btn btn-primary" href="{% url 'fuel_refill_add' %}">Record off-mission refill</a>
+		</div>
+	</div>
 
-    <section class="soft-ui-banner">
-        <h2 class="h4 mb-3">Financial summary</h2>
-        <div class="row g-3">
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Donation records</div>
-                    <div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Mission donations</div>
-                    <div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Expense records</div>
-                    <div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Mission expenses</div>
-                    <div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Mission fuel costs</div>
-                    <div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl">
-                <div class="soft-ui-card dashboard-stat-card h-100">
-                    <div class="text-muted">Off-mission refills</div>
-                    <div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<h2 class="h4 mb-3">Financial summary</h2>
+	<div class="row g-3 mb-5">
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Donation records</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission donations</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Expense records</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission expenses</div><div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">On-mission fuel costs</div><div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Off-mission refills</div><div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission net income</div><div class="fs-4">{{ mission_net_total|floatformat:0 }} MMK</div></div></div></div>
+	</div>
 
-    <section class="soft-ui-banner">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-            <div>
-                <h2 class="h4 mb-1">Recent off-mission refills</h2>
-                <p class="text-muted mb-0">Showing refills in the selected period.</p>
-            </div>
-            <a class="btn btn-outline-success rounded-pill" href="{% url 'fuel_refill_list' %}">
-                View all refills
-            </a>
-        </div>
+	<h2 class="h4 mb-3">Recent off-mission refills</h2>
+	<div class="table-responsive mb-5">
+		<table class="table table-striped align-middle">
+			<thead>
+				<tr><th>Date / time</th><th>Vehicle</th><th>Pump</th><th>Liters</th><th>Cost</th><th>Recorded by</th></tr>
+			</thead>
+			<tbody>
+				{% for refill in recent_refills %}
+				<tr>
+					<td>{{ refill.date }} {{ refill.time|time:"H:i" }}</td>
+					<td>{{ refill.vehicle.vehicle_id }}</td>
+					<td>{{ refill.pump_name }}</td>
+					<td>{{ refill.liters|floatformat:2 }}</td>
+					<td>{{ refill.cost|floatformat:0 }} MMK</td>
+					<td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}&mdash;{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr><td colspan="6" class="text-muted">No off-mission refills in this period.</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-        <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>Date / time</th>
-                        <th>Vehicle</th>
-                        <th>Pump</th>
-                        <th>Liters</th>
-                        <th>Cost</th>
-                        <th>Recorded by</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for refill in recent_refills %}
-                    <tr>
-                        <td>{{ refill.date }} {{ refill.time|time:"H:i" }}</td>
-                        <td>{{ refill.vehicle.vehicle_id }}</td>
-                        <td>{{ refill.pump_name }}</td>
-                        <td>{{ refill.liters|floatformat:2 }}</td>
-                        <td>{{ refill.cost|floatformat:0 }} MMK</td>
-                        <td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}—{% endif %}</td>
-                    </tr>
-                    {% empty %}
-                    <tr><td colspan="6" class="text-muted">No refills in this period.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
+	<h2 class="h4 mb-3">Vehicles and missions</h2>
+	<p class="text-muted">{{ mission_count }} mission(s) in this financial period.</p>
+	<div class="table-responsive mb-5">
+		<table class="table table-striped align-middle">
+			<thead>
+				<tr><th>Vehicle</th><th>Status</th><th>Current mission</th><th>Driver</th></tr>
+			</thead>
+			<tbody>
+				{% for vehicle in vehicles %}
+				<tr>
+					<td>{{ vehicle.vehicle_id }}</td>
+					<td>{{ vehicle.dashboard_status }}</td>
+					<td>
+						{% if vehicle.active_mission %}
+							<a href="{% url 'mission_details' vehicle.active_mission.pk %}">
+								{{ vehicle.active_mission.mission_number }}: {{ vehicle.active_mission.departure }} &rarr; {{ vehicle.active_mission.destination }}
+							</a>
+						{% else %}&mdash;{% endif %}
+					</td>
+					<td>{% if vehicle.active_mission %}{{ vehicle.active_mission.driver_name.name }}{% else %}&mdash;{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr><td colspan="4" class="text-muted">No vehicles found.</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-    <section class="soft-ui-banner">
-        <h2 class="h4 mb-2">Vehicles and missions</h2>
-        <p class="text-muted">{{ mission_count }} mission(s) in this financial period.</p>
-
-        <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>Vehicle</th>
-                        <th>Status</th>
-                        <th>Current mission</th>
-                        <th>Driver</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for vehicle in vehicles %}
-                    <tr>
-                        <td>{{ vehicle.vehicle_id }}</td>
-                        <td>{{ vehicle.dashboard_status }}</td>
-                        <td>
-                            {% if vehicle.active_mission %}
-                                <a href="{% url 'mission_details' vehicle.active_mission.pk %}">
-                                    {{ vehicle.active_mission.mission_number }}:
-                                    {{ vehicle.active_mission.departure }} →
-                                    {{ vehicle.active_mission.destination }}
-                                </a>
-                            {% else %}—{% endif %}
-                        </td>
-                        <td>
-                            {% if vehicle.active_mission %}
-                                {{ vehicle.active_mission.driver_name.name }}
-                            {% else %}—{% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr><td colspan="4" class="text-muted">No vehicles found.</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
+	<h2 class="h4 mb-3">Income by mission</h2>
+	<div class="table-responsive">
+		<table class="table table-striped align-middle">
+			<thead>
+				<tr><th>Mission</th><th>Date</th><th>Vehicle</th><th>Donation</th><th>Expenses</th><th>Fuel</th><th>Net income</th></tr>
+			</thead>
+			<tbody>
+				{% for mission in period_missions %}
+				<tr>
+					<td><a href="{% url 'mission_details' mission.pk %}">{{ mission.mission_number }}</a></td>
+					<td>{{ mission.date }}</td>
+					<td>{{ mission.vehicle.vehicle_id }}</td>
+					<td>{{ mission.donation_received|default_if_none:0|floatformat:0 }} MMK</td>
+					<td>{{ mission.mission_expenses|default_if_none:0|floatformat:0 }} MMK</td>
+					<td>{{ mission.total_fuel_cost|floatformat:0 }} MMK</td>
+					<td>{{ mission.net_income|floatformat:0 }} MMK</td>
+				</tr>
+				{% empty %}
+				<tr><td colspan="7" class="text-muted">No missions in this period.</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 </div>
 {% endblock %}
