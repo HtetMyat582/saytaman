@@ -413,3 +413,29 @@ footer.footer {
         margin-right: 0.6rem;
     }
 }
+
+.emergency-call-fab {
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 1040;
+}
+
+.emergency-call-fab .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .emergency-call-fab .btn {
+        padding: 0.65rem 0.9rem;
+        font-size: 0.95rem;
+    }
+}
