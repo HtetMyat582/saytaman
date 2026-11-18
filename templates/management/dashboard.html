@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Management Dashboard | Saytaman{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Management Dashboard" %} | Saytaman{% endblock %}
 
 {% block content %}
 <div class="py-4">
 	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
 		<div>
-			<h1 class="h2 mb-1">Management Dashboard</h1>
+			<h1 class="h2 mb-1">{% trans "Management Dashboard" %}</h1>
 			<p class="text-muted mb-0">
-				Financial period: {{ start_date|date:"M j, Y" }} &ndash; {{ end_date|date:"M j, Y" }}
+				{% trans "Financial period" %}: {{ start_date|date:"M j, Y" }} &ndash; {{ end_date|date:"M j, Y" }}
 			</p>
 		</div>
 		<div class="d-flex flex-wrap gap-2">
@@ -17,26 +19,26 @@
 				<a class="btn {% if period == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}" href="?period=month">Month</a>
 				<a class="btn {% if period == 'year' %}btn-primary{% else %}btn-outline-primary{% endif %}" href="?period=year">Year</a>
 			</div>
-			<a class="btn btn-primary" href="{% url 'fuel_refill_add' %}">Record off-mission refill</a>
+			<a class="btn btn-primary" href="{% url 'fuel_refill_add' %}">{% trans "Record off-mission refill" %}</a>
 		</div>
 	</div>
 
-	<h2 class="h4 mb-3">Financial summary</h2>
+	<h2 class="h4 mb-3">{% trans "Financial summary" %}</h2>
 	<div class="row g-3 mb-5">
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Donation records</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission donations</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Expense records</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission expenses</div><div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">On-mission fuel costs</div><div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Off-mission refills</div><div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">Mission net income</div><div class="fs-4">{{ mission_net_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Donation records" %}</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission donations" %}</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Expense records" %}</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission expenses" %}</div><div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "On-mission fuel costs" %}</div><div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Off-mission refills" %}</div><div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission net income" %}</div><div class="fs-4">{{ mission_net_total|floatformat:0 }} MMK</div></div></div></div>
 	</div>
 
-	<h2 class="h4 mb-3">Recent off-mission refills</h2>
+	<h2 class="h4 mb-3">{% trans "Recent off-mission refills" %}</h2>
 	<div class="table-responsive mb-5">
 		<table class="table table-striped align-middle">
 			<thead>
-				<tr><th>Date / time</th><th>Vehicle</th><th>Pump</th><th>Liters</th><th>Cost</th><th>Recorded by</th></tr>
+				<tr><th>{% trans "Date / time" %}</th><th>{% trans "Vehicle" %}</th><th>{% trans "Pump" %}</th><th>{% trans "Liters" %}</th><th>{% trans "Cost" %}</th><th>{% trans "Recorded by" %}</th></tr>
 			</thead>
 			<tbody>
 				{% for refill in recent_refills %}
@@ -49,18 +51,18 @@
 					<td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}&mdash;{% endif %}</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="6" class="text-muted">No off-mission refills in this period.</td></tr>
+				<tr><td colspan="6" class="text-muted">{% trans "No off-mission refills in this period." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 
-	<h2 class="h4 mb-3">Vehicles and missions</h2>
-	<p class="text-muted">{{ mission_count }} mission(s) in this financial period.</p>
+	<h2 class="h4 mb-3">{% trans "Vehicles and missions" %}</h2>
+	<p class="text-muted">{% trans "Missions in this financial period:" %} {{ mission_count }}</p>
 	<div class="table-responsive mb-5">
 		<table class="table table-striped align-middle">
 			<thead>
-				<tr><th>Vehicle</th><th>Status</th><th>Current mission</th><th>Driver</th></tr>
+				<tr><th>{% trans "Vehicle" %}</th><th>{% trans "Status" %}</th><th>{% trans "Current mission" %}</th><th>{% trans "Driver" %}</th></tr>
 			</thead>
 			<tbody>
 				{% for vehicle in vehicles %}
@@ -77,17 +79,17 @@
 					<td>{% if vehicle.active_mission %}{{ vehicle.active_mission.driver_name.name }}{% else %}&mdash;{% endif %}</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="4" class="text-muted">No vehicles found.</td></tr>
+				<tr><td colspan="4" class="text-muted">{% trans "No vehicles found." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 
-	<h2 class="h4 mb-3">Income by mission</h2>
+	<h2 class="h4 mb-3">{% trans "Income by mission" %}</h2>
 	<div class="table-responsive">
 		<table class="table table-striped align-middle">
 			<thead>
-				<tr><th>Mission</th><th>Date</th><th>Vehicle</th><th>Donation</th><th>Expenses</th><th>Fuel</th><th>Net income</th></tr>
+				<tr><th>{% trans "Mission" %}</th><th>{% trans "Date" %}</th><th>{% trans "Vehicle" %}</th><th>{% trans "Donation" %}</th><th>{% trans "Expenses" %}</th><th>{% trans "Fuel" %}</th><th>{% trans "Net income" %}</th></tr>
 			</thead>
 			<tbody>
 				{% for mission in period_missions %}
@@ -101,7 +103,7 @@
 					<td>{{ mission.net_income|floatformat:0 }} MMK</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="7" class="text-muted">No missions in this period.</td></tr>
+				<tr><td colspan="7" class="text-muted">{% trans "No missions in this period." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>

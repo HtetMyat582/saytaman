@@ -1,5 +1,7 @@
-<h4 class="mt-4">On-mission fuel refills</h4>
-<p>Enter one row for each refill. Add as many rows as the mission needs.</p>
+{% load i18n %}
+
+<h4 class="mt-4">{% trans "On-mission fuel refills" %}</h4>
+<p>{% trans "Enter one row for each refill. Add as many rows as the mission needs." %}</p>
 
 {{ fuel_formset.management_form }}
 {{ fuel_formset.non_form_errors }}
@@ -34,7 +36,7 @@
 </template>
 
 <button type="button" class="btn btn-outline-secondary" id="add-fuel-refill">
-	Add another refill
+	{% trans "Add another refill" %}
 </button>
 
 <script>

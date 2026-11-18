@@ -1890,3 +1890,87 @@ msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်
 #~ msgstr ""
 #~ "အရေးပေါ်လူနာတင်ယာဥ်နှင့် သဘာဝဘေးကယ်ဆယ်ရေးလုပ်ငန်းများကို နေ့ညမရွေး စွမ်းစွမ်းတမံ "
 #~ "ဆောင်ရွက်လျက်ရှိပါသည်။"
+
+msgid "Management Dashboard"
+msgstr "စီမံခန့်ခွဲရန်"
+
+msgid "Financial period"
+msgstr "ဘဏ္ဍာရေးကာလ"
+
+msgid "Record off-mission refill"
+msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
+
+msgid "Financial summary"
+msgstr "ဘဏ္ဍာရေးအကျဉ်းချုပ်"
+
+msgid "Donation records"
+msgstr "အလှူငွေမှတ်တမ်းများ"
+
+msgid "Mission donations"
+msgstr "လမ်းကြောင်းအလှူငွေများ"
+
+msgid "Expense records"
+msgstr "အသုံးစရိတ်မှတ်တမ်းများ"
+
+msgid "On-mission fuel costs"
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖိုး"
+
+msgid "Off-mission refills"
+msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
+
+msgid "Mission net income"
+msgstr "လမ်းကြောင်း အသားတင်ဝင်ငွေ"
+
+msgid "Recent off-mission refills"
+msgstr "လတ်တလော လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
+
+msgid "Date / time"
+msgstr "ရက်စွဲ / အချိန်"
+
+msgid "Recorded by"
+msgstr "မှတ်တမ်းတင်သူ"
+
+msgid "No off-mission refills in this period."
+msgstr "ဤကာလအတွင်း လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မရှိပါ။"
+
+msgid "Vehicles and missions"
+msgstr "ယာဉ်များနှင့် လမ်းကြောင်းများ"
+
+msgid "Current mission"
+msgstr "လက်ရှိလမ်းကြောင်း"
+
+msgid "No vehicles found."
+msgstr "ယာဉ်မတွေ့ပါ။"
+
+msgid "Income by mission"
+msgstr "လမ်းကြောင်းအလိုက်အလှူငွေ"
+
+msgid "Donation"
+msgstr "အလှူငွေ"
+
+msgid "Expenses"
+msgstr "အသုံးစရိတ်များ"
+
+msgid "Fuel"
+msgstr "ဆီဖိုး"
+
+msgid "Net income"
+msgstr "အသားတင်ဝင်ငွေ"
+
+msgid "No missions in this period."
+msgstr "ဤကာလအတွင်း လမ်းကြောင်းမရှိပါ။"
+
+msgid "Missions in this financial period:"
+msgstr "ဤဘဏ္ဍာရေးကာလအတွင်း လမ်းကြောင်းအရေအတွက်"
+
+msgid "On-mission fuel refills"
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှုများ"
+
+msgid "Enter one row for each refill. Add as many rows as the mission needs."
+msgstr "ဆီဖြည့်မှုတစ်ကြိမ်စီအတွက် တစ်ခုစီ ဖြည့်ပါ။ လိုအပ်သလို ထပ်ထည့်နိုင်ပါသည်။"
+
+msgid "Add another refill"
+msgstr "နောက်ထပ် ဆီဖြည့်မှု ထည့်ရန်"
+
+msgid "No on-mission refills recorded."
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှု မှတ်တမ်းမရှိပါ။"

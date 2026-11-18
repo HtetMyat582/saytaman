@@ -76,6 +76,13 @@ class MissionFuelRefillForm(forms.ModelForm):
     class Meta:
         model = MissionFuelRefill
         fields = ('time', 'pump_name', 'liters', 'cost', 'notes')
+        labels = {
+            'time': _('Time'),
+            'pump_name': _('Pump'),
+            'liters': _('Liters'),
+            'cost': _('Cost'),
+            'notes': _('Notes'),
+        }
         widgets = {
             'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-input'}),
             'pump_name': forms.TextInput(attrs={'class': 'form-input'}),

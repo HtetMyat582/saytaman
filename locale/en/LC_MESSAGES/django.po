@@ -1360,3 +1360,87 @@ msgstr "SayTaMan Social Welfare Association"
 
 #~ msgid "Home"
 #~ msgstr "Home"
+
+msgid "Management Dashboard"
+msgstr "Management Dashboard"
+
+msgid "Financial period"
+msgstr "Financial period"
+
+msgid "Record off-mission refill"
+msgstr "Record off-mission refill"
+
+msgid "Financial summary"
+msgstr "Financial summary"
+
+msgid "Donation records"
+msgstr "Donation records"
+
+msgid "Mission donations"
+msgstr "Mission donations"
+
+msgid "Expense records"
+msgstr "Expense records"
+
+msgid "On-mission fuel costs"
+msgstr "On-mission fuel costs"
+
+msgid "Off-mission refills"
+msgstr "Off-mission refills"
+
+msgid "Mission net income"
+msgstr "Mission net income"
+
+msgid "Recent off-mission refills"
+msgstr "Recent off-mission refills"
+
+msgid "Date / time"
+msgstr "Date / time"
+
+msgid "Recorded by"
+msgstr "Recorded by"
+
+msgid "No off-mission refills in this period."
+msgstr "No off-mission refills in this period."
+
+msgid "Vehicles and missions"
+msgstr "Vehicles and missions"
+
+msgid "Current mission"
+msgstr "Current mission"
+
+msgid "No vehicles found."
+msgstr "No vehicles found."
+
+msgid "Income by mission"
+msgstr "Income by mission"
+
+msgid "Donation"
+msgstr "Donation"
+
+msgid "Expenses"
+msgstr "Expenses"
+
+msgid "Fuel"
+msgstr "Fuel"
+
+msgid "Net income"
+msgstr "Net income"
+
+msgid "No missions in this period."
+msgstr "No missions in this period."
+
+msgid "Missions in this financial period:"
+msgstr "Missions in this financial period:"
+
+msgid "On-mission fuel refills"
+msgstr "On-mission fuel refills"
+
+msgid "Enter one row for each refill. Add as many rows as the mission needs."
+msgstr "Enter one row for each refill. Add as many rows as the mission needs."
+
+msgid "Add another refill"
+msgstr "Add another refill"
+
+msgid "No on-mission refills recorded."
+msgstr "No on-mission refills recorded."

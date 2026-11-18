@@ -93,7 +93,7 @@
             </tr>
             {% endif %}
             <tr>
-                <td>{% trans 'Fuel Cost' %}</td>
+                <td>{% trans 'On-mission fuel costs' %}</td>
                 <th>{{ mission.total_fuel_cost|floatformat:0 }} MMK</th>
             </tr>
             {% if mission.back_to_hq %}
@@ -137,7 +137,7 @@
 
         {% if is_fb_admin %}
         <div class="alert alert-info mt-3">
-            <strong>{% trans 'Net mission income' %}:</strong>
+            <strong>{% trans 'Mission net income' %}:</strong>
             {{ mission.net_income|floatformat:0 }} MMK
         </div>
         {% endif %}
