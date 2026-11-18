@@ -6,7 +6,7 @@ from .models import FuelRefill
 class FuelRefillForm(forms.ModelForm):
     class Meta:
         model = FuelRefill
-        fields = ('vehicle', 'date', 'time', 'pump_name', 'liters', 'cost', 'notes', 'fuel_type')
+        fields = ('vehicle', 'date', 'time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes')
         widgets = {
             'vehicle': forms.Select(attrs={'class': 'form-input'}),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input'}),

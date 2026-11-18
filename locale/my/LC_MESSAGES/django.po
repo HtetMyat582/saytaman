@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-18 12:58+0630\n"
+"POT-Creation-Date: 2026-11-18 21:42+0630\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\donations_and_expenses\forms.py:26 .\mission_records\forms.py:42
+#: .\donations_and_expenses\forms.py:27 .\mission_records\forms.py:42
 #: .\mission_records\templates\mission_records\mission_details.html:39
 #: .\mission_records\templates\mission_records\mission_list.html:33
 #: .\templates\management\dashboard.html:41
@@ -29,14 +29,14 @@ msgstr ""
 msgid "Vehicle"
 msgstr "ယာဥ်အမှတ်"
 
-#: .\donations_and_expenses\forms.py:27 .\mission_records\forms.py:38
+#: .\donations_and_expenses\forms.py:28 .\mission_records\forms.py:38
 #: .\mission_records\templates\mission_records\mission_details.html:23
 #: .\mission_records\templates\mission_records\mission_list.html:30
 #: .\templates\management\dashboard.html:92
 msgid "Date"
 msgstr "ရက်စွဲ"
 
-#: .\donations_and_expenses\forms.py:28
+#: .\donations_and_expenses\forms.py:29
 #: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2534
 #: .\mission_records\forms.py:39 .\mission_records\forms.py:80
 #: .\mission_records\templates\mission_records\mission_details.html:27
@@ -44,24 +44,28 @@ msgstr "ရက်စွဲ"
 msgid "Time"
 msgstr "အချိန်"
 
-#: .\donations_and_expenses\forms.py:29
+#: .\donations_and_expenses\forms.py:30
 msgid "Pump Name"
 msgstr "ဆီဆိုင်"
 
-#: .\donations_and_expenses\forms.py:30 .\mission_records\forms.py:82
+#: .\donations_and_expenses\forms.py:31 .\mission_records\forms.py:82
 #: .\mission_records\templates\mission_records\mission_details.html:117
 #: .\templates\management\dashboard.html:41
 msgid "Liters"
 msgstr "လီတာ"
 
-#: .\donations_and_expenses\forms.py:31 .\mission_records\forms.py:83
+#: .\donations_and_expenses\forms.py:32 .\mission_records\forms.py:83
+msgid "Fuel Type"
+msgstr "ဆီအမျိုးအစား"
+
+#: .\donations_and_expenses\forms.py:33 .\mission_records\forms.py:84
 #: .\mission_records\templates\mission_records\mission_details.html:118
 #: .\templates\management\dashboard.html:41
 msgid "Cost"
 msgstr "ဆီဖိုး"
 
-#: .\donations_and_expenses\forms.py:32 .\mission_records\forms.py:49
-#: .\mission_records\forms.py:84
+#: .\donations_and_expenses\forms.py:34 .\mission_records\forms.py:49
+#: .\mission_records\forms.py:85
 #: .\mission_records\templates\mission_records\mission_details.html:78
 msgid "Notes"
 msgstr "မှတ်ချက်"
@@ -1702,6 +1706,11 @@ msgstr "အရေးပေါ်ဆက်သွယ်ရန်ဖုန်းန
 msgid "Close"
 msgstr "ပိတ်မည်"
 
+#: .\templates\donations_and_expenses\fuel_refill_form.html:8
+#: .\templates\management\dashboard.html:22
+msgid "Record off-mission refill"
+msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
+
 #: .\templates\index.html:13 .\web_portal\views.py:38
 msgid "Saytaman Social Welfare Association"
 msgstr "စေတမန်လူမှုကူညီရေးအသင်း"
@@ -1754,10 +1763,6 @@ msgstr ""
 #: .\templates\management\dashboard.html:13
 msgid "Financial period"
 msgstr "ဘဏ္ဍာရေးကာလ"
-
-#: .\templates\management\dashboard.html:22
-msgid "Record off-mission refill"
-msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
 
 #: .\templates\management\dashboard.html:26
 msgid "Financial summary"

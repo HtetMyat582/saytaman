@@ -75,7 +75,7 @@ MissionRecordPhotoFormSet = inlineformset_factory (
 class MissionFuelRefillForm(forms.ModelForm):
     class Meta:
         model = MissionFuelRefill
-        fields = ('time', 'pump_name', 'liters', 'cost', 'notes', 'fuel_type')
+        fields = ('time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes')
         labels = {
             'time': _('Time'),
             'pump_name': _('Pump'),
