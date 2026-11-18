@@ -61,6 +61,12 @@ class FuelRefill(models.Model):
         on_delete=models.PROTECT,
         related_name='fuel_refills',
     )
+    FUEL_TYPE_CHOICES = [
+        ('Diesel', 'Diesel'),
+        ('92-RON', '92-RON'),
+        ('95-RON', '95-RON'),
+        ('Premium Diesel', 'Premium Diesel'),
+    ]
     date = models.DateField(default=timezone.localdate)
     time = models.TimeField()
     pump_name = models.CharField(max_length=150)
@@ -69,6 +75,7 @@ class FuelRefill(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.01'))],
     )
+    fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES)
     cost = models.DecimalField(
         max_digits=12,
         decimal_places=0,
