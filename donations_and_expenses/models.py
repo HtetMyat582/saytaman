@@ -75,7 +75,7 @@ class FuelRefill(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal('0.01'))],
     )
-    fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES)
+    fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES, null=True)
     cost = models.DecimalField(
         max_digits=12,
         decimal_places=0,
