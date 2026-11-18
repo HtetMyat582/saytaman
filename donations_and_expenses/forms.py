@@ -1,5 +1,5 @@
 from django import forms
-
+from django.utils.translation import gettext_lazy as _
 from .models import FuelRefill
 
 
@@ -22,6 +22,15 @@ class FuelRefillForm(forms.ModelForm):
                 'class': 'form-control', 'rows': 3,
             }),
         }
+        labels = {
+            'vehicle': _('Vehicle'),
+            'date': _('Date'),
+            'time': _('Time'),
+            'pump_name': _('Pump Name'),
+            'liters': _('Liters'),
+            'cost': _('Cost'),
+            'notes': _('Notes'),
+        }  
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

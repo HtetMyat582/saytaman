@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-13 21:50+0630\n"
+"POT-Creation-Date: 2026-11-18 12:58+0630\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\donations_and_expenses\forms.py:26 .\mission_records\forms.py:42
+#: .\mission_records\templates\mission_records\mission_details.html:39
+#: .\mission_records\templates\mission_records\mission_list.html:33
+#: .\templates\management\dashboard.html:41
+#: .\templates\management\dashboard.html:65
+#: .\templates\management\dashboard.html:92
+#, fuzzy
+#| msgid "Vehicles"
+msgid "Vehicle"
+msgstr "ယာဥ်အမှတ်"
+
+#: .\donations_and_expenses\forms.py:27 .\mission_records\forms.py:38
+#: .\mission_records\templates\mission_records\mission_details.html:23
+#: .\mission_records\templates\mission_records\mission_list.html:30
+#: .\templates\management\dashboard.html:92
+msgid "Date"
+msgstr "ရက်စွဲ"
+
+#: .\donations_and_expenses\forms.py:28
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2534
+#: .\mission_records\forms.py:39 .\mission_records\forms.py:80
+#: .\mission_records\templates\mission_records\mission_details.html:27
+#: .\mission_records\templates\mission_records\mission_details.html:115
+msgid "Time"
+msgstr "အချိန်"
+
+#: .\donations_and_expenses\forms.py:29
+msgid "Pump Name"
+msgstr "ဆီဆိုင်"
+
+#: .\donations_and_expenses\forms.py:30 .\mission_records\forms.py:82
+#: .\mission_records\templates\mission_records\mission_details.html:117
+#: .\templates\management\dashboard.html:41
+msgid "Liters"
+msgstr "လီတာ"
+
+#: .\donations_and_expenses\forms.py:31 .\mission_records\forms.py:83
+#: .\mission_records\templates\mission_records\mission_details.html:118
+#: .\templates\management\dashboard.html:41
+msgid "Cost"
+msgstr "ဆီဖိုး"
+
+#: .\donations_and_expenses\forms.py:32 .\mission_records\forms.py:49
+#: .\mission_records\forms.py:84
+#: .\mission_records\templates\mission_records\mission_details.html:78
+msgid "Notes"
+msgstr "မှတ်ချက်"
 
 #: .\env\Lib\site-packages\cities_light\abstract_models.py:21
 msgid "Oceania"
@@ -467,12 +515,6 @@ msgid ""
 "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
-
-#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2534
-#: .\mission_records\forms.py:40
-#: .\mission_records\templates\mission_records\mission_details.html:27
-msgid "Time"
-msgstr "အချိန်"
 
 #: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2642
 msgid "URL"
@@ -1308,7 +1350,7 @@ msgid "Edit Member Info"
 msgstr "အသင်းသားအချက်အလက်များကိုပြင်ဆင်ရန်"
 
 #: .\members\templates\members\edit_member_details.html:29
-#: .\mission_records\templates\mission_records\add_mission.html:51
+#: .\mission_records\templates\mission_records\add_mission.html:54
 msgid "Save"
 msgstr "သိမ်းဆည်းရန်"
 
@@ -1341,11 +1383,12 @@ msgstr "သွေးအမျိုးအစား"
 
 #: .\members\templates\members\member_list.html:17
 #: .\members\templates\members\profile\profile.html:92
-#: .\templates\index.html:147
+#: .\templates\index.html:99
 msgid "Phone"
 msgstr "ဖုန်းနံပါတ်"
 
 #: .\members\templates\members\member_list.html:18
+#: .\templates\management\dashboard.html:65
 #: .\vehicles\templates\vehicles\vehicle_details.html:29
 msgid "Status"
 msgstr "အခြေအနေ"
@@ -1355,7 +1398,7 @@ msgid "Action"
 msgstr "လုပ်ဆောင်ချက်"
 
 #: .\members\templates\members\member_list.html:32
-#: .\mission_records\templates\mission_records\mission_details.html:128
+#: .\mission_records\templates\mission_records\mission_details.html:163
 #: .\mission_records\templates\mission_records\mission_list.html:48
 #: .\vehicles\templates\vehicles\vehicle_details.html:66
 #: .\vehicles\templates\vehicles\vehicle_list.html:56
@@ -1424,86 +1467,81 @@ msgid "Job"
 msgstr "အလုပ်အကိုင်"
 
 #: .\members\templates\members\profile\profile.html:141
-#: .\templates\base.html:53
+#: .\templates\base.html:56
 msgid "Logout"
 msgstr "အကောင့်ထွက်ရန်"
 
-#: .\mission_records\forms.py:38
+#: .\mission_records\forms.py:37
 msgid "Mission Number"
 msgstr "လမ်းကြောင်းအမှတ်"
 
-#: .\mission_records\forms.py:39
-#: .\mission_records\templates\mission_records\mission_details.html:23
-#: .\mission_records\templates\mission_records\mission_list.html:30
-msgid "Date"
-msgstr "ရက်စွဲ"
-
-#: .\mission_records\forms.py:41
+#: .\mission_records\forms.py:40
 #: .\mission_records\templates\mission_records\mission_details.html:31
 msgid "Departure"
 msgstr "ခေါ်ဆောင်သည့်နေရာ"
 
-#: .\mission_records\forms.py:42
+#: .\mission_records\forms.py:41
 #: .\mission_records\templates\mission_records\mission_details.html:35
 msgid "Destination"
 msgstr "ပို့ဆောင်မည့်နေရာ"
 
 #: .\mission_records\forms.py:43
-#: .\mission_records\templates\mission_records\mission_details.html:39
-#: .\mission_records\templates\mission_records\mission_list.html:33
-#, fuzzy
-#| msgid "Vehicles"
-msgid "Vehicle"
-msgstr "ယာဥ်အမှတ်"
-
-#: .\mission_records\forms.py:44
 msgid "Driver Name"
 msgstr "ယာဥ်မောင်း"
 
-#: .\mission_records\forms.py:45
+#: .\mission_records\forms.py:44
 #: .\mission_records\templates\mission_records\mission_details.html:48
 msgid "Assistant 1"
 msgstr "ယာဥ်အကူ(၁)"
 
-#: .\mission_records\forms.py:46
+#: .\mission_records\forms.py:45
 #: .\mission_records\templates\mission_records\mission_details.html:54
 msgid "Assistant 2"
 msgstr "ယာဥ်အကူ(၂)"
 
-#: .\mission_records\forms.py:47
+#: .\mission_records\forms.py:46
 #: .\mission_records\templates\mission_records\mission_details.html:60
 msgid "Patient Type"
 msgstr "လူနာအမျိုးအစား"
 
-#: .\mission_records\forms.py:48
+#: .\mission_records\forms.py:47
 #: .\mission_records\templates\mission_records\mission_details.html:66
 msgid "Patient Name"
 msgstr "လူနာအမည်"
 
-#: .\mission_records\forms.py:49
+#: .\mission_records\forms.py:48
 #: .\mission_records\templates\mission_records\mission_details.html:72
 msgid "Patient Age"
 msgstr "လူနာအသက်"
 
 #: .\mission_records\forms.py:50
-#: .\mission_records\templates\mission_records\mission_details.html:78
-msgid "Notes"
-msgstr "မှတ်ချက်"
-
-#: .\mission_records\forms.py:51
 #: .\mission_records\templates\mission_records\mission_details.html:85
 msgid "Donation Received"
 msgstr "လက်ခံရရှိသောအလှူငွေ"
 
-#: .\mission_records\forms.py:52
+#: .\mission_records\forms.py:51
 #: .\mission_records\templates\mission_records\mission_details.html:91
 msgid "Mission Expenses"
 msgstr "လမ်းကြောင်းအသုံးစရိတ်"
 
-#: .\mission_records\forms.py:53
-#: .\mission_records\templates\mission_records\mission_details.html:97
-msgid "Fuel Cost"
-msgstr "ဆီဖိုး"
+#: .\mission_records\forms.py:81
+#: .\mission_records\templates\mission_records\mission_details.html:116
+#: .\templates\management\dashboard.html:41
+msgid "Pump"
+msgstr "ဆီဆိုင်အမည်"
+
+#: .\mission_records\templates\mission_records\_fuel_refill_formset.html:3
+#: .\mission_records\templates\mission_records\mission_details.html:110
+msgid "On-mission fuel refills"
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှုများ"
+
+#: .\mission_records\templates\mission_records\_fuel_refill_formset.html:4
+msgid "Enter one row for each refill. Add as many rows as the mission needs."
+msgstr "ဆီဖြည့်မှုတစ်ကြိမ်စီအတွက် တစ်ခုစီ ဖြည့်ပါ။ လိုအပ်သလို ထပ်ထည့်နိုင်ပါသည်။"
+
+#: .\mission_records\templates\mission_records\_fuel_refill_formset.html:39
+msgid "Add another refill"
+msgstr "နောက်ထပ် ဆီဖြည့်မှု ထည့်ရန်"
 
 #: .\mission_records\templates\mission_records\add_mission.html:4
 #: .\mission_records\templates\mission_records\add_mission.html:8
@@ -1511,12 +1549,12 @@ msgstr "ဆီဖိုး"
 msgid "Add Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 
-#: .\mission_records\templates\mission_records\add_mission.html:28
+#: .\mission_records\templates\mission_records\add_mission.html:29
 #: .\mission_records\templates\mission_records\edit_mission.html:30
 msgid "Photos"
 msgstr "ဓာတ်ပုံများ"
 
-#: .\mission_records\templates\mission_records\add_mission.html:35
+#: .\mission_records\templates\mission_records\add_mission.html:36
 #: .\mission_records\templates\mission_records\edit_mission.html:37
 #: .\vehicles\templates\vehicles\vehicle_details.html:54
 msgid "Photo"
@@ -1531,7 +1569,7 @@ msgstr "လမ်းကြောင်းအချက်အလက်များ
 msgid "Check to Delete Photo"
 msgstr "ပုံဖျက်ရန် အမှန်ခြစ်တပ်ပါ။"
 
-#: .\mission_records\templates\mission_records\edit_mission.html:63
+#: .\mission_records\templates\mission_records\edit_mission.html:65
 #: .\vehicles\templates\vehicles\edit_vehicle.html:30
 msgid "Update"
 msgstr "ပြင်ဆင်မည်"
@@ -1548,38 +1586,53 @@ msgstr "ရုံးသို့ ခြေစုံ"
 
 #: .\mission_records\templates\mission_records\mission_details.html:43
 #: .\mission_records\templates\mission_records\mission_list.html:16
+#: .\templates\management\dashboard.html:65
 msgid "Driver"
 msgstr "ယာဥ်မောင်း"
 
-#: .\mission_records\templates\mission_records\mission_details.html:103
+#: .\mission_records\templates\mission_records\mission_details.html:96
+#: .\templates\management\dashboard.html:32
+msgid "On-mission fuel costs"
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖိုး"
+
+#: .\mission_records\templates\mission_records\mission_details.html:101
 msgid "Back to HQ"
 msgstr "ရုံးသို့ပြန်ရောက်ချိန်"
 
-#: .\mission_records\templates\mission_records\mission_details.html:112
+#: .\mission_records\templates\mission_records\mission_details.html:130
+msgid "No on-mission refills recorded."
+msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှု မှတ်တမ်းမရှိပါ။"
+
+#: .\mission_records\templates\mission_records\mission_details.html:140
+#: .\templates\management\dashboard.html:34
+msgid "Mission net income"
+msgstr "လမ်းကြောင်း အသားတင်ကျန်ငွေ"
+
+#: .\mission_records\templates\mission_records\mission_details.html:147
 msgid "Mission Photos"
 msgstr "လမ်းကြောင်းဓာတ်ပုံများ"
 
-#: .\mission_records\templates\mission_records\mission_details.html:144
+#: .\mission_records\templates\mission_records\mission_details.html:179
 msgid "Record created by "
 msgstr "လမ်းကြောင်းတင်သူ "
 
-#: .\mission_records\templates\mission_records\mission_details.html:154
+#: .\mission_records\templates\mission_records\mission_details.html:189
 #: .\vehicles\templates\vehicles\vehicle_details.html:71
 msgid "Back"
 msgstr "နောက်သို့"
 
-#: .\mission_records\templates\mission_records\mission_details.html:155
+#: .\mission_records\templates\mission_records\mission_details.html:190
 #: .\templates\index.html:58
 msgid "View all missions"
 msgstr "လမ်းကြောင်းအားလုံးကြည့်မည်"
 
-#: .\mission_records\templates\mission_records\mission_details.html:157
+#: .\mission_records\templates\mission_records\mission_details.html:192
 msgid "Add New Mission"
 msgstr "လမ်းကြောင်းအသစ်ဖြည့်ပါ"
 
 #: .\mission_records\templates\mission_records\mission_list.html:4
 #: .\mission_records\templates\mission_records\mission_list.html:25
-#: .\templates\index.html:92 .\templates\web_portal\our_missions.html:90
+#: .\templates\web_portal\_our_missions_content.html:87
 msgid "Ambulance Responses"
 msgstr "လူနာပို့လမ်းကြောင်းများ"
 
@@ -1613,14 +1666,14 @@ msgstr ""
 msgid "No missions yet."
 msgstr "လမ်းကြောင်းမှတ်တမ်းမရှိပါ။"
 
-#: .\templates\base.html:36 .\templates\web_portal\disaster_response.html:5
+#: .\templates\base.html:36 .\templates\web_portal\_our_missions_content.html:7
+#: .\templates\web_portal\disaster_response.html:5
 #: .\templates\web_portal\our_missions.html:5
-#: .\templates\web_portal\our_missions.html:10
 msgid "Our Missions"
 msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
 
 #: .\templates\base.html:37 .\templates\web_portal\disaster_response.html:10
-#: .\web_portal\views.py:105
+#: .\web_portal\views.py:112
 msgid "Disaster Response"
 msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
 
@@ -1628,23 +1681,28 @@ msgstr "သဘာဝဘေးကယ်ဆယ်ရေး"
 msgid "Vehicles"
 msgstr "ယာဥ်များ"
 
-#: .\templates\base.html:58
+#: .\templates\base.html:42 .\templates\management\dashboard.html:5
+#: .\templates\management\dashboard.html:11
+msgid "Management Dashboard"
+msgstr "စီမံခန့်ခွဲရန်"
+
+#: .\templates\base.html:61
 msgid "Login"
 msgstr "အကောင့်ဝင်မည်"
 
-#: .\templates\base.html:116
+#: .\templates\base.html:120
 msgid "Emergency Call"
 msgstr "အရေးပေါ်ဆက်သွယ်ရန်"
 
-#: .\templates\base.html:126
+#: .\templates\base.html:130
 msgid "Emergency Contact Numbers"
 msgstr "အရေးပေါ်ဆက်သွယ်ရန်ဖုန်းနံပါတ်များ"
 
-#: .\templates\base.html:154
+#: .\templates\base.html:158
 msgid "Close"
 msgstr "ပိတ်မည်"
 
-#: .\templates\index.html:13 .\web_portal\views.py:31
+#: .\templates\index.html:13 .\web_portal\views.py:38
 msgid "Saytaman Social Welfare Association"
 msgstr "စေတမန်လူမှုကူညီရေးအသင်း"
 
@@ -1673,51 +1731,121 @@ msgstr "ကိုဗစ်-၁၉ ကမ္ဘာ့ကပ်ဘေး"
 msgid "Meet Our Team"
 msgstr "ကျွန်ုပ်တို့၏အဖွဲ့ဝင်များ"
 
-#: .\templates\index.html:100 .\templates\web_portal\our_missions.html:98
-msgid "Meals Distributed"
-msgstr "အစားအစာ ဝေငှမှုပေါင်း"
-
-#: .\templates\index.html:107
-msgid ""
-"In the aftermath of the March 28<sup>th</sup>, 2025 Earthquake, on behalf of "
-"the donors"
-msgstr ""
-
-#: .\templates\index.html:110 .\templates\web_portal\our_missions.html:108
-msgid "Houses Rebuilt"
-msgstr ""
-
-#: .\templates\index.html:117 .\templates\web_portal\our_missions.html:115
-msgid "Households Financial Aid"
-msgstr ""
-
-#: .\templates\index.html:124 .\templates\web_portal\our_missions.html:122
-msgid "People Helped"
-msgstr ""
-
-#: .\templates\index.html:131 .\templates\web_portal\our_missions.html:129
-msgid "MMK in Financial Aid"
-msgstr ""
-
-#: .\templates\index.html:139
+#: .\templates\index.html:91
 msgid "Quick Links"
 msgstr ""
 
-#: .\templates\index.html:141
+#: .\templates\index.html:93
 msgid "Articles"
 msgstr "သတင်းနှင့်စာတိုများ"
 
-#: .\templates\index.html:142
+#: .\templates\index.html:94
 msgid "About Us"
 msgstr "ကျွန်ုပ်တို့အကြောင်း"
 
-#: .\templates\index.html:143
+#: .\templates\index.html:95
 msgid "Contact"
 msgstr "ဆက်သွယ်ရန်"
 
-#: .\templates\index.html:146
+#: .\templates\index.html:98
 msgid "Hotline"
 msgstr ""
+
+#: .\templates\management\dashboard.html:13
+msgid "Financial period"
+msgstr "ဘဏ္ဍာရေးကာလ"
+
+#: .\templates\management\dashboard.html:22
+msgid "Record off-mission refill"
+msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
+
+#: .\templates\management\dashboard.html:26
+msgid "Financial summary"
+msgstr "ဘဏ္ဍာရေးအကျဉ်းချုပ်"
+
+#: .\templates\management\dashboard.html:28
+msgid "Donation records"
+msgstr "အလှူငွေမှတ်တမ်းများ"
+
+#: .\templates\management\dashboard.html:29
+msgid "Mission donations"
+msgstr "လမ်းကြောင်းအလှူငွေများ"
+
+#: .\templates\management\dashboard.html:30
+msgid "Expense records"
+msgstr "အသုံးစရိတ်မှတ်တမ်းများ"
+
+#: .\templates\management\dashboard.html:31
+#, fuzzy
+#| msgid "Mission Expenses"
+msgid "Mission expenses"
+msgstr "လမ်းကြောင်းအသုံးစရိတ်"
+
+#: .\templates\management\dashboard.html:33
+msgid "Off-mission refills"
+msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
+
+#: .\templates\management\dashboard.html:37
+msgid "Recent off-mission refills"
+msgstr "လတ်တလော လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
+
+#: .\templates\management\dashboard.html:41
+msgid "Date / time"
+msgstr "ရက်စွဲ / အချိန်"
+
+#: .\templates\management\dashboard.html:41
+msgid "Recorded by"
+msgstr "မှတ်တမ်းတင်သူ"
+
+#: .\templates\management\dashboard.html:54
+msgid "No off-mission refills in this period."
+msgstr "ဤကာလအတွင်း လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မရှိပါ။"
+
+#: .\templates\management\dashboard.html:60
+msgid "Vehicles and missions"
+msgstr "ယာဉ်များနှင့် လမ်းကြောင်းများ"
+
+#: .\templates\management\dashboard.html:61
+msgid "Missions in this financial period:"
+msgstr "ဤဘဏ္ဍာရေးကာလအတွင်း လမ်းကြောင်းအရေအတွက်"
+
+#: .\templates\management\dashboard.html:65
+msgid "Current mission"
+msgstr "လက်ရှိလမ်းကြောင်း"
+
+#: .\templates\management\dashboard.html:82
+msgid "No vehicles found."
+msgstr "ယာဉ်မတွေ့ပါ။"
+
+#: .\templates\management\dashboard.html:88
+msgid "Income by mission"
+msgstr "လမ်းကြောင်းအလိုက်အလှူငွေ"
+
+#: .\templates\management\dashboard.html:92
+#, fuzzy
+#| msgid "Mission#"
+msgid "Mission"
+msgstr "လမ်းကြောင်းအမှတ်"
+
+#: .\templates\management\dashboard.html:92
+msgid "Donation"
+msgstr "အလှူငွေ"
+
+#: .\templates\management\dashboard.html:92
+msgid "Expenses"
+msgstr "အသုံးစရိတ်များ"
+
+#: .\templates\management\dashboard.html:92
+msgid "Fuel"
+msgstr "ဆီဖိုး"
+
+#: .\templates\management\dashboard.html:92
+msgid "Net income"
+msgstr "အသားတင်ဝင်ငွေ"
+
+#: .\templates\management\dashboard.html:106
+msgid "No missions in this period."
+msgstr "ဤကာလအတွင်း လမ်းကြောင်းမရှိပါ။"
 
 #: .\templates\profile.html:9
 msgid "User Profile"
@@ -1754,25 +1882,25 @@ msgstr ""
 msgid "If you didn't request a password reset, you can ignore this email."
 msgstr ""
 
-#: .\templates\web_portal\our_missions.html:21
+#: .\templates\web_portal\_our_missions_content.html:18
 msgid "Daily Emergency & Patient Transport"
 msgstr "နေ့စဥ် အရေးပေါ်ကယ်ဆယ်ရေးနှင့် လူနာပို့ဆောင်ရေး"
 
-#: .\templates\web_portal\our_missions.html:23
+#: .\templates\web_portal\_our_missions_content.html:20
 msgid ""
 "Free Ambulance responses for emergency and routine medical transports for "
 "all patients."
 msgstr "အရေးပေါ်အက်စီးဒင့်လူနာများ၊ သမားရိုးကျလူနာများကို နေ့စဥ် (အခမဲ့) ကူညီပို့ဆောင်ပေးလျက်ရှိပါသည်။"
 
-#: .\templates\web_portal\our_missions.html:27
+#: .\templates\web_portal\_our_missions_content.html:24
 msgid "Daily Actions"
 msgstr "တစ်နေ့တာ လုပ်ငန်းစဥ်များ"
 
-#: .\templates\web_portal\our_missions.html:39
+#: .\templates\web_portal\_our_missions_content.html:36
 msgid "Humanitarian Aid & Food Distribution"
 msgstr "လူသားချင်းစာနာထောက်ထားမှု အကူအညီများနှင့် အစားအစာဝေငှမှု"
 
-#: .\templates\web_portal\our_missions.html:41
+#: .\templates\web_portal\_our_missions_content.html:38
 msgid ""
 "Food distribution and renting health equipments to communities on behalf of "
 "donors."
@@ -1780,29 +1908,29 @@ msgstr ""
 "အကူအညီလိုအပ်သူများအတွက် အလှူရှင်များကိုယ်စား ဝှီးချဲ၊ ချိုင်းထောက် စသောကျန်းမာရေးအထောက်အကူပြုပစ္စည်းများ "
 "ငှားရမ်းပေးခြင်း၊ သောက်သုံးရေနှင့် အစားအစာဝေငှခြင်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
 
-#: .\templates\web_portal\our_missions.html:44
+#: .\templates\web_portal\_our_missions_content.html:41
 msgid "Regular Programs"
 msgstr "ပုံမှန် အစီအစဥ်များ"
 
-#: .\templates\web_portal\our_missions.html:56
+#: .\templates\web_portal\_our_missions_content.html:53
 msgid "Disaster Response and Releif Operations"
 msgstr "သဘာဝဘေးကယ်ဆယ်ရေးနှင့် အရေးပေါ်အကူအညီများ"
 
-#: .\templates\web_portal\our_missions.html:58
+#: .\templates\web_portal\_our_missions_content.html:55
 msgid "Immediate response and relief operations after major disasters."
 msgstr ""
 "ရေဘေး၊ မီးဘေး၊ ငလျင် အစရှိသော သဘာဝဘေးများကို အချိန်နှင့်တပြေးညီ ကူညီကယ်ဆယ်ရေးနှင့် "
 "အရေးပေါ်အထောက်အပံ့များ ဘေးသင့်ပြည်သူများထံအချိန်မီရောက်ရှိနိုင်ရန် ကြိုးစားဆောင်ရွက်လျက်ရှိပါသည်။"
 
-#: .\templates\web_portal\our_missions.html:61
+#: .\templates\web_portal\_our_missions_content.html:58
 msgid "Major Projects"
 msgstr "စီမံချက်ဖြင့် ဆောင်ရွက်ချက်များ"
 
-#: .\templates\web_portal\our_missions.html:73
+#: .\templates\web_portal\_our_missions_content.html:70
 msgid "Clean Water Project"
 msgstr "ရေသန့်ရရှိရေးပရောဂျက်"
 
-#: .\templates\web_portal\our_missions.html:75
+#: .\templates\web_portal\_our_missions_content.html:72
 msgid ""
 "Distributing clean drinking water and adequate hygiene facilities in "
 "vulnerable communities "
@@ -1810,20 +1938,40 @@ msgstr ""
 "ရေရှားပါးဒေသများသို့ သောက်သုံးရေသန့်ရရှိရန် ရေတွင်းတူးခြင်းလုပ်ငန်းများ၊ ရွေ့လျားစနစ်ဖြင့် "
 "ရေပေးဝေခြင်းလုပ်ငန်းများ ဆောင်ရွက်လျက်ရှိပါသည်။"
 
-#: .\templates\web_portal\our_missions.html:78
+#: .\templates\web_portal\_our_missions_content.html:75
 msgid "Community Support"
 msgstr ""
 
-#: .\templates\web_portal\our_missions.html:105
+#: .\templates\web_portal\_our_missions_content.html:95
+msgid "Meals Distributed"
+msgstr "အစားအစာ ဝေငှမှုပေါင်း"
+
+#: .\templates\web_portal\_our_missions_content.html:102
 msgid ""
 "In the aftermath of the March 28, 2025 Earthquake, on behalf of the donors"
 msgstr ""
 
-#: .\templates\web_portal\our_missions.html:138
+#: .\templates\web_portal\_our_missions_content.html:105
+msgid "Houses Rebuilt"
+msgstr ""
+
+#: .\templates\web_portal\_our_missions_content.html:112
+msgid "Households Financial Aid"
+msgstr ""
+
+#: .\templates\web_portal\_our_missions_content.html:119
+msgid "People Helped"
+msgstr ""
+
+#: .\templates\web_portal\_our_missions_content.html:126
+msgid "MMK in Financial Aid"
+msgstr ""
+
+#: .\templates\web_portal\_our_missions_content.html:135
 msgid "Our Promise to the Community"
 msgstr ""
 
-#: .\templates\web_portal\our_missions.html:140
+#: .\templates\web_portal\_our_missions_content.html:137
 msgid ""
 "We pledge to continue our relief and rescue operations in accordance with "
 "our association's original aims, objectives, rules, and regulations, "
@@ -1878,7 +2026,7 @@ msgstr "သက်တမ်းကုန်ရက်"
 msgid "No vehicles yet."
 msgstr "စာရင်းမရှိပါ။"
 
-#: .\web_portal\views.py:90
+#: .\web_portal\views.py:97
 msgid "Our Mission"
 msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်များ"
 
@@ -1890,87 +2038,3 @@ msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်
 #~ msgstr ""
 #~ "အရေးပေါ်လူနာတင်ယာဥ်နှင့် သဘာဝဘေးကယ်ဆယ်ရေးလုပ်ငန်းများကို နေ့ညမရွေး စွမ်းစွမ်းတမံ "
 #~ "ဆောင်ရွက်လျက်ရှိပါသည်။"
-
-msgid "Management Dashboard"
-msgstr "စီမံခန့်ခွဲရန်"
-
-msgid "Financial period"
-msgstr "ဘဏ္ဍာရေးကာလ"
-
-msgid "Record off-mission refill"
-msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
-
-msgid "Financial summary"
-msgstr "ဘဏ္ဍာရေးအကျဉ်းချုပ်"
-
-msgid "Donation records"
-msgstr "အလှူငွေမှတ်တမ်းများ"
-
-msgid "Mission donations"
-msgstr "လမ်းကြောင်းအလှူငွေများ"
-
-msgid "Expense records"
-msgstr "အသုံးစရိတ်မှတ်တမ်းများ"
-
-msgid "On-mission fuel costs"
-msgstr "လမ်းကြောင်းအတွင်း ဆီဖိုး"
-
-msgid "Off-mission refills"
-msgstr "လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
-
-msgid "Mission net income"
-msgstr "လမ်းကြောင်း အသားတင်ဝင်ငွေ"
-
-msgid "Recent off-mission refills"
-msgstr "လတ်တလော လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှုများ"
-
-msgid "Date / time"
-msgstr "ရက်စွဲ / အချိန်"
-
-msgid "Recorded by"
-msgstr "မှတ်တမ်းတင်သူ"
-
-msgid "No off-mission refills in this period."
-msgstr "ဤကာလအတွင်း လမ်းကြောင်းပြင်ပ ဆီဖြည့်မှု မရှိပါ။"
-
-msgid "Vehicles and missions"
-msgstr "ယာဉ်များနှင့် လမ်းကြောင်းများ"
-
-msgid "Current mission"
-msgstr "လက်ရှိလမ်းကြောင်း"
-
-msgid "No vehicles found."
-msgstr "ယာဉ်မတွေ့ပါ။"
-
-msgid "Income by mission"
-msgstr "လမ်းကြောင်းအလိုက်အလှူငွေ"
-
-msgid "Donation"
-msgstr "အလှူငွေ"
-
-msgid "Expenses"
-msgstr "အသုံးစရိတ်များ"
-
-msgid "Fuel"
-msgstr "ဆီဖိုး"
-
-msgid "Net income"
-msgstr "အသားတင်ဝင်ငွေ"
-
-msgid "No missions in this period."
-msgstr "ဤကာလအတွင်း လမ်းကြောင်းမရှိပါ။"
-
-msgid "Missions in this financial period:"
-msgstr "ဤဘဏ္ဍာရေးကာလအတွင်း လမ်းကြောင်းအရေအတွက်"
-
-msgid "On-mission fuel refills"
-msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှုများ"
-
-msgid "Enter one row for each refill. Add as many rows as the mission needs."
-msgstr "ဆီဖြည့်မှုတစ်ကြိမ်စီအတွက် တစ်ခုစီ ဖြည့်ပါ။ လိုအပ်သလို ထပ်ထည့်နိုင်ပါသည်။"
-
-msgid "Add another refill"
-msgstr "နောက်ထပ် ဆီဖြည့်မှု ထည့်ရန်"
-
-msgid "No on-mission refills recorded."
-msgstr "လမ်းကြောင်းအတွင်း ဆီဖြည့်မှု မှတ်တမ်းမရှိပါ။"
