@@ -24,7 +24,7 @@
 	</div>
 
 	<h2 class="h4 mb-3">{% trans "Financial summary" %}</h2>
-	<div class="soft-ui-card row g-3 mb-5">
+	<div class="soft-ui-banner row g-3 mb-5">
 		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Donation records" %}</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
 		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission donations" %}</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
 		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Expense records" %}</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
