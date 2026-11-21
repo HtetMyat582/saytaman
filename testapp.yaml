@@ -1,0 +1,6 @@
+kind: wasmer.io/App.v0
+name: saytaman
+
+volumes:
+  - name: media-storage
+    mount: /media
