@@ -1,12 +1,36 @@
 ﻿from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.conf import settings
+from django.core.files.storage import default_storage
 from .models import MissionRecord, MissionRecordPhoto
-from .forms import MissionRecordForm, MissionRecordPhotoFormSet, MissionFuelRefillFormSet
+from .forms import MissionRecordForm, MissionFuelRefillFormSet
 from vehicles.models import Vehicle
 from django.utils import timezone
+from django.utils.text import get_valid_filename
+from pathlib import Path
 import requests
 from members.access import has_dashboard_access
+
+
+def save_mission_photos(mission, uploads):
+	mission_number = get_valid_filename(
+		str(mission.mission_number).replace('/', '-')
+	)
+
+	for upload in uploads:
+		extension = Path(upload.name).suffix.lower()
+		number = mission.mission_photos.count() + 1
+		filename = f'{mission_number}-{number:02d}{extension}'
+		storage_path = f'mission_photos/{filename}'
+
+		while default_storage.exists(storage_path):
+			number += 1
+			filename = f'{mission_number}-{number:02d}{extension}'
+			storage_path = f'mission_photos/{filename}'
+
+		upload.name = filename
+		MissionRecordPhoto.objects.create(mission=mission, image=upload)
 
 
 
@@ -28,6 +52,7 @@ def add_mission(request):
 		form = MissionRecordForm(request.POST, request.FILES)
 		fuel_formset = MissionFuelRefillFormSet(
 			request.POST,
+			request.FILES,
 			prefix='fuel_refills',
 		)
 
@@ -51,12 +76,10 @@ def add_mission(request):
 		messages.error(request, 'Please correct the errors below.')
 	else:
 		form = MissionRecordForm()
-		formset = MissionRecordPhotoFormSet(queryset=MissionRecordPhoto.objects.none())
 		fuel_formset = MissionFuelRefillFormSet(prefix='fuel_refills')
 
 	return render(request, 'mission_records/add_mission.html', {
 		'form': form,
-		'formset': formset,
 		'fuel_formset': fuel_formset,
 		'now': now,
 	})
@@ -102,65 +125,65 @@ def edit_mission(request, pk):
 	# Permission: driver or assistant_1 or assistant_2 can edit
 	allowed = False
 
-	if member:
-		if mission.driver_name == member or \
-			   (mission.assistant_1 and mission.assistant_1 == member) or \
-			   (mission.assistant_2 and mission.assistant_2 == member) or \
-			   member.role == 'Admin' or has_dashboard_access(member):
-				allowed = True
+	if member and (
+		mission.driver_name == member
+		or (mission.assistant_1 and mission.assistant_1 == member)
+		or (mission.assistant_2 and mission.assistant_2 == member)
+		or member.role == 'Admin'
+		or has_dashboard_access(member)
+	):
+		allowed = True
 
 	if not allowed:
 		messages.error(request, 'You do not have permission to edit this mission.')
 		return redirect('mission_list')
 
 	if request.method == 'POST':
-    current_vehicle = mission.vehicle
+		current_vehicle = mission.vehicle
+		photos_to_delete = mission.mission_photos.filter(
+			pk__in=request.POST.getlist('delete_photos')
+		)
+		remaining_photo_count = (
+			mission.mission_photos.count() - photos_to_delete.count()
+		)
 
-    photos_to_delete = mission.mission_photos.filter(
-        pk__in=request.POST.getlist('delete_photos')
-    )
-    remaining_photo_count = (
-        mission.mission_photos.count() - photos_to_delete.count()
-    )
+		form = MissionRecordForm(
+			request.POST,
+			request.FILES,
+			instance=mission,
+		)
+		form.fields['photos'].max_files = max(
+			0, 10 - remaining_photo_count
+		)
 
-    form = MissionRecordForm(
-        request.POST,
-        request.FILES,
-        instance=mission,
-    )
-    form.fields['photos'].max_files = max(
-        0, 10 - remaining_photo_count
-    )
+		fuel_formset = MissionFuelRefillFormSet(
+			request.POST,
+			request.FILES,
+			instance=mission,
+			prefix='fuel_refills',
+		)
 
-    fuel_formset = MissionFuelRefillFormSet(
-        request.POST,
-        request.FILES,
-        instance=mission,
-        prefix='fuel_refills',
-    )
+		is_form_valid = form.is_valid()
+		is_fuel_formset_valid = fuel_formset.is_valid()
 
-    is_form_valid = form.is_valid()
-    is_fuel_formset_valid = fuel_formset.is_valid()
+		if is_form_valid and is_fuel_formset_valid:
+			if mission.vehicle != current_vehicle and not mission.back_to_hq:
+				messages.error(
+					request,
+					'Cannot change the vehicle for an active mission. '
+					'Mark it as returned first.',
+				)
+				form.fields['vehicle'].initial = current_vehicle.pk
+			else:
+				mission = form.save()
+				photos_to_delete.delete()
+				save_mission_photos(mission, form.cleaned_data['photos'])
+				fuel_formset.save()
 
-    if is_form_valid and is_fuel_formset_valid:
-        if mission.vehicle != current_vehicle and not mission.back_to_hq:
-            messages.error(
-                request,
-                'Cannot change the vehicle for an active mission. '
-                'Mark it as returned first.',
-            )
-            form.fields['vehicle'].initial = current_vehicle.pk
-        else:
-            mission = form.save()
-            photos_to_delete.delete()
-            save_mission_photos(mission, form.cleaned_data['photos'])
-            fuel_formset.save()
+				messages.success(request, 'Mission record updated.')
+				return redirect('mission_details', pk)
 
-            messages.success(request, 'Mission record updated.')
-            return redirect('mission_details', pk)
-
-    messages.error(request, 'Please correct the errors below.')
-	
+		messages.error(request, 'Please correct the errors below.')
 	else:
 		form = MissionRecordForm(instance=mission)
 		form.fields['photos'].max_files = max(
@@ -173,7 +196,6 @@ def edit_mission(request, pk):
 
 	return render(request, 'mission_records/edit_mission.html', {
 		'form': form,
-		'formset': formset,
 		'fuel_formset': fuel_formset,
 		'mission': mission,
 		'now': now,
@@ -235,7 +257,7 @@ http://127.0.0.1:8000/missions/details/{mission.pk}
 	attachment_ids = []
 
 	if photos.exists():
-		upload_url = f"https://graph.facebook.com/v24.0/{PAGE_ID}/photos"
+		upload_url = f"https://graph.facebook.com/v24.0/{settings.PAGE_ID}/photos"
 
 		for photo_record in photos:
 			if not photo_record.image:
@@ -244,7 +266,7 @@ http://127.0.0.1:8000/missions/details/{mission.pk}
 			try:
 				with open(photo_record.image.path, 'rb') as image_file:
 					files = {
-						'source': (photo_record.image.namem, image_file, 'image/jpeg')
+						'source': (photo_record.image.name, image_file, 'image/jpeg')
 						}
 					data = {
 						'access_token': PAGE_ACCESS_TOKEN,
@@ -293,7 +315,7 @@ http://127.0.0.1:8000/missions/details/{mission.pk}
 		post_url = f"https://graph.facebook.com/v24.0/{PAGE_ID}/feed"
 		post_data = {
 			'message': message,
-			'access_token': PAGE_ACCESS_TOKEN,
+			'access_token': settings.PAGE_ACCESS_TOKEN,
 			'link': f"http://127.0.0.1:8000/missions/details/{mission.pk}"
 		}
 		response = requests.post(post_url, data=post_data)
