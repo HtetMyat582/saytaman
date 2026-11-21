@@ -7,7 +7,33 @@ from vehicles.models import Vehicle
 from django.utils import timezone
 import requests
 from members.access import has_dashboard_access
+from pathlib import Path
 
+from django.core.files.storage import default_storage
+from django.utils.text import get_valid_filename
+
+from .forms import MissionRecordForm, MissionFuelRefillFormSet
+
+
+def save_mission_photos(mission, uploads):
+    mission_number = get_valid_filename(
+        str(mission.mission_number).replace('/', '-')
+    )
+
+    for upload in uploads:
+        extension = Path(upload.name).suffix.lower()
+        number = mission.mission_photos.count() + 1
+
+        filename = f'{mission_number}-{number:02d}{extension}'
+        storage_path = f'mission_photos/{filename}'
+
+        while default_storage.exists(storage_path):
+            number += 1
+            filename = f'{mission_number}-{number:02d}{extension}'
+            storage_path = f'mission_photos/{filename}'
+
+        upload.name = filename
+        MissionRecordPhoto.objects.create(mission=mission, image=upload)
 
 
 @login_required
@@ -25,29 +51,29 @@ def add_mission(request):
     
 
     if request.method == 'POST':
-        form = MissionRecordForm(request.POST)
-        formset = MissionRecordPhotoFormSet(request.POST, request.FILES)
-        fuel_formset = MissionFuelRefillFormSet(
-            request.POST,
-            prefix='fuel_refills',
-        )
-        
-        is_form_valid = form.is_valid()
-        is_formset_valid = formset.is_valid()
-        is_fuel_formset_valid = fuel_formset.is_valid()
+        form = MissionRecordForm(request.POST, request.FILES)
+fuel_formset = MissionFuelRefillFormSet(
+    request.POST,
+    prefix='fuel_refills',
+)
 
-        if is_form_valid and is_formset_valid and is_fuel_formset_valid:
-            form.instance.created_by = member
-            mission = form.save()
-            vehicle = mission.vehicle
-            vehicle.mission_status = 'On Mission'
-            formset.instance = mission
-            formset.save()
-            fuel_formset.instance = mission
-            fuel_formset.save()
-            vehicle.save()
-            messages.success(request, 'Mission record saved.')
-            return redirect('mission_list')
+is_form_valid = form.is_valid()
+is_fuel_formset_valid = fuel_formset.is_valid()
+
+if is_form_valid and is_fuel_formset_valid:
+    form.instance.created_by = member
+    mission = form.save()
+
+    save_mission_photos(mission, form.cleaned_data['photos'])
+
+    vehicle = mission.vehicle
+    vehicle.mission_status = 'On Mission'
+    fuel_formset.instance = mission
+    fuel_formset.save()
+    vehicle.save()
+
+    messages.success(request, 'Mission record saved.')
+    return redirect('mission_list')
         messages.error(request, 'Please correct the errors below.')
     else:
         form = MissionRecordForm()
@@ -114,38 +140,61 @@ def edit_mission(request, pk):
         return redirect('mission_list')
 
     if request.method == 'POST':
-        current_vehicle = mission.vehicle
+    current_vehicle = mission.vehicle
 
-        form = MissionRecordForm(request.POST, instance=mission)
-        formset = MissionRecordPhotoFormSet(request.POST, request.FILES, instance=mission)
-        fuel_formset = MissionFuelRefillFormSet(
-            request.POST,
-            instance=mission,
-            prefix='fuel_refills',
-        )
-        
-        is_form_valid = form.is_valid()
-        is_formset_valid = formset.is_valid()
-        is_fuel_formset_valid = fuel_formset.is_valid()
+    photos_to_delete = mission.mission_photos.filter(
+        pk__in=request.POST.getlist('delete_photos')
+    )
+    remaining_photo_count = (
+        mission.mission_photos.count() - photos_to_delete.count()
+    )
 
-        if is_form_valid and is_formset_valid and is_fuel_formset_valid:
-            if mission.vehicle != current_vehicle and not mission.back_to_hq:
-                messages.error(request, "Cannot change the vehicle for an active mission. Mark it as returned first.")
-                form.fields['vehicle'].initial = current_vehicle.pk
-            else:
-                form.save()
-                formset.save()
-                fuel_formset.save()
-                messages.success(request, 'Mission record updated.')
+    form = MissionRecordForm(
+        request.POST,
+        request.FILES,
+        instance=mission,
+    )
+    form.fields['photos'].max_files = max(
+        0, 10 - remaining_photo_count
+    )
+
+    fuel_formset = MissionFuelRefillFormSet(
+        request.POST,
+        request.FILES,
+        instance=mission,
+        prefix='fuel_refills',
+    )
+
+    is_form_valid = form.is_valid()
+    is_fuel_formset_valid = fuel_formset.is_valid()
+
+    if is_form_valid and is_fuel_formset_valid:
+        if mission.vehicle != current_vehicle and not mission.back_to_hq:
+            messages.error(
+                request,
+                'Cannot change the vehicle for an active mission. '
+                'Mark it as returned first.',
+            )
+            form.fields['vehicle'].initial = current_vehicle.pk
+        else:
+            mission = form.save()
+            photos_to_delete.delete()
+            save_mission_photos(mission, form.cleaned_data['photos'])
+            fuel_formset.save()
+
+            messages.success(request, 'Mission record updated.')
             return redirect('mission_details', pk)
-        messages.error(request, 'Please correct the errors below.')
-    else:
-        form = MissionRecordForm(instance=mission)
-        formset = MissionRecordPhotoFormSet(instance=mission)
-        fuel_formset = MissionFuelRefillFormSet(
-            instance=mission,
-            prefix='fuel_refills',
-        )
+
+    messages.error(request, 'Please correct the errors below.')
+else:
+    form = MissionRecordForm(instance=mission)
+    form.fields['photos'].max_files = max(
+        0, 10 - mission.mission_photos.count()
+    )
+    fuel_formset = MissionFuelRefillFormSet(
+        instance=mission,
+        prefix='fuel_refills',
+    )
 
     return render(request, 'mission_records/edit_mission.html', {
         'form': form,

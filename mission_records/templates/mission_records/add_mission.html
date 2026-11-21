@@ -11,43 +11,24 @@
         {{ form.non_field_errors }}
         <div class="">
             {% for field in form %}
-            <div class="form-row mb-2">
-                <label class="form-label">
-                    {{ field.label_tag }}
-                    {% if field.field.required %}
-                    <span class="text-danger">*</span>
-                    {% endif %}
-                </label>
-                {{ field }}
-                {% for error in field.errors %}
-                <div class="text-danger small">{{ error }}</div>
-                {% endfor %}
-            </div>
-            {% endfor %}
-        </div>
-
-        <h4 class="mt-4">{% trans "Photos" %}</h4>
-        {{ formset.management_form }}
-        {{ formset.non_form_errors }}
-
-        <div id="photo-formset-container">
-            {% for photo_form in formset %}
-            <div class="photo-form-row border p-3 mb-3 rounded">
-                <p><strong>{% trans "Photo" %} #{{ forloop.counter }}</strong></p>
-                {% for field in photo_form %}
-                {% if field.name == 'image' %}
-                <div class="mb-2">
-                    <label class="form-label">{{ field.label_tag }}</label>
+            {% if field.name != 'photos' %}
+                <div class="form-row mb-2">
+                    <label class="form-label">
+                        {{ field.label_tag }}
+                        {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                        {% endif %}
+                    </label>
                     {{ field }}
                     {% for error in field.errors %}
                     <div class="text-danger small">{{ error }}</div>
                     {% endfor %}
                 </div>
-                {% endif %}
-                {% endfor %}
-            </div>
+            {% endif %}
             {% endfor %}
         </div>
+
+        {% include "mission_records/_mission_photo_upload.html" %}
 
         {% include "mission_records/_fuel_refill_formset.html" %}
         
