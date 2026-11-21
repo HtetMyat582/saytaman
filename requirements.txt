@@ -27,3 +27,4 @@ tzdata==2025.2
 Unidecode==1.4.0
 urllib3==2.5.0
 whitenoise==6.12.0
+uvicorn
