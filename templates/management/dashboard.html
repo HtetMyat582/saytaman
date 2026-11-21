@@ -20,6 +20,7 @@
 				<a class="btn {% if period == 'year' %}btn-primary{% else %}btn-outline-primary lime{% endif %}" href="?period=year">Year</a>
 			</div>
 			<a class="btn btn-primary" href="{% url 'fuel_refill_add' %}">{% trans "Record off-mission refill" %}</a>
+			<a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">{% trans "View refills list" %}</a>
 		</div>
 	</div>
 

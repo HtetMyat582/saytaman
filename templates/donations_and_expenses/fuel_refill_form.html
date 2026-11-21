@@ -33,7 +33,8 @@
         </div>
         {% endif %}
 
-        <div class="d-flex gap-2">
+        <div class="d-flex justify-content-end mt-2 mb-5">
+            <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
             <button type="submit" class="btn btn-lime">{% if refill %}{% trans "Update refill" %}{% else %}{% trans "Save refill" %}{% endif %}</button>
             <a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">{% trans "View refills list" %}</a>
         </div>
