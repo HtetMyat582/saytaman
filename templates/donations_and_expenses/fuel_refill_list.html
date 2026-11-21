@@ -20,8 +20,10 @@
 					<th>{% trans "Fuel type" %}</th>
 					<th>{% trans "Liters" %}</th>
 					<th>{% trans "Cost" %}</th>
+					<th>{% trans "Voucher photo" %}</th>
 					<th>{% trans "Notes" %}</th>
 					<th>{% trans "Recorded by" %}</th>
+					<th>{% trans "Actions" %}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,11 +35,19 @@
 					<td>{{ refill.get_fuel_type_display|default:"—" }}</td>
 					<td>{{ refill.liters|floatformat:2 }}</td>
 					<td>{{ refill.cost|floatformat:0 }} MMK</td>
+					<td>{% if refill.fuel_voucher_photo %}<a href="{{ refill.fuel_voucher_photo.url }}" target="_blank" rel="noopener">{% trans "View photo" %}</a>{% else %}&mdash;{% endif %}</td>
 					<td>{{ refill.notes|default:"—" }}</td>
 					<td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}—{% endif %}</td>
+					<td class="text-nowrap">
+						<a href="{% url 'fuel_refill_edit' refill.pk %}" class="btn btn-sm btn-outline-primary">{% trans "Edit" %}</a>
+						<form method="post" action="{% url 'fuel_refill_delete' refill.pk %}" class="d-inline" onsubmit="return confirm('{% trans 'Delete this refill?' %}');">
+							{% csrf_token %}
+							<button type="submit" class="btn btn-sm btn-outline-danger">{% trans "Delete" %}</button>
+						</form>
+					</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="8" class="text-muted">{% trans "No off-mission refills recorded." %}</td></tr>
+				<tr><td colspan="10" class="text-muted">{% trans "No off-mission refills recorded." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>

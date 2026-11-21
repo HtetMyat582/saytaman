@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}Record Fuel Refill | Saytaman{% endblock %}
+{% block title %}{% if refill %}{% trans "Edit off-mission refill" %}{% else %}{% trans "Record Fuel Refill" %}{% endif %} | Saytaman{% endblock %}
 
 {% block content %}
 <div class="soft-ui-banner col-md-6">
-    <h3>{% trans "Record off-mission refill" %}</h3>
+    <h3>{% if refill %}{% trans "Edit off-mission refill" %}{% else %}{% trans "Record off-mission refill" %}{% endif %}</h3>
 
-    <form method="post" novalidate>
+    <form method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
 
@@ -21,10 +21,37 @@
         </div>
         {% endfor %}
 
+        {% if refill and refill.fuel_voucher_photo %}
+        <div class="mb-3">
+            <label class="form-label">{% trans "Current voucher photo" %}</label>
+            <div><img id="voucher-photo-preview" src="{{ refill.fuel_voucher_photo.url }}" alt="{% trans 'Fuel voucher photo preview' %}" class="img-fluid rounded" style="max-height: 320px;"></div>
+        </div>
+        {% else %}
+        <div class="mb-3 d-none" id="voucher-photo-preview-container">
+            <label class="form-label">{% trans "Voucher photo preview" %}</label>
+            <div><img id="voucher-photo-preview" alt="{% trans 'Fuel voucher photo preview' %}" class="img-fluid rounded" style="max-height: 320px;"></div>
+        </div>
+        {% endif %}
+
         <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-lime">{% trans "Save refill" %}</button>
+            <button type="submit" class="btn btn-lime">{% if refill %}{% trans "Update refill" %}{% else %}{% trans "Save refill" %}{% endif %}</button>
             <a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">{% trans "View refills list" %}</a>
         </div>
     </form>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('id_fuel_voucher_photo');
+    const preview = document.getElementById('voucher-photo-preview');
+    const previewContainer = document.getElementById('voucher-photo-preview-container');
+    if (!input || !preview) return;
+
+    input.addEventListener('change', function () {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        preview.src = URL.createObjectURL(file);
+        if (previewContainer) previewContainer.classList.remove('d-none');
+    });
+});
+</script>
 {% endblock %}

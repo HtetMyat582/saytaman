@@ -1444,3 +1444,63 @@ msgstr "Add another refill"
 
 msgid "No on-mission refills recorded."
 msgstr "No on-mission refills recorded."
+
+msgid "Edit off-mission refill"
+msgstr "Edit off-mission refill"
+
+msgid "Record Fuel Refill"
+msgstr "Record Fuel Refill"
+
+msgid "Current voucher photo"
+msgstr "Current voucher photo"
+
+msgid "Fuel voucher photo preview"
+msgstr "Fuel voucher photo preview"
+
+msgid "Voucher photo preview"
+msgstr "Voucher photo preview"
+
+msgid "Update refill"
+msgstr "Update refill"
+
+msgid "Voucher photo"
+msgstr "Voucher photo"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "View photo"
+msgstr "View photo"
+
+msgid "Delete this refill?"
+msgstr "Delete this refill?"
+
+msgid "Off-mission refills recorded."
+msgstr "Off-mission refills recorded."
+
+msgid "Off-mission fuel refills"
+msgstr "Off-mission fuel refills"
+
+msgid "Fuel type"
+msgstr "Fuel type"
+
+msgid "No off-mission refills recorded."
+msgstr "No off-mission refills recorded."
+
+msgid "Refill list pages"
+msgstr "Refill list pages"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Page %(current)s of %(total)s"
+msgstr "Page %(current)s of %(total)s"
+
+msgid "View refills list"
+msgstr "View refills list"
+
+msgid "Save refill"
+msgstr "Save refill"

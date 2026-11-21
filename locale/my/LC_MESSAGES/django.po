@@ -2041,3 +2041,63 @@ msgstr "ကျွန်ုပ်တို့၏လုပ်ငန်းစဥ်
 #~ msgstr ""
 #~ "အရေးပေါ်လူနာတင်ယာဥ်နှင့် သဘာဝဘေးကယ်ဆယ်ရေးလုပ်ငန်းများကို နေ့ညမရွေး စွမ်းစွမ်းတမံ "
 #~ "ဆောင်ရွက်လျက်ရှိပါသည်။"
+
+msgid "Edit off-mission refill"
+msgstr "မစ်ရှင်ပြင်ပ ဆီဖြည့်မှုကို ပြင်ဆင်ရန်"
+
+msgid "Record Fuel Refill"
+msgstr "ဆီဖြည့်မှု မှတ်တမ်းတင်ရန်"
+
+msgid "Current voucher photo"
+msgstr "လက်ရှိ ဆီဘောက်ချာဓာတ်ပုံ"
+
+msgid "Fuel voucher photo preview"
+msgstr "ဆီဘောက်ချာဓာတ်ပုံ အစမ်းကြည့်ရန်"
+
+msgid "Voucher photo preview"
+msgstr "ဘောက်ချာဓာတ်ပုံ အစမ်းကြည့်ရန်"
+
+msgid "Update refill"
+msgstr "ဆီဖြည့်မှု အချက်အလက်ပြင်ဆင်ရန်"
+
+msgid "Voucher photo"
+msgstr "ဆီဘောက်ချာဓာတ်ပုံ"
+
+msgid "Actions"
+msgstr "လုပ်ဆောင်ချက်များ"
+
+msgid "View photo"
+msgstr "ဓာတ်ပုံကြည့်ရန်"
+
+msgid "Delete this refill?"
+msgstr "ဤဆီဖြည့်မှုကို ဖျက်မည်လား။"
+
+msgid "Off-mission refills recorded."
+msgstr "မစ်ရှင်ပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းမရှိပါ။"
+
+msgid "Off-mission fuel refills"
+msgstr "မစ်ရှင်ပြင်ပ ဆီဖြည့်မှုများ"
+
+msgid "Fuel type"
+msgstr "ဆီအမျိုးအစား"
+
+msgid "No off-mission refills recorded."
+msgstr "မစ်ရှင်ပြင်ပ ဆီဖြည့်မှု မှတ်တမ်းမရှိပါ။"
+
+msgid "Refill list pages"
+msgstr "ဆီဖြည့်မှုစာရင်း စာမျက်နှာများ"
+
+msgid "Previous"
+msgstr "ယခင်"
+
+msgid "Next"
+msgstr "နောက်တစ်ခု"
+
+msgid "Page %(current)s of %(total)s"
+msgstr "စာမျက်နှာ %(current)s / %(total)s"
+
+msgid "View refills list"
+msgstr "ဆီဖြည့်မှုစာရင်းကို ကြည့်ရန်"
+
+msgid "Save refill"
+msgstr "ဆီဖြည့်မှုကို သိမ်းရန်"

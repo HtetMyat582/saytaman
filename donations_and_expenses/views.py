@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from members.access import dashboard_access_required
@@ -25,7 +25,7 @@ def fuel_refill_list(request):
 @dashboard_access_required
 def fuel_refill_add(request):
     if request.method == 'POST':
-        form = FuelRefillForm(request.POST)
+        form = FuelRefillForm(request.POST, request.FILES)
         if form.is_valid():
             refill = form.save(commit=False)
             refill.created_by = request.user.member_profile
@@ -39,3 +39,31 @@ def fuel_refill_add(request):
         'form': form,
         'now': timezone.localdate().year,
     })
+
+
+@dashboard_access_required
+def fuel_refill_edit(request, pk):
+    refill = get_object_or_404(FuelRefill, pk=pk)
+    if request.method == 'POST':
+        form = FuelRefillForm(request.POST, request.FILES, instance=refill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Fuel refill updated.')
+            return redirect('fuel_refill_list')
+    else:
+        form = FuelRefillForm(instance=refill)
+
+    return render(request, 'donations_and_expenses/fuel_refill_form.html', {
+        'form': form,
+        'refill': refill,
+        'now': timezone.localdate().year,
+    })
+
+
+@dashboard_access_required
+def fuel_refill_delete(request, pk):
+    refill = get_object_or_404(FuelRefill, pk=pk)
+    if request.method == 'POST':
+        refill.delete()
+        messages.success(request, 'Fuel refill deleted.')
+    return redirect('fuel_refill_list')

@@ -4,6 +4,15 @@ from decimal import Decimal
 
 from django.core.validators import MinValueValidator
 from django.utils import timezone
+from django.utils.text import get_valid_filename
+from pathlib import Path
+
+
+def fuel_refill_voucher_upload_to(instance, filename):
+    vehicle_id = get_valid_filename(str(instance.vehicle.vehicle_id))
+    pump_name = get_valid_filename(instance.pump_name)
+    extension = Path(filename).suffix.lower()
+    return f'fuel_refills/{instance.date.isoformat()}-{vehicle_id}-{pump_name}{extension}'
 
 class Donation(models.Model):
     DONATION_TYPE_CHOICES = [
@@ -89,7 +98,7 @@ class FuelRefill(models.Model):
         blank=True,
         related_name='fuel_refills_recorded',
     )
-    fuel_voucher_photo = models.ImageField(upload_to='fuel_refills/', null=True, blank=True)
+    fuel_voucher_photo = models.ImageField(upload_to=fuel_refill_voucher_upload_to, null=True, blank=True)
 
     class Meta:
         ordering = ['-date', '-time']
