@@ -113,53 +113,54 @@ def edit_mission(request, pk):
 		messages.error(request, 'You do not have permission to edit this mission.')
 		return redirect('mission_list')
 
-		if request.method == 'POST':
-		current_vehicle = mission.vehicle
+	if request.method == 'POST':
+    current_vehicle = mission.vehicle
 
-		photos_to_delete = mission.mission_photos.filter(
-			pk__in=request.POST.getlist('delete_photos')
-		)
-		remaining_photo_count = (
-			mission.mission_photos.count() - photos_to_delete.count()
-		)
+    photos_to_delete = mission.mission_photos.filter(
+        pk__in=request.POST.getlist('delete_photos')
+    )
+    remaining_photo_count = (
+        mission.mission_photos.count() - photos_to_delete.count()
+    )
 
-		form = MissionRecordForm(
-			request.POST,
-			request.FILES,
-			instance=mission,
-		)
-		form.fields['photos'].max_files = max(
-			0, 10 - remaining_photo_count
-		)
+    form = MissionRecordForm(
+        request.POST,
+        request.FILES,
+        instance=mission,
+    )
+    form.fields['photos'].max_files = max(
+        0, 10 - remaining_photo_count
+    )
 
-		fuel_formset = MissionFuelRefillFormSet(
-			request.POST,
-			request.FILES,
-			instance=mission,
-			prefix='fuel_refills',
-		)
+    fuel_formset = MissionFuelRefillFormSet(
+        request.POST,
+        request.FILES,
+        instance=mission,
+        prefix='fuel_refills',
+    )
 
-		is_form_valid = form.is_valid()
-		is_fuel_formset_valid = fuel_formset.is_valid()
+    is_form_valid = form.is_valid()
+    is_fuel_formset_valid = fuel_formset.is_valid()
 
-		if is_form_valid and is_fuel_formset_valid:
-			if mission.vehicle != current_vehicle and not mission.back_to_hq:
-				messages.error(
-					request,
-					'Cannot change the vehicle for an active mission. '
-					'Mark it as returned first.',
-				)
-				form.fields['vehicle'].initial = current_vehicle.pk
-			else:
-				mission = form.save()
-				photos_to_delete.delete()
-				save_mission_photos(mission, form.cleaned_data['photos'])
-				fuel_formset.save()
+    if is_form_valid and is_fuel_formset_valid:
+        if mission.vehicle != current_vehicle and not mission.back_to_hq:
+            messages.error(
+                request,
+                'Cannot change the vehicle for an active mission. '
+                'Mark it as returned first.',
+            )
+            form.fields['vehicle'].initial = current_vehicle.pk
+        else:
+            mission = form.save()
+            photos_to_delete.delete()
+            save_mission_photos(mission, form.cleaned_data['photos'])
+            fuel_formset.save()
 
-				messages.success(request, 'Mission record updated.')
-				return redirect('mission_details', pk)
+            messages.success(request, 'Mission record updated.')
+            return redirect('mission_details', pk)
 
-		messages.error(request, 'Please correct the errors below.')
+    messages.error(request, 'Please correct the errors below.')
+	
 	else:
 		form = MissionRecordForm(instance=mission)
 		form.fields['photos'].max_files = max(
