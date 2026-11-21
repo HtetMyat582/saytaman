@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/donations_and_expenses/migrations/0002_alter_fuelrefill_fuel_voucher_photo.py
