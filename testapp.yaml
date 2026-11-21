@@ -4,4 +4,3 @@ name: saytaman
 volumes:
   - name: media-storage
     mount: /media
-
