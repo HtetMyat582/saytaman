@@ -75,7 +75,7 @@ MissionRecordPhotoFormSet = inlineformset_factory (
 class MissionFuelRefillForm(forms.ModelForm):
     class Meta:
         model = MissionFuelRefill
-        fields = ('time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes')
+        fields = ('time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes', 'fuel_voucher_photo')
         labels = {
             'time': _('Time'),
             'pump_name': _('Pump'),
@@ -83,6 +83,7 @@ class MissionFuelRefillForm(forms.ModelForm):
             'fuel_type': _('Fuel Type'),
             'cost': _('Cost'),
             'notes': _('Notes'),
+            'fuel_voucher_photo': _('Fuel Voucher Photo'),
         }
         widgets = {
             'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-input'}),
@@ -95,6 +96,7 @@ class MissionFuelRefillForm(forms.ModelForm):
                 'class': 'form-input', 'min': '0', 'step': '1',
             }),
             'notes': forms.TextInput(attrs={'class': 'form-input'}),
+            'fuel_voucher_photo': forms.ClearableFileInput(attrs={'class': 'form-input'}),
         }
 
 

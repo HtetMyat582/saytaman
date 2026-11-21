@@ -89,9 +89,10 @@ class FuelRefill(models.Model):
         blank=True,
         related_name='fuel_refills_recorded',
     )
+    fuel_voucher_photo = models.ImageField(upload_to='fuel_refills/', null=True, blank=True)
 
     class Meta:
         ordering = ['-date', '-time']
 
     def __str__(self):
-        return f"{self.vehicle.vehicle_id} — {self.date} — {self.cost} MMK"
+        return f'{self.vehicle.vehicle_id} — {self.date} — {self.cost} MMK'

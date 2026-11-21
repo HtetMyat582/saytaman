@@ -4,6 +4,16 @@ from vehicles.models import Vehicle
 import time
 from django.core.validators import MinValueValidator, MaxValueValidator
 from decimal import Decimal
+from pathlib import Path
+from django.utils.text import get_valid_filename
+
+
+def mission_fuel_voucher_upload_to(instance, filename):
+    mission = instance.mission
+    mission_number = get_valid_filename(str(mission.mission_number).replace('/', '-'))
+    vehicle_id = get_valid_filename(str(mission.vehicle.vehicle_id))
+    extension = Path(filename).suffix
+    return f'mission_fuel_refills/{mission_number}-{mission.date.isoformat()}-{vehicle_id}{extension}'
 
 class MissionRecord(models.Model):
 
@@ -94,6 +104,11 @@ class MissionFuelRefill(models.Model):
         validators=[MinValueValidator(Decimal('0'))],
     )
     notes = models.CharField(max_length=250, blank=True)
+    fuel_voucher_photo = models.ImageField(
+        upload_to=mission_fuel_voucher_upload_to,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         ordering = ('time', 'pk')

@@ -6,7 +6,7 @@ from .models import FuelRefill
 class FuelRefillForm(forms.ModelForm):
     class Meta:
         model = FuelRefill
-        fields = ('vehicle', 'date', 'time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes')
+        fields = ('vehicle', 'date', 'time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes', 'fuel_voucher_photo')
         widgets = {
             'vehicle': forms.Select(attrs={'class': 'form-input'}),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input'}),
@@ -22,6 +22,7 @@ class FuelRefillForm(forms.ModelForm):
             'notes': forms.Textarea(attrs={
                 'class': 'form-input', 'rows': 3,
             }),
+            'fuel_voucher_photo': forms.ClearableFileInput(attrs={'class': 'form-input'}),
         }
         labels = {
             'vehicle': _('Vehicle'),
@@ -32,6 +33,7 @@ class FuelRefillForm(forms.ModelForm):
             'fuel_type': _('Fuel Type'),
             'cost': _('Cost'),
             'notes': _('Notes'),
+            'fuel_voucher_photo': _('Fuel Voucher Photo'),
         }  
 
     def __init__(self, *args, **kwargs):
