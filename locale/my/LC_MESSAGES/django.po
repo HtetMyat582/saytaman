@@ -24,10 +24,8 @@ msgstr ""
 #: .\templates\management\dashboard.html:41
 #: .\templates\management\dashboard.html:65
 #: .\templates\management\dashboard.html:92
-#, fuzzy
-#| msgid "Vehicles"
 msgid "Vehicle"
-msgstr "ယာဥ်အမှတ်"
+msgstr "ယာဥ်"
 
 #: .\donations_and_expenses\forms.py:28 .\mission_records\forms.py:38
 #: .\mission_records\templates\mission_records\mission_details.html:23

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Off-mission fuel refills" %} | Saytaman{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+		<h1 class="h2 mb-0">{% trans "Off-mission fuel refills" %}</h1>
+		<a href="{% url 'fuel_refill_add' %}" class="btn btn-primary">{% trans "Record off-mission refill" %}</a>
+	</div>
+
+	<div class="table-responsive mb-4">
+		<table class="table table-striped align-middle">
+			<thead>
+				<tr>
+					<th>{% trans "Date / time" %}</th>
+					<th>{% trans "Vehicle" %}</th>
+					<th>{% trans "Pump" %}</th>
+					<th>{% trans "Fuel type" %}</th>
+					<th>{% trans "Liters" %}</th>
+					<th>{% trans "Cost" %}</th>
+					<th>{% trans "Notes" %}</th>
+					<th>{% trans "Recorded by" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for refill in page_obj %}
+				<tr>
+					<td>{{ refill.date }} {{ refill.time|time:"H:i" }}</td>
+					<td>{{ refill.vehicle.vehicle_id }}</td>
+					<td>{{ refill.pump_name }}</td>
+					<td>{{ refill.get_fuel_type_display|default:"—" }}</td>
+					<td>{{ refill.liters|floatformat:2 }}</td>
+					<td>{{ refill.cost|floatformat:0 }} MMK</td>
+					<td>{{ refill.notes|default:"—" }}</td>
+					<td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}—{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr><td colspan="8" class="text-muted">{% trans "No off-mission refills recorded." %}</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% if page_obj.has_other_pages %}
+	<nav aria-label="{% trans 'Refill list pages' %}">
+		<ul class="pagination">
+			{% if page_obj.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a></li>
+			{% endif %}
+			<li class="page-item disabled"><span class="page-link">{% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktrans %}</span></li>
+			{% if page_obj.has_next %}
+			<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a></li>
+			{% endif %}
+		</ul>
+	</nav>
+	{% endif %}
+
+	<a href="{% url 'management_dashboard' %}" class="btn btn-outline-secondary">{% trans "Back" %}</a>
+</div>
+{% endblock %}

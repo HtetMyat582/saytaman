@@ -22,8 +22,8 @@
         {% endfor %}
 
         <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-lime">Save refill</button>
-            <a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">Cancel</a>
+            <button type="submit" class="btn btn-lime">{% trans "Save refill" %}</button>
+            <a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">{% trans "View refills list" %}</a>
         </div>
     </form>
 </div>

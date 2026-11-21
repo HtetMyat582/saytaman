@@ -61,7 +61,7 @@ def create_users_for_members(modeladmin, request, queryset):
             linked += 1
             continue
         # create user with a default password
-        default_password = settings.SECRET_KEY[:12] if hasattr(settings, 'SECRET_KEY') else 'changeme123'
+        default_password = settings.SECRET_KEY[:12] if hasattr(settings, 'SECRET_KEY') else 'ChangeMe123!'
         user = User.objects.create_user(username=member.member_id, email=member.email or '', password=default_password)
         user.is_active = True
         user.save()
