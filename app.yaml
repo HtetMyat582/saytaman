@@ -1,4 +1,0 @@
-kind: wasmer.io/App.v0
-volumes:
-  - name: media-storage
-    mount: /media
