@@ -6,46 +6,153 @@
 {{ fuel_formset.management_form }}
 {{ fuel_formset.non_form_errors }}
 
-<div id="fuel-refill-forms">
+<div id="fuel-refill-forms" class="fuel-refill-list">
 	{% for refill_form in fuel_formset %}
-	<div class="border rounded p-3 mb-3">
+	<div class="fuel-refill-card">
+		<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "Refill" %} #{{ forloop.counter }}</h5>
 		{% for hidden in refill_form.hidden_fields %}{{ hidden }}{% endfor %}
+		<div class="mission-form-grid fuel-refill-grid">
 		{% for field in refill_form.visible_fields %}
-		<div class="form-row mb-2">
-			{{ field.label_tag }}
-			{{ field }}
-			{% for error in field.errors %}
-			<div class="text-danger small">{{ error }}</div>
-			{% endfor %}
-		</div>
+			{% if field.name == 'fuel_type' %}
+			<div class="mission-field fuel-field-wide">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
+					<span>{{ field.label }}</span>
+					{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
+				</label>
+				<div class="fuel-type-options">{{ field }}</div>
+				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+			</div>
+			{% elif field.name == 'fuel_voucher_photo' %}
+			<div class="mission-field fuel-field-wide">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
+					<span>{{ field.label }}</span>
+					{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
+				</label>
+				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker>
+					{{ field }}
+					<label class="btn btn-outline-secondary mission-photo-trigger" for="{{ field.id_for_label }}">
+						<i class="bi bi-camera" aria-hidden="true"></i> {% trans "Choose voucher photo" %}
+					</label>
+					{% if field.value %}
+					<div class="mission-photo-card fuel-voucher-current" data-current-voucher>
+						<img src="{{ field.value.url }}" alt="{% trans 'Current fuel voucher' %}">
+						<a href="{{ field.value.url }}" target="_blank" rel="noopener">{% trans "View current voucher" %}</a>
+					</div>
+					{% endif %}
+					<div class="mission-photo-grid fuel-voucher-preview" data-voucher-preview aria-live="polite"></div>
+				</div>
+				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+			</div>
+			{% elif field.name == 'DELETE' %}
+			<div class="fuel-delete-field">
+				{{ field }}
+				<label for="{{ field.id_for_label }}" class="form-check-label text-danger">{{ field.label }}</label>
+			</div>
+			{% else %}
+			<div class="mission-field">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
+					<span>{{ field.label }}</span>
+					{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
+				</label>
+				{{ field }}
+				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+			</div>
+			{% endif %}
 		{% endfor %}
+		</div>
 	</div>
 	{% endfor %}
 </div>
 
 <template id="fuel-refill-empty-form">
-	<div class="border rounded p-3 mb-3">
+	<div class="fuel-refill-card">
+		<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "New refill" %}</h5>
 		{% for hidden in fuel_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
+		<div class="mission-form-grid fuel-refill-grid">
 		{% for field in fuel_formset.empty_form.visible_fields %}
-		<div class="form-row mb-2">
-			{{ field.label_tag }}
-			{{ field }}
-		</div>
+			{% if field.name == 'fuel_type' %}
+			<div class="mission-field fuel-field-wide">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i> {{ field.label }}
+				</label>
+				<div class="fuel-type-options">{{ field }}</div>
+			</div>
+			{% elif field.name == 'fuel_voucher_photo' %}
+			<div class="mission-field fuel-field-wide">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i> {{ field.label }}
+				</label>
+				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker>
+					{{ field }}
+					<label class="btn btn-outline-secondary mission-photo-trigger" for="{{ field.id_for_label }}">
+						<i class="bi bi-camera" aria-hidden="true"></i> {% trans "Choose voucher photo" %}
+					</label>
+					<div class="mission-photo-grid fuel-voucher-preview" data-voucher-preview aria-live="polite"></div>
+				</div>
+				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+			</div>
+			{% else %}
+			<div class="mission-field">
+				<label class="mission-field-label" for="{{ field.id_for_label }}">
+					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i> {{ field.label }}
+				</label>
+				{{ field }}
+			</div>
+			{% endif %}
 		{% endfor %}
+		</div>
 	</div>
 </template>
 
-<button type="button" class="btn btn-outline-secondary" id="add-fuel-refill">
-	{% trans "Add another refill" %}
+<button type="button" class="btn btn-outline-secondary add-fuel-refill-button" id="add-fuel-refill">
+	<i class="bi bi-plus-circle" aria-hidden="true"></i> {% trans "Add another refill" %}
 </button>
 
 <script>
-document.getElementById('add-fuel-refill').addEventListener('click', function () {
+(() => {
+	const refillForms = document.getElementById('fuel-refill-forms');
 	const totalForms = document.getElementById('id_fuel_refills-TOTAL_FORMS');
 	const template = document.getElementById('fuel-refill-empty-form');
-	const html = template.innerHTML.replaceAll('__prefix__', totalForms.value);
+	const addButton = document.getElementById('add-fuel-refill');
 
-	document.getElementById('fuel-refill-forms').insertAdjacentHTML('beforeend', html);
-	totalForms.value = Number(totalForms.value) + 1;
-});
+	addButton.addEventListener('click', () => {
+		const html = template.innerHTML.replaceAll('__prefix__', totalForms.value);
+		refillForms.insertAdjacentHTML('beforeend', html);
+		totalForms.value = Number(totalForms.value) + 1;
+	});
+
+	refillForms.addEventListener('change', event => {
+		if (event.target.matches('.fuel-voucher-input')) {
+			const picker = event.target.closest('[data-voucher-picker]');
+			const preview = picker.querySelector('[data-voucher-preview]');
+			const current = picker.querySelector('[data-current-voucher]');
+			preview.replaceChildren();
+
+			const file = event.target.files[0];
+			if (file) {
+				if (current) current.hidden = true;
+				const card = document.createElement('div');
+				card.className = 'mission-photo-card';
+				const image = document.createElement('img');
+				image.src = URL.createObjectURL(file);
+				image.alt = file.name;
+				const name = document.createElement('small');
+				name.textContent = file.name;
+				card.append(image, name);
+				preview.append(card);
+			} else if (current) {
+				current.hidden = false;
+			}
+		}
+
+		if (event.target.matches('.fuel-voucher-clear')) {
+			const picker = event.target.closest('[data-voucher-picker]');
+			const current = picker.querySelector('[data-current-voucher]');
+			if (current) current.hidden = event.target.checked;
+		}
+	});
+})();
 </script>

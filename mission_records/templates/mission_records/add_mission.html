@@ -4,35 +4,20 @@
 {% block title %}{% trans "Add Mission" %}{% endblock %}
 
 {% block content %}
-<div class="soft-ui-banner col-md-6">
+<div class="soft-ui-banner mission-form-shell col-12 col-lg-9 col-xl-8">
     <h3>{% trans "Add Mission" %}</h3>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <div class="">
-            {% for field in form %}
-            {% if field.name != 'photos' %}
-                <div class="form-row mb-2">
-                    <label class="form-label">
-                        {{ field.label_tag }}
-                        {% if field.field.required %}
-                        <span class="text-danger">*</span>
-                        {% endif %}
-                    </label>
-                    {{ field }}
-                    {% for error in field.errors %}
-                    <div class="text-danger small">{{ error }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% endfor %}
-        </div>
+        {% include "mission_records/_mission_form_fields.html" %}
 
         {% include "mission_records/_mission_photo_upload.html" %}
 
         {% include "mission_records/_fuel_refill_formset.html" %}
         
-        <button class="btn btn-primary mt-5 w-100">{% trans "Save" %}</button>
+        <button class="btn btn-primary mt-4 w-100 mission-submit-button">
+            <i class="bi bi-check2-circle" aria-hidden="true"></i> {% trans "Save mission" %}
+        </button>
     </form>   
 
     

@@ -11,7 +11,7 @@ from mission_records.models import MissionRecord
 def vehicle_list(request):
 
     member = getattr(request.user, 'member_profile', None)
-    if not member:
+    if not member or not request.user.is_staff:
         messages.error(request, 'Only members can view vehicle list.')
         return redirect('home')
 

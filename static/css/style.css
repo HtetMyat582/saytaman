@@ -484,3 +484,278 @@ footer.footer {
 .mission-photo-card .form-check {
     margin-top: 0.25rem;
 }
+
+.mission-form-shell {
+    width: 100%;
+    max-width: 860px;
+    padding: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+
+.mission-form-shell > h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.mission-form-section {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--file-border);
+}
+
+.mission-section-title,
+.fuel-refill-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.mission-section-title i,
+.fuel-refill-heading i {
+    color: var(--lime);
+}
+
+.mission-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.mission-field,
+.mission-field-wide,
+.fuel-field-wide {
+    min-width: 0;
+}
+
+.mission-field-wide,
+.fuel-field-wide {
+    grid-column: 1 / -1;
+}
+
+.mission-field-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.mission-field-label i {
+    width: 1.1rem;
+    color: var(--lime);
+    text-align: center;
+}
+
+.mission-control {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--file-border);
+    border-bottom: 2px solid rgba(73, 150, 54, 0.35);
+    border-radius: 0.8rem;
+    background-color: var(--input-bg);
+    box-shadow: none;
+    color: var(--text);
+    font-size: 16px;
+}
+
+select.mission-control,
+input[type="date"].mission-control,
+input[type="time"].mission-control {
+    appearance: auto;
+}
+
+textarea.mission-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.mission-control:focus {
+    border-color: var(--lime);
+    box-shadow: 0 0 0 0.2rem rgba(73, 150, 54, 0.12);
+    outline: none;
+}
+
+.mission-photo-section {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--file-border);
+}
+
+.mission-photo-section > h4,
+.mission-form-shell > form > h4 {
+    font-weight: 700;
+}
+
+.mission-photo-picker {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.mission-photo-input,
+.fuel-voucher-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.mission-photo-picker:focus-within .mission-photo-trigger {
+    outline: 3px solid rgba(73, 150, 54, 0.35);
+    outline-offset: 3px;
+}
+
+.mission-photo-trigger {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.65rem 1rem;
+    border-color: var(--file-border);
+    border-radius: 0.85rem;
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.mission-photo-trigger:hover {
+    border-color: var(--lime);
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+.fuel-refill-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.fuel-refill-card {
+    padding: 1rem;
+    border: 1px solid var(--file-border);
+    border-radius: 1rem;
+    background: var(--card-bg);
+}
+
+.fuel-refill-heading {
+    font-size: 1rem;
+}
+
+.fuel-type-options > div,
+.fuel-type-options ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fuel-type-options li {
+    list-style: none;
+}
+
+.fuel-type-options label {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--file-border);
+    border-radius: 999px;
+    background: var(--input-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.fuel-type-options input {
+    accent-color: var(--lime);
+}
+
+.fuel-type-options label:has(input:checked) {
+    border-color: var(--lime);
+    background: rgba(73, 150, 54, 0.14);
+}
+
+.fuel-voucher-clear-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #b02a37;
+}
+
+.fuel-voucher-clear-control label {
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.fuel-voucher-current[hidden] {
+    display: none;
+}
+
+.fuel-voucher-current {
+    max-width: 180px;
+}
+
+.fuel-voucher-current a {
+    color: var(--lime);
+    font-size: 0.85rem;
+}
+
+.fuel-delete-field {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fuel-delete-field input {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: #b02a37;
+}
+
+.add-fuel-refill-button,
+.mission-submit-button {
+    min-height: 48px;
+    border-radius: 0.9rem;
+}
+
+@media (max-width: 640px) {
+    .mission-form-shell {
+        padding: 1.15rem;
+        border-radius: 1.25rem;
+    }
+
+    .mission-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.85rem;
+    }
+
+    .mission-form-section {
+        padding: 1rem 0;
+    }
+
+    .fuel-refill-card {
+        padding: 0.85rem;
+    }
+
+    .mission-photo-card {
+        min-width: 0;
+    }
+}

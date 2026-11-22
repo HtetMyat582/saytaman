@@ -5,6 +5,11 @@ from members.models import Member
 from vehicles.models import Vehicle
 from django.utils.translation import gettext_lazy as _
 
+
+class FuelVoucherInput(forms.ClearableFileInput):
+    template_name = 'mission_records/widgets/fuel_voucher_input.html'
+
+
 class MultipleImageInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
@@ -32,6 +37,25 @@ class MultipleImageField(forms.ImageField):
         ]
 
 
+MISSION_FIELD_ICONS = {
+    'mission_number': 'bi-hash',
+    'date': 'bi-calendar3',
+    'time': 'bi-clock',
+    'departure': 'bi-geo-alt',
+    'destination': 'bi-pin-map',
+    'vehicle': 'bi-truck-front',
+    'driver_name': 'bi-person-badge',
+    'assistant_1': 'bi-people',
+    'assistant_2': 'bi-people',
+    'patient_type': 'bi-heart-pulse',
+    'patient_name': 'bi-person',
+    'patient_age': 'bi-calendar-heart',
+    'notes': 'bi-chat-left-text',
+    'donation_received': 'bi-cash-coin',
+    'mission_expenses': 'bi-receipt',
+}
+
+
 class MissionRecordForm(forms.ModelForm):
     photos = MultipleImageField(
         required=False,
@@ -51,21 +75,27 @@ class MissionRecordForm(forms.ModelForm):
             'donation_received', 'mission_expenses',
         ]
         widgets = {
-            'mission_number': forms.TextInput(attrs={'class': 'form-input'}),
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input'}),
-            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-input'}),
-            'departure': forms.TextInput(attrs={'class': 'form-input'}),
-            'destination': forms.TextInput(attrs={'class': 'form-input'}),
-            'vehicle': forms.Select(attrs={'class': 'form-input'}),
-            'driver_name': forms.Select(attrs={'class': 'form-input'}),
-            'assistant_1': forms.Select(attrs={'class': 'form-input'}),
-            'assistant_2': forms.Select(attrs={'class': 'form-input'}),
-            'patient_type': forms.TextInput(attrs={'class': 'form-input'}),
-            'patient_name': forms.TextInput(attrs={'class': 'form-input'}),
-            'patient_age': forms.NumberInput(attrs={'class': 'form-input'}),
-            'notes': forms.Textarea(attrs={'rows': 3, 'class': 'form-input'}),
-            'donation_received': forms.NumberInput(attrs={'class': 'form-input'}),
-            'mission_expenses': forms.NumberInput(attrs={'class': 'form-input'}),
+            'mission_number': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'date': forms.DateInput(attrs={
+                'type': 'date', 'class': 'form-input mission-control',
+            }),
+            'time': forms.TimeInput(attrs={
+                'type': 'time', 'class': 'form-input mission-control',
+            }),
+            'departure': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'destination': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'vehicle': forms.Select(attrs={'class': 'form-input mission-control'}),
+            'driver_name': forms.Select(attrs={'class': 'form-input mission-control'}),
+            'assistant_1': forms.Select(attrs={'class': 'form-input mission-control'}),
+            'assistant_2': forms.Select(attrs={'class': 'form-input mission-control'}),
+            'patient_type': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'patient_name': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'patient_age': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
+            'notes': forms.Textarea(attrs={
+                'rows': 3, 'class': 'form-input mission-control',
+            }),
+            'donation_received': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
+            'mission_expenses': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
         }
         labels = {
             'mission_number': _('Mission Number'),
@@ -87,6 +117,9 @@ class MissionRecordForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        for field_name, icon_class in MISSION_FIELD_ICONS.items():
+            self.fields[field_name].widget.icon_class = icon_class
+
         self.fields['driver_name'].queryset = Member.objects.filter(
             is_active=True
         ).order_by('member_id')
@@ -107,6 +140,16 @@ class MissionRecordForm(forms.ModelForm):
         self.fields['vehicle'].queryset = vehicle_queryset
 
 class MissionFuelRefillForm(forms.ModelForm):
+    FIELD_ICONS = {
+        'time': 'bi-clock',
+        'pump_name': 'bi-fuel-pump',
+        'liters': 'bi-speedometer2',
+        'fuel_type': 'bi-droplet-half',
+        'cost': 'bi-cash-coin',
+        'notes': 'bi-chat-left-text',
+        'fuel_voucher_photo': 'bi-camera',
+    }
+
     class Meta:
         model = MissionFuelRefill
         fields = ('time', 'pump_name', 'liters', 'fuel_type', 'cost', 'notes', 'fuel_voucher_photo')
@@ -120,18 +163,28 @@ class MissionFuelRefillForm(forms.ModelForm):
             'fuel_voucher_photo': _('Fuel Voucher Photo'),
         }
         widgets = {
-            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-input'}),
-            'pump_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'time': forms.TimeInput(attrs={
+                'type': 'time', 'class': 'form-input mission-control',
+            }),
+            'pump_name': forms.TextInput(attrs={'class': 'form-input mission-control'}),
             'liters': forms.NumberInput(attrs={
-                'class': 'form-input', 'min': '0.01', 'step': '0.01',
+                'class': 'form-input mission-control', 'min': '0.01', 'step': '0.01',
             }),
-            'fuel_type': forms.Select(attrs={'class': 'form-input'}),
+            'fuel_type': forms.RadioSelect(attrs={'class': 'fuel-type-radio'}),
             'cost': forms.NumberInput(attrs={
-                'class': 'form-input', 'min': '0', 'step': '1',
+                'class': 'form-input mission-control', 'min': '0', 'step': '1',
             }),
-            'notes': forms.TextInput(attrs={'class': 'form-input'}),
-            'fuel_voucher_photo': forms.ClearableFileInput(attrs={'class': 'form-input'}),
+            'notes': forms.TextInput(attrs={'class': 'form-input mission-control'}),
+            'fuel_voucher_photo': FuelVoucherInput(attrs={
+                'class': 'fuel-voucher-input',
+                'accept': 'image/*',
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, icon_class in self.FIELD_ICONS.items():
+            self.fields[field_name].widget.icon_class = icon_class
 
 
 MissionFuelRefillFormSet = inlineformset_factory(
