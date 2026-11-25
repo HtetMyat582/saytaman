@@ -91,11 +91,13 @@
 	</div>
 
 	<main class="container container-fluid">
+		{% if request.resolver_match.url_name != 'home' %}
 		<div class="site-back-row">
 			<a href="/" class="btn btn-outline-secondary rounded-pill site-back-button" data-site-back>
 				<i class="bi bi-arrow-left" aria-hidden="true"></i> {% trans "Back" %}
 			</a>
 		</div>
+		{% endif %}
 
 		<!-- Global messages block -->
 		<div class="mt-3">
