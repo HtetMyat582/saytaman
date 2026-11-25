@@ -83,7 +83,6 @@ class FuelRefillForm(CurrencyAdminForm):
                 'rows': 3,
                 'placeholder': 'မှတ်ချက် - Notes',
             }),
-            'fuel_voucher_photo': forms.ClearableFileInput(attrs={'class': 'form-input'}),
         }
         labels = {
             'vehicle': _('Vehicle'),
