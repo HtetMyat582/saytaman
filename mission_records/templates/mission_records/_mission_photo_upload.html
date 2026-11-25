@@ -2,7 +2,7 @@
 
 <section class="mission-photo-section mt-4">
     <h4>{% trans "Mission Photos" %}</h4>
-    <p class="text-muted">{% trans "Choose up to 10 images. Previews appear below." %}</p>
+    <p class="site-description">{% trans "Choose up to 10 images. Previews appear below." %}</p>
 
     <div class="mission-photo-picker">
         {{ form.photos }}
@@ -36,7 +36,7 @@
             </label>
         </div>
         {% empty %}
-        <p class="text-muted">{% trans "No photos uploaded yet." %}</p>
+        <p class="site-description">{% trans "No photos uploaded yet." %}</p>
         {% endfor %}
     </div>
     {% endif %}

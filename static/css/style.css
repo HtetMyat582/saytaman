@@ -8,6 +8,7 @@
     --card-bg: #ffffff;
     --box-shadow: rgba(73,150,54,0.15);
     --footer-text: #888888;
+    --description-text: #5f6b75;
     --input-bg: rgba(240,255,238,0.25);
     --avatar-border: rgba(73,150,54,0.2);
     --avatar-bg: #fff;
@@ -26,12 +27,17 @@
     --card-bg: #1f1f1f;
     --box-shadow: rgba(98, 255, 56, 0.15);
     --footer-text: #999999;
+    --description-text: #c4cbd2;
     --input-bg: #212529;
     --avatar-border: rgba(255,255,255,0.06);
     --avatar-bg: #121212;
     --avatar-shadow: rgba(0,0,0,0.4);
     --file-bg: #141414;
     --file-border: rgba(255,255,255,0.06);
+}
+
+.site-description {
+    color: var(--description-text) !important;
 }
 
 body {

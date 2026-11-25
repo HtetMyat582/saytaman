@@ -9,7 +9,7 @@
 	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
 		<div>
 			<h1 class="h2 mb-1">{% trans "Management Dashboard" %}</h1>
-			<p class="text-muted mb-0">
+			<p class="site-description mb-0">
 				{% trans "Financial period" %}: {{ start_date|date:"M j, Y" }} &ndash; {{ end_date|date:"M j, Y" }}
 			</p>
 		</div>
@@ -26,13 +26,13 @@
 
 	<h2 class="h4 mb-3">{% trans "Financial summary" %}</h2>
 	<div class="soft-ui-banner row g-3 mb-5">
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Donation records" %}</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission donations" %}</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Expense records" %}</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission expenses" %}</div><div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "On-mission fuel costs" %}</div><div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Off-mission refills" %}</div><div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div></div></div></div>
-		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="text-muted">{% trans "Mission net income" %}</div><div class="fs-4">{{ mission_net_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Donation records" %}</div><div class="fs-4">{{ donation_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Mission donations" %}</div><div class="fs-4">{{ mission_donations|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Expense records" %}</div><div class="fs-4">{{ expense_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Mission expenses" %}</div><div class="fs-4">{{ mission_expenses|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "On-mission fuel costs" %}</div><div class="fs-4">{{ mission_fuel|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Off-mission refills" %}</div><div class="fs-4">{{ off_mission_fuel_total|floatformat:0 }} MMK</div></div></div></div>
+		<div class="col-12 col-md-6 col-xl-3"><div class="card h-100"><div class="card-body"><div class="site-description">{% trans "Mission net income" %}</div><div class="fs-4">{{ mission_net_total|floatformat:0 }} MMK</div></div></div></div>
 	</div>
 
 	<h2 class="h4 mb-3">{% trans "Recent off-mission refills" %}</h2>
@@ -52,14 +52,14 @@
 					<td>{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}&mdash;{% endif %}</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="6" class="text-muted">{% trans "No off-mission refills in this period." %}</td></tr>
+				<tr><td colspan="6" class="site-description">{% trans "No off-mission refills in this period." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 
 	<h2 class="h4 mb-3">{% trans "Vehicles and missions" %}</h2>
-	<p class="text-muted">{% trans "Missions in this financial period:" %} {{ mission_count }}</p>
+	<p class="site-description">{% trans "Missions in this financial period:" %} {{ mission_count }}</p>
 	<div class="table-responsive mb-5">
 		<table class="table table-striped align-middle">
 			<thead>
@@ -80,7 +80,7 @@
 					<td>{% if vehicle.active_mission %}{{ vehicle.active_mission.driver_name.name }}{% else %}&mdash;{% endif %}</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="4" class="text-muted">{% trans "No vehicles found." %}</td></tr>
+				<tr><td colspan="4" class="site-description">{% trans "No vehicles found." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
@@ -104,7 +104,7 @@
 					<td>{{ mission.net_income|floatformat:0 }} MMK</td>
 				</tr>
 				{% empty %}
-				<tr><td colspan="7" class="text-muted">{% trans "No missions in this period." %}</td></tr>
+				<tr><td colspan="7" class="site-description">{% trans "No missions in this period." %}</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>

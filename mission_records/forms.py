@@ -52,7 +52,7 @@ MISSION_FIELD_ICONS = {
     'driver_name': 'bi-person-badge',
     'assistant_1': 'bi-people',
     'assistant_2': 'bi-people',
-    'patient_type': 'bi-heart-pulse',
+    'patient_type': 'bi-clipboard2-pulse',
     'patient_name': 'bi-person',
     'patient_age': 'bi-calendar-heart',
     'notes': 'bi-chat-left-text',
@@ -127,11 +127,11 @@ class MissionRecordForm(forms.ModelForm):
             }),
             'departure': forms.TextInput(attrs={
                 'class': 'form-input mission-control',
-                'placeholder': 'ထွက်ခွာမည့်နေရာ',
+                'placeholder': 'ခေါ်ဆောင်သည့်နေရာ',
             }),
             'destination': forms.TextInput(attrs={
                 'class': 'form-input mission-control',
-                'placeholder': 'သွားမည့်နေရာ',
+                'placeholder': 'ပို့ဆောင်မည့်နေရာ',
             }),
             'vehicle': forms.Select(attrs={'class': 'form-input mission-control'}),
             'driver_name': forms.Select(attrs={'class': 'form-input mission-control'}),
