@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from .models import Donation, Expense, FuelRefill
 from shared.forms import (
-    CommaDecimalField,
+    CommaIntegerField,
     CurrencyTextInput,
     mark_browser_local_defaults,
 )
@@ -14,14 +14,13 @@ class CurrencyAdminForm(forms.ModelForm):
 
 
 class DonationAdminForm(CurrencyAdminForm):
-    amount = CommaDecimalField(
-        max_digits=10,
-        decimal_places=2,
+    amount = CommaIntegerField(
+        max_value=99_999_999,
         required=False,
         min_value=0,
         widget=CurrencyTextInput(attrs={
             'placeholder': 'Donation amount',
-        }, decimal_places=2),
+        }),
     )
 
     class Meta:
@@ -30,9 +29,8 @@ class DonationAdminForm(CurrencyAdminForm):
 
 
 class ExpenseAdminForm(CurrencyAdminForm):
-    amount = CommaDecimalField(
-        max_digits=10,
-        decimal_places=0,
+    amount = CommaIntegerField(
+        max_value=9_999_999_999,
         required=False,
         min_value=0,
         widget=CurrencyTextInput(attrs={
@@ -45,10 +43,9 @@ class ExpenseAdminForm(CurrencyAdminForm):
         fields = '__all__'
 
 
-class FuelRefillForm(forms.ModelForm):
-    cost = CommaDecimalField(
-        max_digits=12,
-        decimal_places=0,
+class FuelRefillForm(CurrencyAdminForm):
+    cost = CommaIntegerField(
+        max_value=999_999_999_999,
         min_value=0,
         label=_('Cost'),
         widget=CurrencyTextInput(attrs={
@@ -57,9 +54,6 @@ class FuelRefillForm(forms.ModelForm):
             'min': '0',
         }),
     )
-
-    class Media:
-        js = ('js/form-inputs.js',)
 
     class Meta:
         model = FuelRefill

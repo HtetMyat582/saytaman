@@ -1,13 +1,6 @@
 from django import forms
 
 
-class CommaDecimalField(forms.DecimalField):
-	def to_python(self, value):
-		if isinstance(value, str):
-			value = value.replace(',', '').strip()
-		return super().to_python(value)
-
-
 class CommaIntegerField(forms.IntegerField):
 	def to_python(self, value):
 		if isinstance(value, str):
@@ -16,11 +9,10 @@ class CommaIntegerField(forms.IntegerField):
 
 
 class CurrencyTextInput(forms.TextInput):
-	def __init__(self, attrs=None, decimal_places=0):
+	def __init__(self, attrs=None):
 		widget_attrs = {
 			'data-currency-input': 'true',
-			'data-decimal-places': str(decimal_places),
-			'inputmode': 'decimal' if decimal_places else 'numeric',
+			'inputmode': 'numeric',
 		}
 		widget_attrs.update(attrs or {})
 		super().__init__(attrs=widget_attrs)

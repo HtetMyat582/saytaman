@@ -36,6 +36,13 @@
 					if (/\d/.test(formatted[newCaret])) digitsSeen++;
 					newCaret++;
 				}
+
+	function initializeCurrencyInputs(root = document) {
+		const inputs = [];
+		if (root.matches?.('[data-currency-input]')) inputs.push(root);
+		inputs.push(...(root.querySelectorAll?.('[data-currency-input]') || []));
+		inputs.forEach(input => formatCurrencyInput(input));
+	}
 			}
 			input.setSelectionRange(newCaret, newCaret);
 		}
@@ -79,8 +86,12 @@
 	}, true);
 
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', () => initializeLocalDateTime());
+		document.addEventListener('DOMContentLoaded', () => {
+			initializeLocalDateTime();
+			initializeCurrencyInputs();
+		});
 	} else {
 		initializeLocalDateTime();
+		initializeCurrencyInputs();
 	}
 })();

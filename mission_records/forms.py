@@ -237,9 +237,8 @@ class MissionRecordForm(forms.ModelForm):
         self.fields['vehicle'].queryset = vehicle_queryset
 
 class MissionFuelRefillForm(forms.ModelForm):
-    cost = CommaDecimalField(
-        max_digits=12,
-        decimal_places=0,
+    cost = CommaIntegerField(
+        max_value=999_999_999_999,
         min_value=0,
         label=_('Cost'),
         widget=CurrencyTextInput(attrs={
