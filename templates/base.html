@@ -177,14 +177,17 @@
 	</footer>
 
 	<script>
-		document.querySelector('[data-site-back]').addEventListener('click', event => {
-			if (window.history.length > 1) {
-				if (document.referrer.startsWith(window.location.origin)) {
-					event.preventDefault();
-					window.history.back();
+		const backButton = document.querySelector('[data-site-back]');
+		if (backButton) {
+			backButton.addEventListener('click', event => {
+				if (window.history.length > 1) {
+					if (document.referrer.startsWith(window.location.origin)) {
+						event.preventDefault();
+						window.history.back();
+					}
 				}
-			}
-		});
+			});
+		}
 
 		const toggle = document.getElementById('toggle-theme');
 		const setTheme = theme => {
