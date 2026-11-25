@@ -17,6 +17,25 @@
     --file-border: rgba(73,150,54,0.12);
 }
 
+.site-back-row {
+    margin: 0 0 1rem;
+}
+
+.site-back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-color: var(--file-border);
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+.site-back-button:hover {
+    border-color: var(--lime);
+    background: var(--input-bg);
+    color: var(--text-hover);
+}
+
 /* Dark Theme */
 [data-theme="dark"] {
     --bg: #333333;

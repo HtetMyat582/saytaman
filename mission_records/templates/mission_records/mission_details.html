@@ -186,7 +186,6 @@
     
     
     <div class="d-flex justify-content-end mt-2 mb-5">
-        <a href="javascript:history.back()" class="btn btn-lime">&larr; {% trans "Back" %}</a>
         <a href="{% url 'mission_list' %}" class="btn btn-lime mx-3">{% trans "View all missions" %}</a>
         {% if user.is_authenticated %}
         <a href="{% url 'add_mission' %}" class="btn btn-primary btn-large">{% trans "Add New Mission" %}</a>

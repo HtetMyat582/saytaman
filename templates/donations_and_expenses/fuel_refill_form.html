@@ -4,7 +4,8 @@
 {% block title %}{% if refill %}{% trans "Edit off-mission refill" %}{% else %}{% trans "Record Fuel Refill" %}{% endif %} | Saytaman{% endblock %}
 
 {% block content %}
-<div class="soft-ui-banner col-md-6">
+<div class="container py-4">
+<div class="soft-ui-banner col-md-8">
     <h3>{% if refill %}{% trans "Edit off-mission refill" %}{% else %}{% trans "Record off-mission refill" %}{% endif %}</h3>
 
     <form method="post" enctype="multipart/form-data" novalidate>
@@ -50,7 +51,7 @@
         </div>
     </form>
 </div>
-<a href="javascript:history.back()" class="btn btn-link mt-3">&larr; {% trans "Back" %}</a>
+</div>
 <script>
 (() => {
     const picker = document.querySelector('[data-offmission-voucher-picker]');

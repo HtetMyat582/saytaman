@@ -7,45 +7,61 @@
 <div class="container py-4">
 	<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
 		<h1 class="h2 mb-0">{% trans "Off-mission refill details" %}</h1>
-		<a href="{% url 'fuel_refill_edit' refill.pk %}" class="btn btn-primary">{% trans "Edit refill" %}</a>
+		<a href="{% url 'fuel_refill_edit' refill.pk %}" class="btn btn-primary rounded-pill"><i class="bi bi-pencil-square" aria-hidden="true"></i> {% trans "Edit refill" %}</a>
 	</div>
 
-	<div class="card shadow-sm">
-		<div class="card-body">
-			<dl class="row mb-0">
-				<dt class="col-sm-4">{% trans "Vehicle" %}</dt>
-				<dd class="col-sm-8">{{ refill.vehicle.vehicle_id }}</dd>
-				<dt class="col-sm-4">{% trans "Date" %}</dt>
-				<dd class="col-sm-8">{{ refill.date }}</dd>
-				<dt class="col-sm-4">{% trans "Time" %}</dt>
-				<dd class="col-sm-8">{{ refill.time|time:"H:i" }}</dd>
-				<dt class="col-sm-4">{% trans "Pump" %}</dt>
-				<dd class="col-sm-8">{{ refill.pump_name }}</dd>
-				<dt class="col-sm-4">{% trans "Fuel type" %}</dt>
-				<dd class="col-sm-8">{{ refill.get_fuel_type_display|default:"—" }}</dd>
-				<dt class="col-sm-4">{% trans "Liters" %}</dt>
-				<dd class="col-sm-8">{{ refill.liters|floatformat:2 }}</dd>
-				<dt class="col-sm-4">{% trans "Cost" %}</dt>
-				<dd class="col-sm-8">{{ refill.cost|floatformat:0 }} MMK</dd>
-				<dt class="col-sm-4">{% trans "Notes" %}</dt>
-				<dd class="col-sm-8">{{ refill.notes|default:"—" }}</dd>
-				<dt class="col-sm-4">{% trans "Recorded by" %}</dt>
-				<dd class="col-sm-8">{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}—{% endif %}</dd>
-			</dl>
+	<div class="soft-ui-banner col-md-8">
+		<div class="form-row">
+			<div class="form-label">{% trans "Vehicle" %}</div>
+			<div class="form-input">{{ refill.vehicle.vehicle_id }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Date" %}</div>
+			<div class="form-input">{{ refill.date }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Time" %}</div>
+			<div class="form-input">{{ refill.time|time:"H:i" }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Pump" %}</div>
+			<div class="form-input">{{ refill.pump_name }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Fuel type" %}</div>
+			<div class="form-input">{{ refill.get_fuel_type_display|default:"—" }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Liters" %}</div>
+			<div class="form-input">{{ refill.liters|floatformat:2 }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Cost" %}</div>
+			<div class="form-input">{{ refill.cost|floatformat:0 }} MMK</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Notes" %}</div>
+			<div class="form-input">{{ refill.notes|default:"—" }}</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label">{% trans "Recorded by" %}</div>
+			<div class="form-input">{% if refill.created_by %}{{ refill.created_by.member_id }}{% else %}—{% endif %}</div>
+		</div>
 
 			{% if refill.fuel_voucher_photo %}
-			<div class="mt-4">
-				<h2 class="h5">{% trans "Fuel voucher photo" %}</h2>
-				<a href="{{ refill.fuel_voucher_photo.url }}" target="_blank" rel="noopener">
-					<img src="{{ refill.fuel_voucher_photo.url }}" alt="{% trans 'Fuel voucher photo' %}" class="img-fluid rounded" style="max-height: 480px;">
-				</a>
+			<div class="form-row align-items-start">
+				<div class="form-label">{% trans "Fuel voucher photo" %}</div>
+				<div class="form-input">
+					<a href="{{ refill.fuel_voucher_photo.url }}" target="_blank" rel="noopener">
+						<img src="{{ refill.fuel_voucher_photo.url }}" alt="{% trans 'Fuel voucher photo' %}" class="img-fluid rounded" style="max-height: 480px;">
+					</a>
+				</div>
 			</div>
 			{% endif %}
-		</div>
 	</div>
 
 	<div class="d-flex flex-wrap gap-2 mt-3">
-		<a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary">{% trans "Back to refills" %}</a>
+		<a href="{% url 'fuel_refill_list' %}" class="btn btn-outline-secondary rounded-pill">{% trans "View refills list" %}</a>
 	</div>
 </div>
 {% endblock %}
