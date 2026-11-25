@@ -49,10 +49,12 @@
 				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 			</div>
 			{% elif field.name == 'DELETE' %}
+			{% if refill_form.instance.pk %}
 			<div class="fuel-delete-field">
 				{{ field }}
 				<label for="{{ field.id_for_label }}" class="form-check-label text-danger">{{ field.label }}</label>
 			</div>
+			{% endif %}
 			{% else %}
 			<div class="mission-field">
 				<label class="mission-field-label" for="{{ field.id_for_label }}">

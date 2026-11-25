@@ -3,7 +3,7 @@ from django.forms import inlineformset_factory
 from .models import MissionRecord, MissionRecordPhoto, MissionFuelRefill
 from members.models import Member
 from vehicles.models import Vehicle
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language
 from shared.forms import (
     CommaIntegerField,
     CurrencyTextInput,
@@ -60,22 +60,21 @@ MISSION_FIELD_ICONS = {
     'mission_expenses': 'bi-receipt',
 }
 
-PATIENT_TYPE_CHOICES = [
-    ('Hospital Admission Patient', _('ဆေးရုံတက်လူနာ - Hospital Admission Patient')),
-    ('Hospital Discharge Patient', _('ဆေးရုံဆင်းလူနာ - Hospital Discharge Patient')),
-    ('Returning Home Patient', _('နေရပ်ပြန်လူနာ - Returning Home Patient')),
-    ('Accident Patient', _('အက်စီးဒန့်လူနာ - Accident Patient')),
-    ('Deceased (DB)', _('ကွယ်လွန်သူရုပ်ကလာပ် - Deceased (DB)')),
-    ('Mental Health Patient', _('စိတ်ကျန်းမာရေးချို့တဲ့လူနာ - Mental Health Patient')),
-    ('Substance Withdrawal Patient', _('မူးယစ်ဆေးဖြတ်လူနာ - Substance Withdrawal Patient')),
-    ('Clinic Patient', _('ဆေးခန်းပြလူနာ - Clinic Patient')),
-    ('Hospital Transfer Patient', _('ဆေးရုံပြောင်းလူနာ - Hospital Transfer Patient')),
-    ('Maternity Patient', _('မီးဖွားလူနာ - Maternity Patient')),
-    ('Emergency Patient', _('အရေးပေါ်လူနာ - Emergency Patient')),
-    ('Injury Patient', _('ဒဏ်ရာရလူနာ - Injury Patient')),
-    ('Pediatric Patient', _('ကလေးလူနာ - Pediatric Patient')),
-    ('Elderly Patient', _('သက်ကြီးလူနာ - Elderly Patient')),
-    ('Follow-up Patient', _('ပြန်လည်စစ်ဆေးရန်လူနာ - Follow-up Patient')),
+PATIENT_TYPE_LABELS = [
+    ('Hospital Admission Patient', 'Hospital Admission Patient', 'ဆေးရုံတက်လူနာ'),
+    ('Hospital Discharge Patient', 'Hospital Discharge Patient', 'ဆေးရုံဆင်းလူနာ'),
+    ('Returning Home Patient', 'Returning Home Patient', 'နေရပ်ပြန်လူနာ'),
+    ('Accident Patient', 'Accident Patient', 'အက်စီးဒန့်လူနာ'),
+    ('Deceased (DB)', 'Deceased (DB)', 'ကွယ်လွန်သူရုပ်ကလာပ်'),
+    ('Mental Health Patient', 'Mental Health Patient', 'စိတ်ကျန်းမာရေးချို့တဲ့လူနာ'),
+    ('Substance Withdrawal Patient', 'Substance Withdrawal Patient', 'မူးယစ်ဆေးဖြတ်လူနာ'),
+    ('Clinic Patient', 'Clinic Patient', 'ဆေးခန်းပြလူနာ'),
+    ('Hospital Transfer Patient', 'Hospital Transfer Patient', 'ဆေးရုံပြောင်းလူနာ'),
+    ('Maternity Patient', 'Maternity Patient', 'မီးဖွားလူနာ'),
+    ('Emergency Patient', 'Emergency Patient', 'အရေးပေါ်လူနာ'),
+    ('Injury Patient', 'Injury Patient', 'ဒဏ်ရာရလူနာ'),
+    ('Pediatric Patient', 'Pediatric Patient', 'ကလေးလူနာ'),
+    ('Follow-up Patient', 'Follow-up Patient', 'ရက်ချိန်းလူနာ'),
 ]
 
 
@@ -185,7 +184,11 @@ class MissionRecordForm(forms.ModelForm):
         existing_patient_type = (
             self.initial.get('patient_type') or self.instance.patient_type
         )
-        patient_choices = list(PATIENT_TYPE_CHOICES)
+        use_burmese = (get_language() or '').lower().startswith('my')
+        patient_choices = [
+            (value, burmese if use_burmese else english)
+            for value, english, burmese in PATIENT_TYPE_LABELS
+        ]
         patient_values = {value for value, _label in patient_choices}
         if existing_patient_type and existing_patient_type not in patient_values:
             patient_choices.insert(0, (existing_patient_type, existing_patient_type))
