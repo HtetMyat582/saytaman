@@ -200,16 +200,6 @@ class MissionRecordForm(forms.ModelForm):
             }),
         )
 
-        self.fields['vehicle'].empty_label = 'STM-1'
-        if driver_member:
-            self.fields['driver_name'].empty_label = (
-                f'{driver_member.member_id} - {driver_member.name}'
-            )
-        else:
-            self.fields['driver_name'].empty_label = _('Select driver')
-        self.fields['assistant_1'].empty_label = _('Select assistant 1')
-        self.fields['assistant_2'].empty_label = _('Select assistant 2')
-
         self.fields['patient_name'].widget.attrs['placeholder'] = (
             'လူနာအမည် - Patient name'
         )
@@ -226,8 +216,13 @@ class MissionRecordForm(forms.ModelForm):
         self.fields['assistant_2'].queryset = Member.objects.filter(
             is_active=True
         ).order_by('member_id')
+        self.fields['driver_name'].empty_label = None
+        self.fields['assistant_1'].empty_label = _('Select assistant 1')
+        self.fields['assistant_2'].empty_label = _('Select assistant 2')
 
-        vehicle_queryset = Vehicle.objects.filter(mission_status='Stand-by')
+        vehicle_queryset = Vehicle.objects.filter(
+            mission_status='Stand-by'
+        ).order_by('vehicle_id')
 
         if self.instance.pk:
             vehicle_queryset |= Vehicle.objects.filter(
@@ -235,6 +230,16 @@ class MissionRecordForm(forms.ModelForm):
             )
 
         self.fields['vehicle'].queryset = vehicle_queryset
+        self.fields['vehicle'].empty_label = None
+
+        if not self.instance.pk:
+            if driver_member and self.fields['driver_name'].queryset.filter(
+                pk=driver_member.pk
+            ).exists():
+                self.initial['driver_name'] = driver_member.pk
+            first_available_vehicle = self.fields['vehicle'].queryset.first()
+            if first_available_vehicle:
+                self.initial['vehicle'] = first_available_vehicle.pk
 
 class MissionFuelRefillForm(forms.ModelForm):
     cost = CommaIntegerField(

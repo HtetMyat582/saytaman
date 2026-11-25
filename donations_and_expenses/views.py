@@ -23,6 +23,17 @@ def fuel_refill_list(request):
 
 
 @dashboard_access_required
+def fuel_refill_detail(request, pk):
+    refill = get_object_or_404(
+        FuelRefill.objects.select_related('vehicle', 'created_by'),
+        pk=pk,
+    )
+    return render(request, 'donations_and_expenses/fuel_refill_detail.html', {
+        'refill': refill,
+    })
+
+
+@dashboard_access_required
 def fuel_refill_add(request):
     if request.method == 'POST':
         form = FuelRefillForm(request.POST, request.FILES)

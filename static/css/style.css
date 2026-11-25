@@ -464,6 +464,7 @@ footer.footer {
 }
 
 .mission-photo-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -472,6 +473,44 @@ footer.footer {
     border: 1px solid var(--file-border);
     border-radius: 0.75rem;
     overflow-wrap: anywhere;
+}
+
+.mission-photo-remove {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 75%);
+    border-radius: 50%;
+    background: rgb(25 25 25 / 78%);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
+    color: #fff;
+    cursor: pointer;
+}
+
+.mission-photo-remove:hover,
+.mission-photo-remove:focus-visible {
+    background: #b02a37;
+    color: #fff;
+}
+
+.mission-photo-existing-remove input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    opacity: 0;
+    margin: 0;
+    clip: rect(0, 0, 0, 0);
+}
+
+.mission-photo-existing-remove:has(input:checked) {
+    background: #b02a37;
 }
 
 .mission-photo-card img {
@@ -714,10 +753,7 @@ textarea.mission-control {
 }
 
 .fuel-voucher-clear-control {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: #b02a37;
+    display: none;
 }
 
 .fuel-voucher-clear-control label {

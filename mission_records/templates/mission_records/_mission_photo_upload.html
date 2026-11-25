@@ -25,18 +25,16 @@
     <h5 class="mt-4">{% trans "Uploaded photos" %}</h5>
     <div class="mission-photo-grid">
         {% for photo in mission.mission_photos.all %}
-        <label class="mission-photo-card">
+        <div class="mission-photo-card">
             <img src="{{ photo.image.url }}" alt="{% trans 'Mission photo' %}">
-            <span class="form-check">
+            <label class="mission-photo-remove mission-photo-existing-remove" aria-label="{% trans 'Remove uploaded photo' %}">
                 <input class="form-check-input"
                        type="checkbox"
                        name="delete_photos"
                        value="{{ photo.pk }}">
-                <span class="form-check-label text-danger">
-                    {% trans "Remove" %}
-                </span>
-            </span>
-        </label>
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </label>
+        </div>
         {% empty %}
         <p class="text-muted">{% trans "No photos uploaded yet." %}</p>
         {% endfor %}

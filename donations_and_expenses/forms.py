@@ -13,6 +13,10 @@ class CurrencyAdminForm(forms.ModelForm):
         js = ('js/form-inputs.js',)
 
 
+class FuelVoucherInput(forms.ClearableFileInput):
+    template_name = 'mission_records/widgets/fuel_voucher_input.html'
+
+
 class DonationAdminForm(CurrencyAdminForm):
     amount = CommaIntegerField(
         max_value=99_999_999,
@@ -70,6 +74,10 @@ class FuelRefillForm(CurrencyAdminForm):
                 'class': 'form-input', 'min': '0.01', 'step': '0.01',
             }),
             'fuel_type': forms.Select(attrs={'class': 'form-input'}),
+            'fuel_voucher_photo': FuelVoucherInput(attrs={
+                'class': 'fuel-voucher-input',
+                'accept': 'image/*',
+            }),
             'notes': forms.Textarea(attrs={
                 'class': 'form-input',
                 'rows': 3,
@@ -92,7 +100,11 @@ class FuelRefillForm(CurrencyAdminForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['vehicle'].queryset = self.fields['vehicle'].queryset.order_by('vehicle_id')
-        self.fields['vehicle'].empty_label = 'STM-1'
+        self.fields['vehicle'].empty_label = None
+        if not self.instance.pk:
+            first_vehicle = self.fields['vehicle'].queryset.first()
+            if first_vehicle:
+                self.initial['vehicle'] = first_vehicle.pk
         self.fields['liters'].widget.attrs['placeholder'] = 'Liters'
         self.fields['notes'].widget.attrs['placeholder'] = 'မှတ်ချက် - Notes'
         self.fields['fuel_type'].choices = [

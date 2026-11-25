@@ -39,6 +39,9 @@
 					<div class="mission-photo-card fuel-voucher-current" data-current-voucher>
 						<img src="{{ field.value.url }}" alt="{% trans 'Current fuel voucher' %}">
 						<a href="{{ field.value.url }}" target="_blank" rel="noopener">{% trans "View current voucher" %}</a>
+						<button type="button" class="mission-photo-remove" data-remove-existing-voucher aria-label="{% trans 'Remove current voucher' %}">
+							<i class="bi bi-x-lg" aria-hidden="true"></i>
+						</button>
 					</div>
 					{% endif %}
 					<div class="mission-photo-grid fuel-voucher-preview" data-voucher-preview aria-live="polite"></div>
@@ -132,6 +135,8 @@
 			const picker = event.target.closest('[data-voucher-picker]');
 			const preview = picker.querySelector('[data-voucher-preview]');
 			const current = picker.querySelector('[data-current-voucher]');
+			const clearCheckbox = picker.querySelector('.fuel-voucher-clear');
+			if (clearCheckbox) clearCheckbox.checked = false;
 			preview.replaceChildren();
 
 			const file = event.target.files[0];
@@ -162,6 +167,29 @@
 			const picker = event.target.closest('[data-voucher-picker]');
 			const current = picker.querySelector('[data-current-voucher]');
 			if (current) current.hidden = event.target.checked;
+		}
+	});
+
+	refillForms.addEventListener('click', event => {
+		const removeSelected = event.target.closest('[data-remove-voucher]');
+		const removeExisting = event.target.closest('[data-remove-existing-voucher]');
+		if (!removeSelected && !removeExisting) return;
+
+		const picker = event.target.closest('[data-voucher-picker]');
+		const input = picker.querySelector('.fuel-voucher-input');
+		const preview = picker.querySelector('[data-voucher-preview]');
+		const current = picker.querySelector('[data-current-voucher]');
+
+		if (removeSelected) {
+			input.value = '';
+			preview.replaceChildren();
+			if (current) current.hidden = false;
+		} else {
+			const clearCheckbox = picker.querySelector('.fuel-voucher-clear');
+			if (clearCheckbox) {
+				clearCheckbox.checked = true;
+				clearCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+			}
 		}
 	});
 })();
