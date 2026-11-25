@@ -3,7 +3,8 @@
 <div class="mission-identity-grid">
 	{% for field in form %}
 	{% if field.name == 'mission_number' or field.name == 'date' or field.name == 'time' %}
-	<div class="mission-field mission-identity-field">
+	{% if field.name != 'mission_number' or show_mission_number %}
+	<div class="mission-field mission-identity-field{% if field.name == 'mission_number' %} mission-field-wide{% endif %}">
 		<label class="mission-field-label"{% if field.name != 'mission_number' or can_edit_mission_number %} for="{{ field.id_for_label }}"{% endif %}>
 			<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
 			<span>{{ field.label }}</span>
@@ -16,6 +17,7 @@
 		{% endif %}
 		{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 	</div>
+	{% endif %}
 	{% endif %}
 	{% endfor %}
 </div>

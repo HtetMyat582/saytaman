@@ -511,7 +511,7 @@ footer.footer {
 
 .mission-identity-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     margin-bottom: 1rem;
 }
@@ -771,17 +771,6 @@ textarea.mission-control {
     .mission-identity-grid {
         gap: 0.4rem;
         margin-bottom: 0.85rem;
-    }
-
-    .mission-identity-field .mission-field-label {
-        gap: 0.2rem;
-        font-size: 0.72rem;
-        line-height: 1.15;
-    }
-
-    .mission-identity-field .mission-field-label i {
-        width: auto;
-        font-size: 0.75rem;
     }
 
     .mission-identity-field .mission-control,

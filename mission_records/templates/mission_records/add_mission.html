@@ -9,7 +9,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        {% include "mission_records/_mission_form_fields.html" %}
+        {% include "mission_records/_mission_form_fields.html" with show_mission_number=False %}
 
         {% include "mission_records/_mission_photo_upload.html" %}
 
