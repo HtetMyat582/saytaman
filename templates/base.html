@@ -61,6 +61,7 @@
 		<a class="btn nav-link" href="{% url 'login' %}"><i class="bi bi-person-circle"></i> {% trans "Login" %}</a>
 		{% endif %}
 		<!-- Language switch toggle -->
+		<div>
 		<form action="{% url 'set_language' %}" method="post" class="">
 			{% csrf_token %}
 			<input type="hidden" name="next" value="{{ request.path }}">
@@ -87,6 +88,7 @@
 			{% endwith %}
 			{% endif %}
 		</form>
+		</div>	
 		<button class="btn nav-link" id="toggle-theme" title="Light Mode/Dark Mode"><i class="bi bi-moon-stars-fill"></i></button>
 	</div>
 
