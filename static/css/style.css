@@ -496,12 +496,6 @@ footer.footer {
     font-weight: 700;
 }
 
-.mission-form-section {
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--file-border);
-}
-
-.mission-section-title,
 .fuel-refill-heading {
     display: flex;
     align-items: center;
@@ -511,9 +505,36 @@ footer.footer {
     font-weight: 700;
 }
 
-.mission-section-title i,
 .fuel-refill-heading i {
     color: var(--lime);
+}
+
+.mission-identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.mission-main-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mission-route-field {
+    grid-column: 1 / -1;
+}
+
+.mission-number-readonly {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--file-border);
+    border-bottom: 2px solid rgba(73, 150, 54, 0.35);
+    border-radius: 0.8rem;
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 16px;
 }
 
 .mission-form-grid {
@@ -747,8 +768,32 @@ textarea.mission-control {
         gap: 0.85rem;
     }
 
-    .mission-form-section {
-        padding: 1rem 0;
+    .mission-identity-grid {
+        gap: 0.4rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .mission-identity-field .mission-field-label {
+        gap: 0.2rem;
+        font-size: 0.72rem;
+        line-height: 1.15;
+    }
+
+    .mission-identity-field .mission-field-label i {
+        width: auto;
+        font-size: 0.75rem;
+    }
+
+    .mission-identity-field .mission-control,
+    .mission-number-readonly {
+        min-height: 44px;
+        padding: 0.55rem 0.4rem;
+        font-size: 16px;
+    }
+
+    .mission-main-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
     }
 
     .fuel-refill-card {

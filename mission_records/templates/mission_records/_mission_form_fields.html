@@ -1,77 +1,37 @@
 {% load i18n %}
 
-<section class="mission-form-section">
-	<h4 class="mission-section-title"><i class="bi bi-signpost-2" aria-hidden="true"></i> {% trans "Mission route" %}</h4>
-	<div class="mission-form-grid">
-		{% for field in form %}
-		{% if field.name == 'mission_number' or field.name == 'date' or field.name == 'time' or field.name == 'departure' or field.name == 'destination' %}
-		<div class="mission-field{% if field.name == 'mission_number' or field.name == 'departure' or field.name == 'destination' %} mission-field-wide{% endif %}">
-			<label class="mission-field-label" for="{{ field.id_for_label }}">
-				<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
-				<span>{{ field.label }}</span>
-				{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
-			</label>
+<div class="mission-identity-grid">
+	{% for field in form %}
+	{% if field.name == 'mission_number' or field.name == 'date' or field.name == 'time' %}
+	<div class="mission-field mission-identity-field">
+		<label class="mission-field-label"{% if field.name != 'mission_number' or can_edit_mission_number %} for="{{ field.id_for_label }}"{% endif %}>
+			<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
+			<span>{{ field.label }}</span>
+			{% if field.name != 'mission_number' and field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
+		</label>
+		{% if field.name == 'mission_number' and not can_edit_mission_number %}
+		<div class="mission-number-readonly">{{ field.value }}</div>
+		{% else %}
 			{{ field }}
-			{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-		</div>
 		{% endif %}
-		{% endfor %}
+		{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 	</div>
-</section>
+	{% endif %}
+	{% endfor %}
+</div>
 
-<section class="mission-form-section">
-	<h4 class="mission-section-title"><i class="bi bi-people" aria-hidden="true"></i> {% trans "Vehicle and crew" %}</h4>
-	<div class="mission-form-grid">
-		{% for field in form %}
-		{% if field.name == 'vehicle' or field.name == 'driver_name' or field.name == 'assistant_1' or field.name == 'assistant_2' %}
-		<div class="mission-field">
-			<label class="mission-field-label" for="{{ field.id_for_label }}">
-				<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
-				<span>{{ field.label }}</span>
-				{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
-			</label>
-			{{ field }}
-			{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-		</div>
-		{% endif %}
-		{% endfor %}
+<div class="mission-form-grid mission-main-grid">
+	{% for field in form %}
+	{% if field.name != 'photos' and field.name != 'mission_number' and field.name != 'date' and field.name != 'time' %}
+	<div class="mission-field{% if field.name == 'departure' or field.name == 'destination' %} mission-route-field{% endif %}">
+		<label class="mission-field-label" for="{{ field.id_for_label }}">
+			<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
+			<span>{{ field.label }}</span>
+			{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
+		</label>
+		{{ field }}
+		{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 	</div>
-</section>
-
-<section class="mission-form-section">
-	<h4 class="mission-section-title"><i class="bi bi-heart-pulse" aria-hidden="true"></i> {% trans "Patient information" %}</h4>
-	<div class="mission-form-grid">
-		{% for field in form %}
-		{% if field.name == 'patient_type' or field.name == 'patient_name' or field.name == 'patient_age' or field.name == 'notes' %}
-		<div class="mission-field{% if field.name == 'notes' %} mission-field-wide{% endif %}">
-			<label class="mission-field-label" for="{{ field.id_for_label }}">
-				<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
-				<span>{{ field.label }}</span>
-				{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
-			</label>
-			{{ field }}
-			{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-		</div>
-		{% endif %}
-		{% endfor %}
-	</div>
-</section>
-
-<section class="mission-form-section">
-	<h4 class="mission-section-title"><i class="bi bi-cash-coin" aria-hidden="true"></i> {% trans "Mission finances" %}</h4>
-	<div class="mission-form-grid">
-		{% for field in form %}
-		{% if field.name == 'donation_received' or field.name == 'mission_expenses' %}
-		<div class="mission-field">
-			<label class="mission-field-label" for="{{ field.id_for_label }}">
-				<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i>
-				<span>{{ field.label }}</span>
-				{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
-			</label>
-			{{ field }}
-			{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-		</div>
-		{% endif %}
-		{% endfor %}
-	</div>
-</section>
+	{% endif %}
+	{% endfor %}
+</div>

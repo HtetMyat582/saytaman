@@ -30,7 +30,7 @@
 					<span>{{ field.label }}</span>
 					{% if field.field.required %}<span class="text-danger" aria-hidden="true">*</span>{% endif %}
 				</label>
-				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker>
+				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker data-remove-label="{% trans 'Remove selected voucher' %}">
 					{{ field }}
 					<label class="btn btn-outline-secondary mission-photo-trigger" for="{{ field.id_for_label }}">
 						<i class="bi bi-camera" aria-hidden="true"></i> {% trans "Choose voucher photo" %}
@@ -85,7 +85,7 @@
 				<label class="mission-field-label" for="{{ field.id_for_label }}">
 					<i class="{{ field.field.widget.icon_class }}" aria-hidden="true"></i> {{ field.label }}
 				</label>
-				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker>
+				<div class="mission-photo-picker fuel-voucher-picker" data-voucher-picker data-remove-label="{% trans 'Remove selected voucher' %}">
 					{{ field }}
 					<label class="btn btn-outline-secondary mission-photo-trigger" for="{{ field.id_for_label }}">
 						<i class="bi bi-camera" aria-hidden="true"></i> {% trans "Choose voucher photo" %}
@@ -139,9 +139,16 @@
 				const image = document.createElement('img');
 				image.src = URL.createObjectURL(file);
 				image.alt = file.name;
+				image.dataset.objectUrl = 'true';
 				const name = document.createElement('small');
 				name.textContent = file.name;
-				card.append(image, name);
+				const removeButton = document.createElement('button');
+				removeButton.type = 'button';
+				removeButton.className = 'mission-photo-remove';
+				removeButton.dataset.removeVoucher = 'true';
+				removeButton.setAttribute('aria-label', picker.dataset.removeLabel);
+				removeButton.innerHTML = '<i class="bi bi-x-lg" aria-hidden="true"></i>';
+				card.append(image, name, removeButton);
 				preview.append(card);
 			} else if (current) {
 				current.hidden = false;

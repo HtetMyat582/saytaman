@@ -16,7 +16,10 @@
     <div class="text-danger small">{{ error }}</div>
     {% endfor %}
 
-    <div id="selected-photo-previews" class="mission-photo-grid mt-3" aria-live="polite"></div>
+    <div id="selected-photo-previews"
+         class="mission-photo-grid mt-3"
+         data-remove-label="{% trans 'Remove selected photo' %}"
+         aria-live="polite"></div>
 
     {% if mission %}
     <h5 class="mt-4">{% trans "Uploaded photos" %}</h5>
@@ -46,23 +49,50 @@
     const input = document.getElementById('{{ form.photos.id_for_label }}');
     const previewArea = document.getElementById('selected-photo-previews');
 
-    input.addEventListener('change', () => {
+    const renderPreviews = () => {
+        previewArea.querySelectorAll('img[data-object-url]').forEach(image => {
+            URL.revokeObjectURL(image.src);
+        });
         previewArea.replaceChildren();
 
-        Array.from(input.files).forEach((file) => {
+        Array.from(input.files).forEach((file, index) => {
             const card = document.createElement('div');
             card.className = 'mission-photo-card';
 
             const image = document.createElement('img');
             image.alt = file.name;
             image.src = URL.createObjectURL(file);
+            image.dataset.objectUrl = 'true';
 
             const name = document.createElement('small');
             name.textContent = file.name;
 
-            card.append(image, name);
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.className = 'mission-photo-remove';
+            removeButton.dataset.removeSelectedPhoto = index;
+            removeButton.setAttribute('aria-label', previewArea.dataset.removeLabel);
+            removeButton.innerHTML = '<i class="bi bi-x-lg" aria-hidden="true"></i>';
+
+            card.append(image, name, removeButton);
             previewArea.append(card);
         });
+    };
+
+    input.addEventListener('change', renderPreviews);
+
+    previewArea.addEventListener('click', event => {
+        const removeButton = event.target.closest('[data-remove-selected-photo]');
+        if (!removeButton) return;
+
+        const removeIndex = Number(removeButton.dataset.removeSelectedPhoto);
+        const remainingFiles = Array.from(input.files);
+        remainingFiles.splice(removeIndex, 1);
+
+        const transfer = new DataTransfer();
+        remainingFiles.forEach(file => transfer.items.add(file));
+        input.files = transfer.files;
+        renderPreviews();
     });
 })();
 </script>

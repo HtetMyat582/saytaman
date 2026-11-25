@@ -91,9 +91,7 @@ class MissionRecordForm(forms.ModelForm):
             'patient_type': forms.TextInput(attrs={'class': 'form-input mission-control'}),
             'patient_name': forms.TextInput(attrs={'class': 'form-input mission-control'}),
             'patient_age': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
-            'notes': forms.Textarea(attrs={
-                'rows': 3, 'class': 'form-input mission-control',
-            }),
+            'notes': forms.TextInput(attrs={'class': 'form-input mission-control'}),
             'donation_received': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
             'mission_expenses': forms.NumberInput(attrs={'class': 'form-input mission-control'}),
         }
@@ -115,8 +113,9 @@ class MissionRecordForm(forms.ModelForm):
             'mission_expenses': _('Mission Expenses'),
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, can_edit_mission_number=False, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['mission_number'].disabled = not can_edit_mission_number
         for field_name, icon_class in MISSION_FIELD_ICONS.items():
             self.fields[field_name].widget.icon_class = icon_class
 
@@ -185,6 +184,7 @@ class MissionFuelRefillForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field_name, icon_class in self.FIELD_ICONS.items():
             self.fields[field_name].widget.icon_class = icon_class
+        self.fields['fuel_type'].choices = MissionFuelRefill.FUEL_TYPE_CHOICES
 
 
 MissionFuelRefillFormSet = inlineformset_factory(

@@ -80,6 +80,7 @@ def add_mission(request):
 
 	return render(request, 'mission_records/add_mission.html', {
 		'form': form,
+		'can_edit_mission_number': False,
 		'fuel_formset': fuel_formset,
 		'now': now,
 	})
@@ -121,6 +122,7 @@ def edit_mission(request, pk):
 	mission = get_object_or_404(MissionRecord, pk=pk)
 	member = getattr(request.user, 'member_profile', None)
 	now = timezone.now().year
+	can_edit_mission_number = bool(member and member.role == 'Admin')
 
 	# Permission: driver or assistant_1 or assistant_2 can edit
 	allowed = False
@@ -151,6 +153,7 @@ def edit_mission(request, pk):
 			request.POST,
 			request.FILES,
 			instance=mission,
+			can_edit_mission_number=can_edit_mission_number,
 		)
 		form.fields['photos'].max_files = max(
 			0, 10 - remaining_photo_count
@@ -185,7 +188,10 @@ def edit_mission(request, pk):
 
 		messages.error(request, 'Please correct the errors below.')
 	else:
-		form = MissionRecordForm(instance=mission)
+		form = MissionRecordForm(
+			instance=mission,
+			can_edit_mission_number=can_edit_mission_number,
+		)
 		form.fields['photos'].max_files = max(
 			0, 10 - mission.mission_photos.count()
 		)
@@ -198,6 +204,7 @@ def edit_mission(request, pk):
 		'form': form,
 		'fuel_formset': fuel_formset,
 		'mission': mission,
+		'can_edit_mission_number': can_edit_mission_number,
 		'now': now,
 	})
 
