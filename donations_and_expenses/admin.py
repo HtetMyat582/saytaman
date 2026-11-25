@@ -1,6 +1,7 @@
 from math import exp
 from django.contrib import admin
 from .models import Donation, Expense, FuelRefill
+from .forms import DonationAdminForm, ExpenseAdminForm, FuelRefillForm
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -11,6 +12,7 @@ class DonationResource(resources.ModelResource):
 @admin.register(Donation)
 class DonationAdmin(ImportExportModelAdmin):
     resource_class = DonationResource
+    form = DonationAdminForm
     list_display = [
         'donor_name', 'amount', 'date', 'donation_type', 'donation_method', 'voucher_number',
         ]
@@ -29,6 +31,7 @@ class ExpenseResource(resources.ModelResource):
 @admin.register(Expense)
 class ExpenseAdmin(ImportExportModelAdmin):
     resource_class = ExpenseResource
+    form = ExpenseAdminForm
     list_display = [
         'expense_type', 'amount', 'payee_name', 'date', 'item'
         ]
@@ -48,6 +51,7 @@ class FuelRefillResource(resources.ModelResource):
 @admin.register(FuelRefill)
 class FuelRefillAdmin(ImportExportModelAdmin):
     resource_class = FuelRefillResource
+    form = FuelRefillForm
     list_display = ('vehicle', 'date', 'time', 'pump_name', 'liters', 'cost', 'created_by')
     list_filter = ('date', 'vehicle')
     search_fields = ('vehicle__vehicle_id', 'pump_name', 'created_by__member_id')

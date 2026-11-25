@@ -7,12 +7,12 @@
         <form method="post">
             {% csrf_token %}
             <div class="form-row">
-                <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-input" required autofocus>
+                <label class="form-label" for="id_username">Username</label>
+                <input type="text" id="id_username" name="username" class="form-input" placeholder="STM-000" autocomplete="username" required autofocus>
             </div>
             <div class="form-row">
-                <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-input" required>
+                <label class="form-label" for="id_password">Password</label>
+                <input type="password" id="id_password" name="password" class="form-input" placeholder="Password" autocomplete="current-password" required>
             </div>
             {% if next %}
             <input type="hidden" name="next" value="{{ next }}">

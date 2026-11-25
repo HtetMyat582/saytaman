@@ -121,6 +121,9 @@
 	addButton.addEventListener('click', () => {
 		const html = template.innerHTML.replaceAll('__prefix__', totalForms.value);
 		refillForms.insertAdjacentHTML('beforeend', html);
+		if (window.initializeLocalDateTime) {
+			window.initializeLocalDateTime(refillForms.lastElementChild);
+		}
 		totalForms.value = Number(totalForms.value) + 1;
 	});
 

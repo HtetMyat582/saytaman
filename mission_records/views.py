@@ -49,7 +49,11 @@ def add_mission(request):
 	
 
 	if request.method == 'POST':
-		form = MissionRecordForm(request.POST, request.FILES)
+		form = MissionRecordForm(
+			request.POST,
+			request.FILES,
+			driver_member=member,
+		)
 		fuel_formset = MissionFuelRefillFormSet(
 			request.POST,
 			request.FILES,
@@ -75,7 +79,7 @@ def add_mission(request):
 			return redirect('mission_list')
 		messages.error(request, 'Please correct the errors below.')
 	else:
-		form = MissionRecordForm()
+		form = MissionRecordForm(driver_member=member)
 		fuel_formset = MissionFuelRefillFormSet(prefix='fuel_refills')
 
 	return render(request, 'mission_records/add_mission.html', {
@@ -154,6 +158,7 @@ def edit_mission(request, pk):
 			request.FILES,
 			instance=mission,
 			can_edit_mission_number=can_edit_mission_number,
+			driver_member=member,
 		)
 		form.fields['photos'].max_files = max(
 			0, 10 - remaining_photo_count
@@ -191,6 +196,7 @@ def edit_mission(request, pk):
 		form = MissionRecordForm(
 			instance=mission,
 			can_edit_mission_number=can_edit_mission_number,
+			driver_member=member,
 		)
 		form.fields['photos'].max_files = max(
 			0, 10 - mission.mission_photos.count()
