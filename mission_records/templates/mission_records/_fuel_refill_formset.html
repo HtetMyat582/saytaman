@@ -8,8 +8,13 @@
 
 <div id="fuel-refill-forms" class="fuel-refill-list">
 	{% for refill_form in fuel_formset %}
-	<div class="fuel-refill-card">
-		<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "Refill" %} #{{ forloop.counter }}</h5>
+	<div class="fuel-refill-card"{% if refill_form.DELETE.value %} hidden{% endif %}>
+		<div class="fuel-refill-card-header">
+			<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "Refill" %} #{{ forloop.counter }}</h5>
+			<button type="button" class="btn btn-danger fuel-refill-delete-button" data-remove-refill aria-label="{% trans 'Delete refill' %}">
+				<i class="bi bi-x-lg" aria-hidden="true"></i>
+			</button>
+		</div>
 		{% for hidden in refill_form.hidden_fields %}{{ hidden }}{% endfor %}
 		<div class="mission-form-grid fuel-refill-grid">
 		{% for field in refill_form.visible_fields %}
@@ -49,12 +54,9 @@
 				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 			</div>
 			{% elif field.name == 'DELETE' %}
-			{% if refill_form.instance.pk %}
-			<div class="fuel-delete-field">
+			<div class="fuel-delete-field" hidden>
 				{{ field }}
-				<label for="{{ field.id_for_label }}" class="form-check-label text-danger">{{ field.label }}</label>
 			</div>
-			{% endif %}
 			{% else %}
 			<div class="mission-field">
 				<label class="mission-field-label" for="{{ field.id_for_label }}">
@@ -74,7 +76,12 @@
 
 <template id="fuel-refill-empty-form">
 	<div class="fuel-refill-card">
-		<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "New refill" %}</h5>
+		<div class="fuel-refill-card-header">
+			<h5 class="fuel-refill-heading"><i class="bi bi-fuel-pump" aria-hidden="true"></i> {% trans "New refill" %}</h5>
+			<button type="button" class="btn btn-danger fuel-refill-delete-button" data-remove-refill aria-label="{% trans 'Delete refill' %}">
+				<i class="bi bi-x-lg" aria-hidden="true"></i>
+			</button>
+		</div>
 		{% for hidden in fuel_formset.empty_form.hidden_fields %}{{ hidden }}{% endfor %}
 		<div class="mission-form-grid fuel-refill-grid">
 		{% for field in fuel_formset.empty_form.visible_fields %}
@@ -99,6 +106,8 @@
 				</div>
 				{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
 			</div>
+			{% elif field.name == 'DELETE' %}
+			<div class="fuel-delete-field" hidden>{{ field }}</div>
 			{% else %}
 			<div class="mission-field">
 				<label class="mission-field-label" for="{{ field.id_for_label }}">
@@ -112,8 +121,9 @@
 	</div>
 </template>
 
-<button type="button" class="btn btn-outline-secondary add-fuel-refill-button" id="add-fuel-refill">
-	<i class="bi bi-plus-circle" aria-hidden="true"></i> {% trans "Add another refill" %}
+<button type="button" class="btn btn-outline-secondary add-fuel-refill-button mt-2" id="add-fuel-refill">
+	<i class="bi bi-plus-circle" aria-hidden="true"></i>
+	{% if fuel_formset.forms %}{% trans "Add another refill" %}{% else %}{% trans "Add a Refill" %}{% endif %}
 </button>
 
 <script>
@@ -173,6 +183,17 @@
 	});
 
 	refillForms.addEventListener('click', event => {
+		const removeRefill = event.target.closest('[data-remove-refill]');
+		if (removeRefill) {
+			const card = removeRefill.closest('.fuel-refill-card');
+			const deleteField = card.querySelector('input[type="checkbox"][name$="-DELETE"]');
+			if (deleteField) {
+				deleteField.checked = true;
+			}
+			card.hidden = true;
+			return;
+		}
+
 		const removeSelected = event.target.closest('[data-remove-voucher]');
 		const removeExisting = event.target.closest('[data-remove-existing-voucher]');
 		if (!removeSelected && !removeExisting) return;

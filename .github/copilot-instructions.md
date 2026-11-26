@@ -5,3 +5,4 @@
 
 ## Testing and Environment Setup
 - When running Django checks or tests from the terminal, use cmd rather than PowerShell; activate the virtual environment with `env\Scripts\activate.bat` first, as dependencies such as django-import-export are installed there, so system Python can misleadingly report them missing.
+- For local Django test/check commands, use the project's activated `env` virtual environment and the user's locally configured database environment variables in settings.py's commented Database section.

@@ -730,13 +730,36 @@ textarea.mission-control {
 }
 
 .fuel-refill-card {
+    position: relative;
     padding: 1rem;
     border: 1px solid var(--file-border);
     border-radius: 1rem;
     background: var(--card-bg);
 }
 
+.fuel-refill-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.fuel-refill-card .fuel-refill-delete-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    display: inline-flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+}
+
 .fuel-refill-heading {
+    margin: 0;
+    padding-right: 2.75rem;
     font-size: 1rem;
 }
 
@@ -800,16 +823,7 @@ textarea.mission-control {
 }
 
 .fuel-delete-field {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.fuel-delete-field input {
-    width: 1.15rem;
-    height: 1.15rem;
-    accent-color: #b02a37;
+    display: none;
 }
 
 .add-fuel-refill-button,
